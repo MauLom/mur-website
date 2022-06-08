@@ -78,7 +78,7 @@ const Home = () => {
             <Row style={{ height: "100vh" }}>
                 <Col lg={2} md={12}>
                     <Container fluid style={{ height: "100vh" }} >
-                        <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} /></Col></Row>
+                        <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
                         <Row style={{ height: "100vh" }}>
                             <Container style={styles.frameLoginBg}>
                                 <Row className="mt-2"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
