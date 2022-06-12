@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 
 import Home from "./home";
-
+import TransactionsFrame  from "../components/transactionsWindow";
 const MutableContent = () => {
 
     return (
@@ -21,7 +21,7 @@ const MutableContent = () => {
                         element={<Navigate to="/" replace />}
                     />
                     <Route path='/' element={<Home />} />
-
+                    <Route path="/transactions" element={<TransactionsFrame />} />
 
                 </Routes >
             </Router>
