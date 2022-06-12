@@ -11,6 +11,7 @@ import { Link } from "react-router-dom";
 ///Assets
 import bgEllipse from '../assets/Bg.png'
 import Logo from '../assets/LOGO.png'
+import Fondo from '../assets/FONDO.jpg'
 const Home = () => {
 
     const styles = {
@@ -37,9 +38,9 @@ const Home = () => {
             border: "3px solid #FFFFFF",
         },
         buttonLogin: {
-            minWidth:"120px",
-            minHeight:"60px",
-            
+            minWidth: "120px",
+            minHeight: "60px",
+
             background: "linear-gradient(120.37deg, rgba(221, 122, 5, 0.8) 0%, rgba(236, 25, 164, 0.8) 100%)",
             border: "2px solid #EFEFEF",
             boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.25)",
@@ -74,32 +75,56 @@ const Home = () => {
     }
 
     return (
-        <Container fluid style={{ background: "#9F6FFA", backgroundImage: `url(${bgEllipse})`, backgroundSize: "cover", height: "100%" }}>
-            <Row style={{ height: "100vh" }}>
-                <Col lg={2} md={12}>
-                    <Container fluid style={{ height: "100vh" }} >
-                        <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
-                        <Row style={{ height: "100vh" }}>
-                            <Container style={styles.frameLoginBg}>
-                                <Row className="mt-2"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
-                                <Row className="mt-3"><Col><div style={styles.divider}></div></Col></Row>
-                                <Row className="mt-3"><Col><div style={styles.labelInputs}> Username</div></Col></Row>
-                                <Row className="mt-2"><Col><input style={styles.inputs} placeholder="Enter username" /></Col></Row>
-                                <Row className="mt-3"><Col><div style={styles.labelInputs}>Password</div></Col></Row>
-                                <Row className="mt-2"><Col><input style={styles.inputs} placeholder="Enter password" /></Col></Row>
-                                <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin}>Login</button></Col></Row>
-                                <Row className="mt-2"><Col className="text-center"><Link to="/">Forgot your password?</Link></Col></Row>
-                                <Row className="mt-5"><Col className="text-center"><Link to="/">Register here</Link></Col></Row>
 
-                            </Container>
+        <Container fluid style={{ backgroundImage: `url(${Fondo})`, backgroundSize: "cover", height: "100%", overflow: "hidden" }}>
+            <Col>
+                <Row style={{ height: "100vh" }}>
+                    <Col lg={2} md={12}>
+                        <Container fluid style={{ height: "100vh" }} >
+                            <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
+                            <Row style={{ height: "100vh" }}>
+                                <Container style={styles.frameLoginBg}>
+                                    <Row className="mt-2"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
+                                    <Row className="mt-3"><Col><div style={styles.divider}></div></Col></Row>
+                                    <Row className="mt-3"><Col><div style={styles.labelInputs}> Username</div></Col></Row>
+                                    <Row className="mt-2"><Col><input style={styles.inputs} placeholder="Enter username" /></Col></Row>
+                                    <Row className="mt-3"><Col><div style={styles.labelInputs}>Password</div></Col></Row>
+                                    <Row className="mt-2"><Col><input style={styles.inputs} placeholder="Enter password" /></Col></Row>
+                                    <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin}>Login</button></Col></Row>
+                                    <Row className="mt-2"><Col className="text-center"><Link to="/">Forgot your password?</Link></Col></Row>
+                                    <Row className="mt-5"><Col className="text-center"><Link to="/">Register here</Link></Col></Row>
+
+                                </Container>
+
+                            </Row>
+                        </Container>
+
+                    </Col>
+                    <Col lg={10} md={0} className="d-none d-lg-block" >
+                        <Row style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "1474px", height: "60px" }}>
+                            <Col>
+                                Usuario
+                                </Col>
+                                <Col>
+                                <button style={{ background: "rgba(27, 191, 0, 0.92)", borderRadius: "41px", width: "159px", height: "41px", }} >Depositar</button>
+                                </Col>
+                                <Col>
+                                <button style={{ background: "rgba(27, 191, 0, 0.92)", borderRadius: "41px", width: "159px", height: "41px", }} >Retirar</button>
+                                </Col>
                         </Row>
-                    </Container>
+                        <Row>
+                            <Col className="mt-4" style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "453px", height: "352px" }}>Cosas juegos</Col>
+                            <Col className="mt-4" style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "453px", height: "352px" }}>Cosas juegos</Col>
+                            <Col className="mt-4" style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "453px", height: "352px" }}>Cosas juegos</Col>
 
-                </Col>
+                        </Row>
+                        <Row>
+                            <Col className="mt-4" style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "1469px", height: "428px" }} >Hall of fame</Col>
+                        </Row>
+                    </Col>
+                </Row>
+            </Col>
 
-
-                <Col lg={10} md={0} className="d-none d-lg-block" >Preview games space</Col>
-            </Row>
 
         </Container>
 
