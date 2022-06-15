@@ -44,12 +44,13 @@ const LoginFrame = () => {
             textShadow: "15px 12px 50px"
         },
         inputs: {
-            minHeight: "60px",
-
+            minHeight: "55px",
+            width: "280px",
             background: "linear-gradient(120.37deg, rgba(239, 239, 239, 0.048) 0%, rgba(255, 255, 255, 0.008) 100%)",
             border: "2px solid #EFEFEF",
             boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.25)",
             borderRadius: "25px",
+            textAlign: "center"
         },
         buttonLogin: {
             minWidth: "120px",
@@ -78,10 +79,10 @@ const LoginFrame = () => {
                         <Container style={styles.frameLoginBg}>
                             <Row className="mt-2"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
                             <Row className="mt-3"><Col><div style={styles.divider}></div></Col></Row>
-                            <Row className="mt-3"><Col><div style={styles.labelInputs}> Username</div></Col></Row>
-                            <Row className="mt-2"><Col><input style={styles.inputs} placeholder="Enter username" /></Col></Row>
-                            <Row className="mt-3"><Col><div style={styles.labelInputs}>Password</div></Col></Row>
-                            <Row className="mt-2"><Col><input style={styles.inputs} placeholder="Enter password" /></Col></Row>
+                            <Row className="mt-3 text-center"><Col><div style={styles.labelInputs}> Username</div></Col></Row>
+                            <Row className="mt-2 text-center"><Col><input style={styles.inputs} placeholder="Enter username" /></Col></Row>
+                            <Row className="mt-3 text-center"><Col><div style={styles.labelInputs}>Password</div></Col></Row>
+                            <Row className="mt-2 text-center"><Col><input style={styles.inputs} placeholder="Enter password" /></Col></Row>
                             <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin}>Login</button></Col></Row>
                             <Row className="mt-2"><Col className="text-center"><Link to="/">Forgot your password?</Link></Col></Row>
                             <Row className="mt-5"><Col className="text-center"><Link to="/">Register here</Link></Col></Row>
