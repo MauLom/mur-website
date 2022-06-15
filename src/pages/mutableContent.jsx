@@ -10,6 +10,7 @@ import {
 
 import Home from "./home";
 import TransactionsFrame  from "../components/transactionsWindow";
+import Games from "./games";
 const MutableContent = () => {
 
     return (
@@ -22,7 +23,7 @@ const MutableContent = () => {
                     />
                     <Route path='/' element={<Home />} />
                     <Route path="/transactions" element={<TransactionsFrame />} />
-
+                    <Route path="/games" element={<Games />} />
                 </Routes >
             </Router>
 

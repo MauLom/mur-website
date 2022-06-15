@@ -1,0 +1,8 @@
+.rotate {
+    position:relative;
+    animation: rotation 4s  linear ;
+    animation-fill-mode: forwards;
+}
+
+
+
