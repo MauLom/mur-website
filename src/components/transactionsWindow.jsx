@@ -33,8 +33,8 @@ const TransactionsFrame = () => {
     return (
         <Container fluid style={styles.bgFrame}>
             <Row className="text-start">
-                <Col md={1} sm={1} xs={4} > <div onClick={() => { setIsDeposit(true) }} style={isDeposit ? styles.txtUnderLine : styles.emptyStyle}>Deposito</div> </Col>
-                <Col md={1} sm={1} xs={4}> <div onClick={() => { setIsDeposit(false) }} style={!isDeposit ? styles.txtUnderLine : styles.emptyStyle}>Retiro</div></Col>
+                <Col className="mt-2 mx-1" md={1} sm={1} xs={4} > <div onClick={() => { setIsDeposit(true) }} style={isDeposit ? styles.txtUnderLine : styles.emptyStyle}>Deposito</div> </Col>
+                <Col className="mt-2 mx-4" md={1} sm={1} xs={4}> <div onClick={() => { setIsDeposit(false) }} style={!isDeposit ? styles.txtUnderLine : styles.emptyStyle}>Retiro</div></Col>
             </Row>
             {isDeposit ?
                 <DepositInfo />:

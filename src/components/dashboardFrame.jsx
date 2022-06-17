@@ -35,7 +35,7 @@ const DashboardFrame = () => {
 
     return (
         <>
-            <Row >
+            <Row>
                 <Row >
                     <HeaderOptions />
                 </Row>
