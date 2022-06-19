@@ -10,16 +10,17 @@ import Col from 'react-bootstrap/Col';
 ///Components
 import DepositInfo from "./depositInfoFrame";
 import WithdrawInfo from "./withdraInfoFrame";
-const TransactionsFrame = () => {
-    const [isDeposit, setIsDeposit] = React.useState(true)
+const TransactionsFrame = (props) => {
+    const [isDeposit, setIsDeposit] = React.useState(props.windowToOpen)
 
     const styles = {
         bgFrame: {
-            background: "linear-gradient(120.37deg, rgba(33, 6, 6, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%)",
+            background: "",
             border: "1px solid #EFEFEF",
             backdropFilter: "blur(60px)",
-            borderRadius: "25px",
-            height:"70%"
+          
+            height:"70%",
+            
         },
         txtUnderLine: {
             textDecoration: "underline"

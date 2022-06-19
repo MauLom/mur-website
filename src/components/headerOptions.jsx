@@ -8,10 +8,20 @@ import TransactionsFrame from './transactionsWindow';
 
 const HeaderOptions = () => {
 
-    const [show, setShow] =React.useState(false);
+    const [show, setShow] = React.useState(false);
+    const [window, setWindow] = React.useState(false);
 
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+
+    const handleClick = (origin) => {
+        if (origin) {
+            setWindow(true)
+        } else {
+            setWindow(false)
+        }
+        setShow(true)
+    }
+
 
     return (
         <Row className="mx-3 mt-4" style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "1469px", height: "60px", }}>
@@ -19,13 +29,15 @@ const HeaderOptions = () => {
                 Usuario
             </Col>
             <Col className="mt-2 text-center">
-                <button onClick={()=>{handleShow()}} style={{ background: "rgba(0, 209, 121, 0.92)", borderRadius: "41px", width: "130px", height: "41px", }} >Depositar</button>
+                <button onClick={() => { handleClick(true) }} style={{ background: "rgba(0, 209, 121, 0.92)", borderRadius: "41px", width: "130px", height: "41px", }} >Depositar</button>
             </Col>
             <Col className="text-center mt-2">
-                <button style={{ background: "rgba(0, 209, 121, 0.92)", borderRadius: "41px", width: "130px", height: "41px", }} >Retirar</button>
+                <button onClick={() => { handleClick(false) }} style={{ background: "rgba(0, 209, 121, 0.92)", borderRadius: "41px", width: "130px", height: "41px", }} >Retirar</button>
             </Col>
             <Modal show={show} onHide={handleClose}>
-                <TransactionsFrame/>
+                <Modal.Body>
+                    <TransactionsFrame windowToOpen={window} />
+                </Modal.Body>
             </Modal>
         </Row>
     )

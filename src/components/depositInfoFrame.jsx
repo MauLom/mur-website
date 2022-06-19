@@ -15,12 +15,12 @@ const DepositInfo = () => {
 
     const styles = {
         logoBTC: {
-            width: "170px",
-            height: "70px"
+            width: "115px",
+            height: "45px"
         },
         qrExample: {
-            width: "200px",
-            height: "150px"
+            width: "150px",
+            height: "120px"
         },
     }
 
@@ -31,7 +31,7 @@ const DepositInfo = () => {
 
     return (
         <>
-            <Row>
+            {/* <Row>
 
                 <Col md={1} sm={12} className="text-center mb-2" style={{ width: "100px", height: "100px" }} >
                     <Row className="mt-2 justify-content-center">
@@ -47,13 +47,27 @@ const DepositInfo = () => {
                         <b className="font-weight-bold" >
                             bc1qz8q2yr6lhegxrsckr97kuvdlva8
                         </b>
-                    </Row>
-                    <Col>
-                        Envíe cualquier cantidad de BTC a la siguiente dirección. En el caso de un depósito no instantáneo, se requiere 1 confirmación
-                    </Col>
+                         </Row>
+                    <Modal.Body>
+                    Envíe cualquier cantidad de BTC a la siguiente dirección. En el caso de un depósito no instantáneo, se requiere 1 confirmación
+                    </Modal.Body>
                 </Col>  
+            </Row> */}
+            <Modal.Title>
+            <img style={styles.logoBTC} alt="BTC-log" src="https://pngimg.com/uploads/bitcoin/bitcoin_PNG36.png" />
+            </Modal.Title>
+            <Row className="mx-4">
+                <b>Wallet</b>
+                <b className="text-center mx-4">bc1qz8q2yr6lhegxrsckr97kuvdlva8</b>
             </Row>
-
+            <Row>
+            <img style={styles.qrExample} alt="QR-Code" src={QRExample} />
+            <Col>
+            Envíe cualquier cantidad de BTC a la siguiente dirección. En el caso de un depósito no instantáneo, se requiere 1 confirmación
+            </Col>
+            </Row>
+            
+            
 
 
         </>
