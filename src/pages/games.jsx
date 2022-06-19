@@ -15,12 +15,12 @@ const Games = () => {
 
     return (
         <Container fluid style={{ backgroundImage: `url(${Fondo})`, backgroundSize: "cover", height: "100%", overflow: "hidden" }}>
-        <Row>
-            <Col lg={12} md={12}>
-                <GameWheel />
-            </Col>
-        </Row>
-    </Container>
+            <Row>
+                <Col lg={12} md={12}>
+                    <GameWheel />
+                </Col>
+            </Row>
+        </Container>
     )
 }
 

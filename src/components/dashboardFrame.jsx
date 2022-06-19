@@ -1,5 +1,8 @@
 import * as React from 'react'
+
 import HeaderOptions from './headerOptions';
+
+import { Link } from "react-router-dom"
 
 ///Bootstrap components
 import Row from 'react-bootstrap/Row';
@@ -39,13 +42,27 @@ const DashboardFrame = () => {
             </Row>
             <Row className='justify-content-center'>
                 <Col lg={3} className="mx-3 mt-4" style={styles.glassSquares}>
-                    <img style={styles.imgGames} src={GameBombs} alt="game-bombs" />
+                    <Link to={{
+                        pathname: "/games",
+                    }}>
+                        <img style={styles.imgGames} src={GameBombs} alt="game-bombs" />
+                    </Link>
                 </Col>
                 <Col lg={3} className="mx-3 mt-4" style={styles.glassSquares}>
-                    <img style={styles.imgGames} src={GameWheel} alt="game-bombs" />
+                    <Link to={{
+                        pathname: "/games",
+                    }}>
+                        <img style={styles.imgGames} src={GameWheel} alt="game-wheel" />
+                    </Link>
+
                 </Col>
                 <Col lg={3} className="mx-3 mt-4" style={styles.glassSquares}>
-                    <img style={styles.imgGames} src={GameTower} alt="game-bombs" />
+                    <Link to={{
+                        pathname: "/games",
+                    }}>
+                        <img style={styles.imgGames} src={GameTower} alt="game-tower" />
+                    </Link>
+
                 </Col>
 
             </Row>
