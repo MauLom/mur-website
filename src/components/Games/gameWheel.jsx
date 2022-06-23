@@ -2,7 +2,6 @@ import * as React from 'react'
 
 ///Assets
 import OnlyWheel from '../../assets/OnlyWheel.png'
-import './games.css'
 
 /// Bootstrap components
 import Container from 'react-bootstrap/Container';
@@ -18,18 +17,24 @@ const GameWheel = () => {
 
     const [changeRotating, setChangeRotating] = React.useState(false)
 
-    const styleDoc =document.createElement("style")
-    const keyInjection =`@keyframes rotation {
-        from {
-            transform: rotate(0deg);
+    const [styleRotation, setStyleRotation] = React.useState(
+        {
+            maxWidth: "100%",
+            maxHeight: "100%",
+            transition: "all 8s cubic-bezier(0,.57,.61,0.99)",
+            // transform: "rotate(900deg)",
         }
-        to {
-            transform: rotate(300deg);
-        }
-    }`
-    styleDoc.type = "text/css";
-    styleDoc.appendChild(document.createTextNode(keyInjection))
-    document.getElementsByTagName("head")[0].appendChild(styleDoc);
+    )
+
+    const generateRotation = () => {
+        const ticks = Math.floor(Math.random() * (15 - 30) + 15);
+        const rotation = (360 * ticks) + (Math.floor(Math.random() * (5 - 360) + 5))
+
+        setStyleRotation({
+            ...styleRotation,
+            transform: "rotate(" + rotation + "deg)"
+        })
+    }
 
     const styles = {
         glassRectangle: {
@@ -40,8 +45,10 @@ const GameWheel = () => {
         imgWheel: {
             maxWidth: "100%",
             maxHeight: "100%",
-            animation: "rotation 4s  linear",
-            animationFillMode: "forwards"
+            // animation: "rotation 4s infinite linear",
+            // animationFillMode: "forwards",
+            transition: "all 8s cubic-bezier(0,.57,.61,0.99)",
+            transform: "rotate(900deg)",
         },
         rotationCss: {
         },
@@ -58,11 +65,11 @@ const GameWheel = () => {
             <Row>
                 <Col lg={2} style={styles.glassRectangle}>
                     Ganancias
-                    <button onClick={() => { setChangeRotating(!changeRotating) }}>SPIIIIN</button>
+                    <button onClick={() => { generateRotation() }}>SPIIIIN</button>
                 </Col>
                 <Col lg={8}>
                     {/* <ImgStylized />  */}
-                    <img style={styles.imgWheel} src={OnlyWheel} />
+                    <img style={styleRotation} src={OnlyWheel} />
                 </Col>
                 <Col lg={2} style={styles.glassRectangle}>
                     Otras Mesas
