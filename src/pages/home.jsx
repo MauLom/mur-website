@@ -12,17 +12,18 @@ import Col from 'react-bootstrap/Col';
 ///Assets
 import Fondo from '../assets/FONDO.jpg'
 const Home = () => {
+const [hideLoginFrame, setHideLoginFrame] = React.useState(false)
 
     return (
 
         <Container fluid style={{ backgroundImage: `url(${Fondo})`, backgroundSize: "cover", height: "100%", overflow: "hidden" }}>
             <Row>
+                {hideLoginFrame?<></>:
                 <Col lg={2} md={12}>
-                    <LoginFrame />
-                </Col>
-                <Col lg={10} md={0} className="d-none d-lg-block" >
-                    <DashboardFrame />
-                </Col>
+                    <LoginFrame loginChange={setHideLoginFrame} />
+                </Col>}
+                {hideLoginFrame?<Col lg={12} md={12}><DashboardFrame  /></Col>:<Col lg={10} md={10} ><DashboardFrame  /></Col>}
+                
 
             </Row>
 

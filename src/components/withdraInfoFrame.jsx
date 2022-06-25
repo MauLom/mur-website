@@ -7,8 +7,13 @@ import Col from 'react-bootstrap/Col';
 
 ///AsseTs 
 
+///Components
+import WithdrawAdress from "./withdrawAdressFrame";
+
 
 const WithdrawInfo = () => {
+
+const [viewForm, setViewForm] = React.useState (false)
 
     const styles = {
         buttonStylized: {
@@ -38,13 +43,13 @@ const WithdrawInfo = () => {
             border: "2px solid #EFEFEF",
             boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.25)",
             borderRadius: "20px",
-            textAlign: "center",
-            color: "#FFFFFF",
+            
         }
     }
 
     return (
         <Row>
+             {viewForm ? <WithdrawAdress/> :
             <Col>
                 <Row className="mt-3 mx-1">
                     Confirma sus datos
@@ -90,12 +95,13 @@ const WithdrawInfo = () => {
                             </Col>
                         </Row>
                         <Row>
-                            <button style={styles.buttonStylized} className= "mt-3" >Continuar</button>
+                            <button  style={styles.buttonStylized} className= "mt-3" onClick={() => { setViewForm(!viewForm) }} >Continuar</button>
                         </Row>
                     </form>
                 </Formik>
 
             </Col>
+            }
         </Row>
     )
 }

@@ -9,7 +9,9 @@ import Col from 'react-bootstrap/Col';
 import { Link } from "react-router-dom";
 import Logo from '../assets/LOGO.png'
 
-const LoginFrame = () => {
+const LoginFrame = (props) => {
+const [hideLoginFrame, setHideLoginFrame] = React.useState (true)
+
 
     const styles = {
         frameLoginBg: {
@@ -83,7 +85,7 @@ const LoginFrame = () => {
                             <Row className="mt-2 text-center"><Col><input style={styles.inputs} placeholder="Enter username" /></Col></Row>
                             <Row className="mt-3 text-center"><Col><div style={styles.labelInputs}>Password</div></Col></Row>
                             <Row className="mt-2 text-center"><Col><input style={styles.inputs} placeholder="Enter password" /></Col></Row>
-                            <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin}>Login</button></Col></Row>
+                            <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin} onClick={() => { props.loginChange(true) } }>Login</button></Col></Row>
                             <Row className="mt-2"><Col className="text-center"><Link to="/">Forgot your password?</Link></Col></Row>
                             <Row className="mt-5"><Col className="text-center"><Link to="/">Register here</Link></Col></Row>
                         </Container>

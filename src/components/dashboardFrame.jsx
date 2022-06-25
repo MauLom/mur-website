@@ -38,18 +38,18 @@ const DashboardFrame = () => {
 
     return (
         <>
-            <Row style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "1474px", height: "60px" }}>
+            <Row >
                 <HeaderOptions />
             </Row>
             <Row className='justify-content-center'>
-                <Col lg={3} className="mx-3 mt-4" style={styles.glassSquares}>
+                <Col lg={3} className="mx-3 mt-4">
                     <Link to={{
                         pathname: "/games",
                     }}>
                         <img style={styles.imgGames} src={GameBombs} alt="game-bombs" />
                     </Link>
                 </Col>
-                <Col lg={3} className="mx-3 mt-4" style={styles.glassSquares}>
+                <Col lg={3} className="mx-3 mt-4">
                     <Link to={{
                         pathname: "/games",
                     }}>
@@ -57,7 +57,7 @@ const DashboardFrame = () => {
                     </Link>
 
                 </Col>
-                <Col lg={3} className="mx-3 mt-4" style={styles.glassSquares}>
+                <Col lg={3} className="mx-3 mt-4">
                     <Link to={{
                         pathname: "/games",
                     }}>
@@ -67,8 +67,8 @@ const DashboardFrame = () => {
                 </Col>
 
             </Row>
-            <Row>
-                <Row >
+           <Row>
+                {/* <Row >
                     <HeaderOptions />
                 </Row>
                 <Row className='justify-content-center'>
@@ -81,8 +81,8 @@ const DashboardFrame = () => {
                     <Col lg={3} className="mx-3 mt-4">
                         <img style={styles.imgGames} src={GameTower} alt="game-bombs" />
                     </Col>
-
-                </Row>
+                    
+                </Row> */}
                 <Row style={{ height: "100%" }}>
                     <Col lg={12}>
                         <Row className=" text-center mt-4">
