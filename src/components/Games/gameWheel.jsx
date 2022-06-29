@@ -94,10 +94,10 @@ const GameWheel = () => {
                     <Col className=" mt-3">
                         usuario
                     </Col>
-                    <Col className="mt-2 text-center">
+                    <Col className="mt-2 text-center" style={{ justifyContent: "center", paddingLeft: "26%" }}>
                         <button onClick={() => { handleClick(true) }} style={{ background: "rgba(0, 209, 121, 0.92)", borderRadius: "41px", width: "130px", height: "41px", }} >Depositar</button>
                     </Col>
-                    <Col className="text-center mt-2">
+                    <Col className="mt-2 text-center" style={{ paddingLeft: "30%" }}>
                         <button onClick={() => { handleClick(false) }} style={{ background: "rgba(0, 209, 121, 0.92)", borderRadius: "41px", width: "130px", height: "41px", }} >Retirar</button>
                     </Col>
                     <Modal show={show} onHide={handleClose}>
@@ -107,6 +107,11 @@ const GameWheel = () => {
                     </Modal>
                 </Row>
             </Row>
+
+            <Row style={{ justifyContent: "center" }}>
+            <Row className="mt-4" style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "800px", height: "80px", justifyContent: "center" }}  > </Row>
+            </Row>
+            
             <Row className="text-center" style={{ justifyContent: "center" }}>
                 <Col lg={2} style={styles.glassRectangle}>
                     Ganancias
