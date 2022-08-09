@@ -4,14 +4,15 @@ import HeaderOptions from './headerOptions';
 ///Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-
 ///Assets
 import GameBombs from '../assets/BOMBAS.png'
 import GameWheel from '../assets/RULETA.png'
 import GameTower from '../assets/TORRES.png'
 
+import { Link } from 'react-router-dom';
 
 const DashboardFrame = () => {
+
     const styles = {
         glassSquares: {
             background: "rgba(231, 231, 231, 0.43)",
@@ -34,18 +35,19 @@ const DashboardFrame = () => {
 
     return (
         <>
-            <Row style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "1474px", height: "60px" }}>
+            <Row >
                 <HeaderOptions />
             </Row>
             <Row className='justify-content-center'>
                 <Col lg={3} className="mx-3 mt-4" style={styles.glassSquares}>
-                    <img style={styles.imgGames} src={GameBombs} alt="game-bombs" />
+                
+                <Link to="/gameMines"><img style={styles.imgGames} src={GameBombs} alt="game-bombs" /></Link>
                 </Col>
                 <Col lg={3} className="mx-3 mt-4" style={styles.glassSquares}>
-                    <img style={styles.imgGames} src={GameWheel} alt="game-bombs" />
+                    <Link to="/gameWheel"><img style={styles.imgGames} src={GameWheel} alt="game-wheel" /></Link>
                 </Col>
                 <Col lg={3} className="mx-3 mt-4" style={styles.glassSquares}>
-                    <img style={styles.imgGames} src={GameTower} alt="game-bombs" />
+                    <Link  to="/gameTowers"><img style={styles.imgGames} src={GameTower} alt="game-towers" /></Link>
                 </Col>
 
             </Row>

@@ -11,6 +11,9 @@ import {
 import Home from "./home";
 import TransactionsFrame  from "../components/transactionsWindow";
 import Games from "./games";
+import GameWheel from "../components/Games/gameWheel";
+import GameMines from "../components/Games/gameMines";
+import GameTowers from "../components/Games/gameTowers";
 const MutableContent = () => {
 
     return (
@@ -24,6 +27,9 @@ const MutableContent = () => {
                     <Route path='/' element={<Home />} />
                     <Route path="/transactions" element={<TransactionsFrame />} />
                     <Route path="/games" element={<Games />} />
+                    <Route path="/gameWheel" element={<GameWheel />} />
+                    <Route path="/gameMines" element={<GameMines />}/>
+                    <Route path="/gameTowers" element={<GameTowers />}></Route>
                 </Routes >
             </Router>
 
