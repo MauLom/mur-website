@@ -12,6 +12,16 @@ import bomba from '../../assets/BOMBAS.png'
 
 
 const GameTowers = () => {
+    const [arrElements, setArrElements] = React.useState( [
+            [{ monto: "$7.1", clickeado:false },
+            { monto: "$6.1", clickeado:false},
+            { monto: "$5.1", clickeado:false }],
+
+            [{ monto: "$4.1", clickeado:false },
+            { monto: "$3.1", clickeado:false },
+            { monto: "$2.1", clickeado:false }]
+        ]
+    )
     const p1 = (piso) => {
         const estrellas = {
             1: 'zoom-in-zoom-out',
@@ -71,7 +81,22 @@ const GameTowers = () => {
         document.getElementsByTagName("head")[0].appendChild(styleDoc);
     }
 
+    const handleIsClickedElements= (idx, jdx) =>{
+        let newArr = arrElements
+        let newObj =  newArr[idx]
+
+        newObj[jdx].clickeado = ! newObj[jdx].clickeado
+        newArr.splice(idx, newObj)
+           
+        setArrElements( newArr)
+        console.log("arrElements", arrElements[idx][jdx ]  )
+
+    }
+
     const styles = {
+        bgRed:{
+            background: "rgba(255, 99, 71, 1)",
+        },
         col1: {
             paddingTop: "12%"
         },
@@ -349,12 +374,20 @@ const GameTowers = () => {
                 </Col>
                 <Col className='d-flex justify-content-center' lg={4} sm={12}>
                     <div style={styles.div2} >
+
+                        {arrElements.map((eachRow, idx) => (
+                            <Row className='d-flex justify-content-around'>
+                                {eachRow.map((eachCol, jdx) => (
+                                    <button id='1' style={eachCol.clickeado? styles.bgRed : styles.b20} onClick={() => { handleIsClickedElements(idx, jdx) }}>{eachCol.monto}?</button>
+                                ))}
+                            </Row>
+                        ))}
                         <br />
-                        <Row className='d-flex justify-content-around'>
+                        {/* <Row className='d-flex justify-content-around'>
                             <button id='1' style={styles.b22} onClick={() => { p1(22) }}>$0.01</button>
                             <button id='2' style={styles.b23} onClick={() => { p1(23) }}>$0.01</button>
                             <button id='3' style={styles.b24} onClick={() => { p1(24) }}>$0.01</button>
-                        </Row>
+                        </Row> */}
                         <br />
                         <Row className='d-flex justify-content-around'>
                             <button id='1' style={styles.b19} onClick={() => { p1(19) }}>$0.01</button>
