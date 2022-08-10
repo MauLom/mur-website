@@ -9,58 +9,48 @@ import Form from 'react-bootstrap/Form';
 import ruleta from '../../assets/RULETA.png'
 import bomba from '../../assets/BOMBAS.png'
 
-
-
 const GameTowers = () => {
-    const [arrElements, setArrElements] = React.useState( [
-            [{ monto: "$7.1", clickeado:false },
-            { monto: "$6.1", clickeado:false},
-            { monto: "$5.1", clickeado:false }],
+    
 
-            [{ monto: "$4.1", clickeado:false },
-            { monto: "$3.1", clickeado:false },
-            { monto: "$2.1", clickeado:false }]
-        ]
+    const [arrElements, setArrElements] = React.useState([
+        [{id:'1', monto: "$7.1", clickeado: false },
+        {id:'2', monto: "$7.1", clickeado: false },
+        {id:'3', monto: "$7.1", clickeado: false }],
+        [{id:'4', monto: "$6.1", clickeado: false },
+        {id:'5', monto: "$6.1", clickeado: false },
+        {id:'6', monto: "$6.1", clickeado: false }],
+        [{id:'7', monto: "$5.1", clickeado: false },
+        {id:'8', monto: "$5.1", clickeado: false },
+        {id:'9', monto: "$5.1", clickeado: false }],
+        [{id:'10', monto: "$4.1", clickeado: false },
+        {id:'11', monto: "$4.1", clickeado: false },
+        {id:'12', monto: "$4.1", clickeado: false }],
+        [{id:'13', monto: "$3.1", clickeado: false },
+        {id:'14', monto: "$3.1", clickeado: false },
+        {id:'15', monto: "$3.1", clickeado: false }],
+        [{id:'16', monto: "$2.1", clickeado: false },
+        {id:'17', monto: "$2.1", clickeado: false },
+        {id:'18', monto: "$2.1", clickeado: false }],
+        [{id:'19', monto: "$1.1", clickeado: false },
+        {id:'20', monto: "$1.1", clickeado: false },
+        {id:'21', monto: "$1.1", clickeado: false }],
+        [{id:'22', monto: "$0.1", clickeado: false },
+        {id:'23', monto: "$0.1", clickeado: false },
+        {id:'24', monto: "$0.1", clickeado: false }],
+    ]
     )
-    const p1 = (piso) => {
-        const estrellas = {
-            1: 'zoom-in-zoom-out',
-            2: 'zoom-in-zoom-out2',
-            3: 'zoom-in-zoom-out3',
-            4: 'zoom-in-zoom-out4',
-            5: 'zoom-in-zoom-out5',
-            6: 'zoom-in-zoom-out6',
-            7: 'zoom-in-zoom-out7',
-            8: 'zoom-in-zoom-out8',
-            9: 'zoom-in-zoom-out9',
-            10: 'zoom-in-zoom-out10',
-            11: 'zoom-in-zoom-out11',
-            12: 'zoom-in-zoom-out12',
-            13: 'zoom-in-zoom-out13',
-            14: 'zoom-in-zoom-out14',
-            15: 'zoom-in-zoom-out15',
-            16: 'zoom-in-zoom-out16',
-            17: 'zoom-in-zoom-out17',
-            18: 'zoom-in-zoom-out18',
-            19: 'zoom-in-zoom-out19',
-            20: 'zoom-in-zoom-out20',
-            21: 'zoom-in-zoom-out21',
-            22: 'zoom-in-zoom-out22',
-            23: 'zoom-in-zoom-out23',
-            24: 'zoom-in-zoom-out24',
+    const handleIsClickedElements = (idx, jdx) => {
+        let newArr = arrElements
+        let newObj = newArr[idx]
 
-        }
-        const estrellasClick = estrellas[piso];
-        // var i;
-        // var id=0;
-        // for(i=0; i<3;i++){
-        //    id++;
-        // console.log(id);
-        // document.getElementById(id).disabled = true;
-        //}
-        //document.getElementById(piso).disabled = false; 
+        newObj[jdx].clickeado = !newObj[jdx].clickeado
+        newArr.splice(idx, newObj)
+
+        setArrElements(newArr)
+        console.log("arrElements", arrElements[idx][jdx])
+
         const styleDoc = document.createElement("style")
-        const keyInjection = `@keyframes ${estrellasClick} {
+    const keyInjection = `@keyframes zoom-in-zoom-out {
             0% {
               transform: scale(1, 1);
               
@@ -76,25 +66,14 @@ const GameTowers = () => {
                    background-size: cover;
             }
           }`
-        styleDoc.type = "text/css";
-        styleDoc.appendChild(document.createTextNode(keyInjection))
-        document.getElementsByTagName("head")[0].appendChild(styleDoc);
-    }
-
-    const handleIsClickedElements= (idx, jdx) =>{
-        let newArr = arrElements
-        let newObj =  newArr[idx]
-
-        newObj[jdx].clickeado = ! newObj[jdx].clickeado
-        newArr.splice(idx, newObj)
-           
-        setArrElements( newArr)
-        console.log("arrElements", arrElements[idx][jdx ]  )
+    styleDoc.type = "text/css";
+    styleDoc.appendChild(document.createTextNode(keyInjection))
+    document.getElementsByTagName("head")[0].appendChild(styleDoc);
 
     }
 
     const styles = {
-        bgRed:{
+        bgRed: {
             background: "rgba(255, 99, 71, 1)",
         },
         col1: {
@@ -130,6 +109,13 @@ const GameTowers = () => {
             height: "200%",
             width: "70%",
         },
+        buttonorigin: {
+            background: "rgba(231, 231, 231, 0.43)",
+            border: "1px solid #ffffff",
+            borderRadius: "20px",
+            height: "50px",
+            width: "100px",
+        },
         b1: {
             background: "rgba(231, 231, 231, 0.43)",
             border: "1px solid #ffffff",
@@ -152,208 +138,28 @@ const GameTowers = () => {
             borderRadius: "20px",
             height: "50px",
             width: "100px",
-            animation: "zoom-in-zoom-out2 1s  linear",
+            animation: "zoom-in-zoom-out 1s  linear",
             animationFillMode: "both",
         },
-        b3: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out3 1s  linear",
-            animationFillMode: "both",
-        },
-        b4: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out4 1s  linear",
-            animationFillMode: "both",
-        },
-        b5: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out5 1s  linear",
-            animationFillMode: "both",
-        },
-        b6: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out6 1s  linear",
-            animationFillMode: "both",
-        },
-        b7: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out7 1s  linear",
-            animationFillMode: "both",
-        },
-        b8: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out8 1s  linear",
-            animationFillMode: "both",
-        },
-        b9: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out9 1s  linear",
-            animationFillMode: "both",
-        },
-        b10: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out10 1s  linear",
-            animationFillMode: "both",
-        },
-        b11: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out11 1s  linear",
-            animationFillMode: "both",
-        },
-        b12: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out12 1s  linear",
-            animationFillMode: "both",
-        },
-        b13: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out13 1s  linear",
-            animationFillMode: "both",
-        },
-        b14: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out14 1s  linear",
-            animationFillMode: "both",
-        },
-        b15: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out15 1s  linear",
-            animationFillMode: "both",
-        },
-        b16: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out16 1s  linear",
-            animationFillMode: "both",
-        },
-        b17: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out17 1s  linear",
-            animationFillMode: "both",
-        },
-        b18: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out18 1s  linear",
-            animationFillMode: "both",
-        },
-        b19: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out19 1s  linear",
-            animationFillMode: "both",
-        },
-        b20: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out20 1s  linear",
-            animationFillMode: "both",
-        },
-        b21: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out21 1s  linear",
-            animationFillMode: "both",
-        },
-        b22: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out22 1s  linear",
-            animationFillMode: "both",
-        },
-        b23: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out23 1s  linear",
-            animationFillMode: "both",
-        },
-        b24: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out24 1s  linear",
-            animationFillMode: "both",
-        },
+
     }
+    
+    const botones=[{
+
+        monto:["$7.1","$7.1","$7.1","$6.1","$6.1","$6.1","$5.1","$5.1","$5.1","$4.1","$4.1","$4.1","$3.1","$3.1","$3.1","$2.1","$2.1","$2.1","$1.1","$1.1","$1.1","$0.1","$0.1","$0.1"],
+        clickeados: false
+    }]
+    let botons=botones.clickeados;
+    const lista=botones.map((boton)=>
+        <button style={botons===true ? styles.buttonorigin : styles.b1} onClick={() => { buttonClick(false) }}>{boton.monto[3]}</button>
+    );
+    const buttonClick = (boleano) => {    
+        let newbut=botones.clickeados;
+        newbut=!boleano;
+        let mont=botones.monto;
+        console.log("botones clickeados en: ",newbut, mont); 
+    }
+
     return (
         <Container fluid style={{ backgroundImage: `url(${Fondo})`, backgroundSize: "cover", height: "100%", overflow: "hidden" }}>
             <br />
@@ -378,59 +184,20 @@ const GameTowers = () => {
                         {arrElements.map((eachRow, idx) => (
                             <Row className='d-flex justify-content-around'>
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id='1' style={eachCol.clickeado? styles.bgRed : styles.b20} onClick={() => { handleIsClickedElements(idx, jdx) }}>{eachCol.monto}?</button>
+                                    <button id={eachCol.id} style={styles.b1} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}</button>
+
                                 ))}
+
                             </Row>
                         ))}
                         <br />
-                        {/* <Row className='d-flex justify-content-around'>
-                            <button id='1' style={styles.b22} onClick={() => { p1(22) }}>$0.01</button>
-                            <button id='2' style={styles.b23} onClick={() => { p1(23) }}>$0.01</button>
-                            <button id='3' style={styles.b24} onClick={() => { p1(24) }}>$0.01</button>
-                        </Row> */}
-                        <br />
-                        <Row className='d-flex justify-content-around'>
-                            <button id='1' style={styles.b19} onClick={() => { p1(19) }}>$0.01</button>
-                            <button id='2' style={styles.b20} onClick={() => { p1(20) }}>$0.01</button>
-                            <button id='3' style={styles.b21} onClick={() => { p1(21) }}>$0.01</button>
+                        <Row>
+                            {lista}
+
                         </Row>
-                        <br />
-                        <Row className='d-flex justify-content-around'>
-                            <button id='1' style={styles.b16} onClick={() => { p1(16) }}>$0.01</button>
-                            <button id='2' style={styles.b17} onClick={() => { p1(17) }}>$0.01</button>
-                            <button id='3' style={styles.b18} onClick={() => { p1(18) }}>$0.01</button>
-                        </Row>
-                        <br />
-                        <Row className='d-flex justify-content-around'>
-                            <button id='1' style={styles.b13} onClick={() => { p1(13) }}>$0.01</button>
-                            <button id='2' style={styles.b14} onClick={() => { p1(14) }}>$0.01</button>
-                            <button id='3' style={styles.b15} onClick={() => { p1(15) }}>$0.01</button>
-                        </Row>
-                        <br />
-                        <Row className='d-flex justify-content-around'>
-                            <button id='1' style={styles.b10} onClick={() => { p1(10) }}>$0.01</button>
-                            <button id='2' style={styles.b11} onClick={() => { p1(11) }}>$0.01</button>
-                            <button id='3' style={styles.b12} onClick={() => { p1(12) }}>$0.01</button>
-                        </Row>
-                        <br />
-                        <Row className='d-flex justify-content-around'>
-                            <button id='1' style={styles.b7} onClick={() => { p1(7) }}>$0.01</button>
-                            <button id='2' style={styles.b8} onClick={() => { p1(8) }}>$0.01</button>
-                            <button id='3' style={styles.b9} onClick={() => { p1(9) }}>$0.01</button>
-                        </Row>
-                        <br />
-                        <Row className='d-flex justify-content-around'>
-                            <button id='1' style={styles.b4} onClick={() => { p1(4) }}>$0.01</button>
-                            <button id='2' style={styles.b5} onClick={() => { p1(5) }}>$0.01</button>
-                            <button id='3' style={styles.b6} onClick={() => { p1(6) }}>$0.01</button>
-                        </Row>
-                        <br />
-                        <Row className='d-flex justify-content-around'>
-                            <button id='1' style={styles.b1} onClick={() => { p1(1) }}>$0.01</button>
-                            <button id='2' style={styles.b2} onClick={() => { p1(2) }}>$0.01</button>
-                            <button id='3' style={styles.b3} onClick={() => { p1(3) }}>$0.01</button>
-                        </Row>
-                        <br />
+                        
+                        
+
                     </div>
                     <br />
                 </Col>
