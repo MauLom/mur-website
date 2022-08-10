@@ -9,38 +9,41 @@ import Form from 'react-bootstrap/Form';
 import ruleta from '../../assets/RULETA.png'
 import bomba from '../../assets/BOMBAS.png'
 
+
 const GameTowers = () => {
-    
+
+    const styleButtonsRed = { backgroundColor: "red", maxWidth: "25px" }
+    const styleButtonsBlack = { backgroundColor: "black", maxWidth: "25px" }
 
     const [arrElements, setArrElements] = React.useState([
-        [{id:'1', monto: "$7.1", clickeado: false },
-        {id:'2', monto: "$7.1", clickeado: false },
-        {id:'3', monto: "$7.1", clickeado: false }],
-        [{id:'4', monto: "$6.1", clickeado: false },
-        {id:'5', monto: "$6.1", clickeado: false },
-        {id:'6', monto: "$6.1", clickeado: false }],
-        [{id:'7', monto: "$5.1", clickeado: false },
-        {id:'8', monto: "$5.1", clickeado: false },
-        {id:'9', monto: "$5.1", clickeado: false }],
-        [{id:'10', monto: "$4.1", clickeado: false },
-        {id:'11', monto: "$4.1", clickeado: false },
-        {id:'12', monto: "$4.1", clickeado: false }],
-        [{id:'13', monto: "$3.1", clickeado: false },
-        {id:'14', monto: "$3.1", clickeado: false },
-        {id:'15', monto: "$3.1", clickeado: false }],
-        [{id:'16', monto: "$2.1", clickeado: false },
-        {id:'17', monto: "$2.1", clickeado: false },
-        {id:'18', monto: "$2.1", clickeado: false }],
-        [{id:'19', monto: "$1.1", clickeado: false },
-        {id:'20', monto: "$1.1", clickeado: false },
-        {id:'21', monto: "$1.1", clickeado: false }],
-        [{id:'22', monto: "$0.1", clickeado: false },
-        {id:'23', monto: "$0.1", clickeado: false },
-        {id:'24', monto: "$0.1", clickeado: false }],
-    ]
-    )
+        [{ id: '1', monto: "$7.1", clickeado: false },
+        { id: '2', monto: "$7.1", clickeado: false },
+        { id: '3', monto: "$7.1", clickeado: false }],
+        [{ id: '4', monto: "$6.1", clickeado: false },
+        { id: '5', monto: "$6.1", clickeado: false },
+        { id: '6', monto: "$6.1", clickeado: false }],
+        [{ id: '7', monto: "$5.1", clickeado: false },
+        { id: '8', monto: "$5.1", clickeado: false },
+        { id: '9', monto: "$5.1", clickeado: false }],
+        [{ id: '10', monto: "$4.1", clickeado: false },
+        { id: '11', monto: "$4.1", clickeado: false },
+        { id: '12', monto: "$4.1", clickeado: false }],
+        [{ id: '13', monto: "$3.1", clickeado: false },
+        { id: '14', monto: "$3.1", clickeado: false },
+        { id: '15', monto: "$3.1", clickeado: false }],
+        [{ id: '16', monto: "$2.1", clickeado: false },
+        { id: '17', monto: "$2.1", clickeado: false },
+        { id: '18', monto: "$2.1", clickeado: false }],
+        [{ id: '19', monto: "$1.1", clickeado: false },
+        { id: '20', monto: "$1.1", clickeado: false },
+        { id: '21', monto: "$1.1", clickeado: false }],
+        [{ id: '22', monto: "$0.1", clickeado: false },
+        { id: '23', monto: "$0.1", clickeado: false },
+        { id: '24', monto: "$0.1", clickeado: false }],
+    ])
     const handleIsClickedElements = (idx, jdx) => {
-        let newArr = arrElements
+        let newArr = JSON.parse(JSON.stringify(arrElements))
+        //let newArr = arrElements
         let newObj = newArr[idx]
 
         newObj[jdx].clickeado = !newObj[jdx].clickeado
@@ -50,7 +53,7 @@ const GameTowers = () => {
         console.log("arrElements", arrElements[idx][jdx])
 
         const styleDoc = document.createElement("style")
-    const keyInjection = `@keyframes zoom-in-zoom-out {
+        const keyInjection = `@keyframes zoom-in-zoom-out {
             0% {
               transform: scale(1, 1);
               
@@ -66,9 +69,9 @@ const GameTowers = () => {
                    background-size: cover;
             }
           }`
-    styleDoc.type = "text/css";
-    styleDoc.appendChild(document.createTextNode(keyInjection))
-    document.getElementsByTagName("head")[0].appendChild(styleDoc);
+        styleDoc.type = "text/css";
+        styleDoc.appendChild(document.createTextNode(keyInjection))
+        document.getElementsByTagName("head")[0].appendChild(styleDoc);
 
     }
 
@@ -143,21 +146,21 @@ const GameTowers = () => {
         },
 
     }
-    
-    const botones=[{
 
-        monto:["$7.1","$7.1","$7.1","$6.1","$6.1","$6.1","$5.1","$5.1","$5.1","$4.1","$4.1","$4.1","$3.1","$3.1","$3.1","$2.1","$2.1","$2.1","$1.1","$1.1","$1.1","$0.1","$0.1","$0.1"],
+    const botones = [{
+
+        monto: ["$7.1", "$7.1", "$7.1", "$6.1", "$6.1", "$6.1", "$5.1", "$5.1", "$5.1", "$4.1", "$4.1", "$4.1", "$3.1", "$3.1", "$3.1", "$2.1", "$2.1", "$2.1", "$1.1", "$1.1", "$1.1", "$0.1", "$0.1", "$0.1"],
         clickeados: false
     }]
-    let botons=botones.clickeados;
-    const lista=botones.map((boton)=>
-        <button style={botons===true ? styles.buttonorigin : styles.b1} onClick={() => { buttonClick(false) }}>{boton.monto[3]}</button>
+    let botons = botones.clickeados;
+    const lista = botones.map((boton) =>
+        <button style={botons === true ? styles.buttonorigin : styles.b1} onClick={() => { buttonClick(false) }}>{boton.monto[3]}</button>
     );
-    const buttonClick = (boleano) => {    
-        let newbut=botones.clickeados;
-        newbut=!boleano;
-        let mont=botones.monto;
-        console.log("botones clickeados en: ",newbut, mont); 
+    const buttonClick = (boleano) => {
+        let newbut = botones.clickeados;
+        newbut = !boleano;
+        let mont = botones.monto;
+        console.log("botones clickeados en: ", newbut, mont);
     }
 
     return (
@@ -184,8 +187,7 @@ const GameTowers = () => {
                         {arrElements.map((eachRow, idx) => (
                             <Row className='d-flex justify-content-around'>
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} style={styles.b1} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}</button>
-
+                                    <button id={eachCol.id} style={eachCol.clickeado? styleButtonsRed: styleButtonsBlack} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}</button>
                                 ))}
 
                             </Row>
@@ -195,8 +197,8 @@ const GameTowers = () => {
                             {lista}
 
                         </Row>
-                        
-                        
+
+
 
                     </div>
                     <br />
