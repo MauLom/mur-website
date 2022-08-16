@@ -12,8 +12,8 @@ import bomba from '../../assets/BOMBAS.png'
 
 const GameTowers = () => {
 
-    const styleButtonsRed = { backgroundColor: "red", maxWidth: "25px" }
-    const styleButtonsBlack = { backgroundColor: "black", maxWidth: "25px" }
+    const styleoriginbutton={background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px"}
+    const stylebuttonanimated={background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px", animation: "zoom-in-zoom-out 1s  linear", animationFillMode: "both"}
 
     const [arrElements, setArrElements] = React.useState([
         [{ id: '1', monto: "$7.1", clickeado: false },
@@ -76,9 +76,7 @@ const GameTowers = () => {
     }
 
     const styles = {
-        bgRed: {
-            background: "rgba(255, 99, 71, 1)",
-        },
+        
         col1: {
             paddingTop: "12%"
         },
@@ -112,22 +110,6 @@ const GameTowers = () => {
             height: "200%",
             width: "70%",
         },
-        buttonorigin: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-        },
-        b1: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out 1s  linear",
-            animationFillMode: "both",
-        },
         button2: {
             background: "rgba(231, 231, 231, 0.43)",
             border: "1px solid #ffffff",
@@ -135,34 +117,9 @@ const GameTowers = () => {
             height: "70px",
             width: "30%",
         },
-        b2: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "20px",
-            height: "50px",
-            width: "100px",
-            animation: "zoom-in-zoom-out 1s  linear",
-            animationFillMode: "both",
-        },
+        
 
     }
-
-    const botones = [{
-
-        monto: ["$7.1", "$7.1", "$7.1", "$6.1", "$6.1", "$6.1", "$5.1", "$5.1", "$5.1", "$4.1", "$4.1", "$4.1", "$3.1", "$3.1", "$3.1", "$2.1", "$2.1", "$2.1", "$1.1", "$1.1", "$1.1", "$0.1", "$0.1", "$0.1"],
-        clickeados: false
-    }]
-    let botons = botones.clickeados;
-    const lista = botones.map((boton) =>
-        <button style={botons === true ? styles.buttonorigin : styles.b1} onClick={() => { buttonClick(false) }}>{boton.monto[3]}</button>
-    );
-    const buttonClick = (boleano) => {
-        let newbut = botones.clickeados;
-        newbut = !boleano;
-        let mont = botones.monto;
-        console.log("botones clickeados en: ", newbut, mont);
-    }
-
     return (
         <Container fluid style={{ backgroundImage: `url(${Fondo})`, backgroundSize: "cover", height: "100%", overflow: "hidden" }}>
             <br />
@@ -187,19 +144,12 @@ const GameTowers = () => {
                         {arrElements.map((eachRow, idx) => (
                             <Row className='d-flex justify-content-around'>
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} style={eachCol.clickeado? styleButtonsRed: styleButtonsBlack} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}</button>
+                                    <button id={eachCol.id} style={eachCol.clickeado? stylebuttonanimated: styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}</button>
                                 ))}
 
                             </Row>
                         ))}
                         <br />
-                        <Row>
-                            {lista}
-
-                        </Row>
-
-
-
                     </div>
                     <br />
                 </Col>

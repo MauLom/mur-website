@@ -22,13 +22,23 @@ const GameWheel = () => {
     const [changeRotating, setChangeRotating] = React.useState(false)
 
     const styleDoc = document.createElement("style")
+    
+    
     const girarimagen = (numero) => {
+        
+            let num= parseInt(Math.random()*10000);
+            console.log(num);
+        
+        let  numerovuleta=String(num);
+        
+
+        console.log('numero de vuelta: '+numerovuleta)
         const keyInjection = `@keyframes rotation {
             from {
                 transform: rotate(0deg);
             }
             to {
-                transform: rotate(${numero});
+                transform: rotate(${numerovuleta}deg);
             }
         }`
         styleDoc.type = "text/css";
@@ -46,7 +56,7 @@ const GameWheel = () => {
         imgWheel: {
             maxWidth: "50%",
             maxHeight: "50%",
-            animation: "rotation 4s  linear",
+            animation: "rotation 8s  linear",
             animationFillMode: "forwards",
             alignItems: "center",
             justifyContent: "center"
