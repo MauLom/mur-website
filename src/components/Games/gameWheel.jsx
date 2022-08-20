@@ -19,7 +19,7 @@ import HeaderOptions from '../headerOptions';
 
 const GameWheel = () => {
 
-    const [changeRotating, setChangeRotating] = React.useState(false)
+    //const [changeRotating, setChangeRotating] = React.useState(false)
 
     const styleDoc = document.createElement("style")
     
@@ -127,7 +127,7 @@ const GameWheel = () => {
                 </Col>
                 <Col lg={8}>
                     {/* <ImgStylized />  */}
-                    <center><img style={styles.imgWheel} src={OnlyWheel} /></center>
+                    <center><img style={styles.imgWheel} src={OnlyWheel} alt=""  /></center>
                 </Col>
                 <Col lg={2} style={styles.glassRectangle}>
                     Otras Mesas

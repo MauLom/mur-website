@@ -12,6 +12,8 @@ import Button from 'react-bootstrap/Button';
 
 const GameMines = () => {
 
+    const [userAmount, setUserAmount] = React.useState('')
+
     const styleMinaOriigin = {
         width: "80px",
         height: "80px",
@@ -34,6 +36,56 @@ const GameMines = () => {
         border: "1px solid #FFFFFF",
         borderRadius: "20px"
     }
+    const styleselectormines = {
+        background: "rgba(231, 231, 231, 0.43)",
+        border: "1px solid #FFFFFF",
+        borderRadius: "20px",
+        height: "50px",
+        width: "50px"
+    }
+    const changestyleselectormines = {
+        background: "#FF0000",
+        border: "1px solid #FFFFFF",
+        borderRadius: "20px",
+        height: "50px",
+        width: "50px"
+    }
+    
+
+   
+    const [arrmina, setArrmina] = React.useState([
+        [{ id: 'selector1', click: false, valor:'1' },
+        { id: 'selector2', click: false, valor:'2' },
+        { id: 'selector3', click: false, valor:'5' },
+        { id: 'selector4', click: false, valor:'10' }]
+         ])
+    const handleIsClickedMines = (idx, jdx) => {
+         
+        let monto= document.getElementById('inputamount').value;
+        
+        var val=0;
+        if(monto===""){
+            val++;
+        }
+        if(val===0){
+            document.getElementById('bet').disabled=false;
+            
+        }
+        let newArr = JSON.parse(JSON.stringify(arrmina))
+        let newObj = newArr[idx]
+
+        newObj[jdx].click = !newObj[jdx].click
+        newArr.splice(idx, newObj)
+        let valor=newObj[jdx].valor
+        setArrmina(newArr)
+        console.log("arrElements", arrmina[idx][jdx])
+        console.log(valor);
+        console.log(monto);
+        document.getElementById('monto').value=monto;
+        document.getElementById('nominas').value=valor;  
+        
+    }
+   
     const [arrElements, setArrElements] = React.useState([
         [{ id: '1', clickeado: false },
         { id: '2', clickeado: false },
@@ -59,7 +111,7 @@ const GameMines = () => {
         { id: '22', clickeado: false },
         { id: '23', clickeado: false },
         { id: '24', clickeado: false }],
-        
+
     ])
     const handleIsClickedElements = (idx, jdx) => {
         let newArr = JSON.parse(JSON.stringify(arrElements))
@@ -73,7 +125,7 @@ const GameMines = () => {
         console.log("arrElements", arrElements[idx][jdx])
 
         const styleDoc = document.createElement("style")
-    const keyInjection = `@keyframes flipInY {
+        const keyInjection = `@keyframes flipInY {
                 0% {
                    transform: perspective(400px) rotateY(-90deg);
                    background-image: url(${bomba});
@@ -97,12 +149,19 @@ const GameMines = () => {
                    background-size: cover;
                 }
              }`
-    styleDoc.type = "text/css";
-    styleDoc.appendChild(document.createTextNode(keyInjection))
-    document.getElementsByTagName("head")[0].appendChild(styleDoc);
+        styleDoc.type = "text/css";
+        styleDoc.appendChild(document.createTextNode(keyInjection))
+        document.getElementsByTagName("head")[0].appendChild(styleDoc);
 
     }
-
+    
+    const hadleClickBet=(event)=> {
+        setUserAmount(event.target.value);
+        console.log('click en bet')
+        console.log('montos '+userAmount)
+        //document.getElementById('amount').value=montos;
+        //document.getElementById('nominas').value=valores;
+       }
     const styles = {
         col1: {
             paddingTop: "15%"
@@ -170,6 +229,13 @@ const GameMines = () => {
             borderRadius: "20px",
 
         },
+        input: {
+            width: "100%",
+            background: "rgba(231, 231, 231, 0.43)",
+            borderRadius: "15px",
+            height: "50%",
+            apacity: "1"
+        }
 
 
     }
@@ -187,20 +253,23 @@ const GameMines = () => {
 
                             <div style={styles.divaround}>
                                 <font color="white">Amount to bet</font>
+                                <input id='inputamount' type="text" style={styles.input} value={userAmount} onChange={(e) => setUserAmount(e.target.value)}  />
                                 <br />
                             </div>
                             <br />
                             <font color="white">Mines</font>
                             <br />
-                            <div className='d-flex justify-content-between'>
-                                <button style={styles.buttons}>1</button>
-                                <button style={styles.buttons}>3</button>
-                                <button style={styles.buttons}>5</button>
-                                <button style={styles.buttons}>10</button>
-                            </div>
+                            {arrmina.map((eachRow, idx) => (
+                            <Row className='d-flex justify-content-between'>
+                                {eachRow.map((eachCol, jdx) => (
+                                    <button id={eachCol.id} style={eachCol.click===false ? styleselectormines : changestyleselectormines} onClick={() => { handleIsClickedMines(idx, jdx) }} value={eachCol.valor}>{eachCol.valor}</button>
+                                ))}
+
+                            </Row>
+                        ))}
                             <br />
                             <div>
-                                <Button style={styles.Buttonbet}>BET</Button>{' '}
+                                <Button id="bet" style={styles.Buttonbet} disabled onClick={(e)=>{hadleClickBet(e)}} >BET</Button>{' '}
                             </div>
                             <br />
 
@@ -209,12 +278,20 @@ const GameMines = () => {
                 </Col>
                 <br />
                 <Col className='col-12 col-md-6 col-xs-12 list-unstyled'>
+                    <Row className='d-flex justify-content-around'>
+                           <center><Col> <font color="white">Amount</font> <br />
+                            <input id='monto' type="text"  /></Col>
+                        <Col><font color="white"># Mines</font> <br />
+                        <input id='nominas' type="text" /></Col></center>
+                        </Row>
+                        <br />
+                    
                     <div style={styles.div2}>
                         <br />
                         {arrElements.map((eachRow, idx) => (
                             <Row className='d-flex justify-content-around'>
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} style={eachCol.clickeado? styleMinaAnimated: styleMinaOriigin} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}</button>
+                                    <button id={eachCol.id} style={eachCol.clickeado ? styleMinaAnimated : styleMinaOriigin} onClick={() => { handleIsClickedElements(idx, jdx) }}></button>
                                 ))}
 
                             </Row>

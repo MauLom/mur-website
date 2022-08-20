@@ -84,7 +84,7 @@ const LoginFrame = () => {
                             <Row className="mt-2"><Col><input style={styles.inputs} placeholder="Enter password" /></Col></Row>
                             <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin}>Login</button></Col></Row>
                             <Row className="mt-2"><Col className="text-center"><Link to="/">Forgot your password?</Link></Col></Row>
-                            <Row className="mt-5"><Col className="text-center"><Link to="/">Register here</Link></Col></Row>
+                            <Row className="mt-5"><Col className="text-center"><Link to="/registerFrame">Register here</Link></Col></Row>
                         </Container>
                     </Row>
                 </Container>
