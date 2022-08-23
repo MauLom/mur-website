@@ -11,6 +11,7 @@ import HeaderOptions from '../headerOptions';
 import Button from 'react-bootstrap/Button';
 
 const GameMines = () => {
+    const [deshabilitar, setDeshabilitar] = React.useState(true)
 
     const [userAmount, setUserAmount] = React.useState('')
 
@@ -36,6 +37,7 @@ const GameMines = () => {
         border: "1px solid #FFFFFF",
         borderRadius: "20px"
     }
+    
     const styleselectormines = {
         background: "rgba(231, 231, 231, 0.43)",
         border: "1px solid #FFFFFF",
@@ -50,81 +52,88 @@ const GameMines = () => {
         height: "50px",
         width: "50px"
     }
-    
-
-   
     const [arrmina, setArrmina] = React.useState([
-        [{ id: 'selector1', click: false, valor:'1' },
-        { id: 'selector2', click: false, valor:'2' },
-        { id: 'selector3', click: false, valor:'5' },
-        { id: 'selector4', click: false, valor:'10' }]
-         ])
+        [{ id: 'selector1', click: false, valor: '1' },
+        { id: 'selector2', click: false, valor: '2' },
+        { id: 'selector3', click: false, valor: '5' },
+        { id: 'selector4', click: false, valor: '10' }]
+    ])
     const handleIsClickedMines = (idx, jdx) => {
-         
-        let monto= document.getElementById('inputamount').value;
-        
-        var val=0;
-        if(monto===""){
+
+        let monto = document.getElementById('inputamount').value;
+
+        var val = 0;
+        if (monto === "") {
             val++;
         }
-        if(val===0){
-            document.getElementById('bet').disabled=false;
-            
+        if (val === 0) {
+            setDeshabilitar(!deshabilitar)
+
         }
         let newArr = JSON.parse(JSON.stringify(arrmina))
         let newObj = newArr[idx]
 
         newObj[jdx].click = !newObj[jdx].click
         newArr.splice(idx, newObj)
-        let valor=newObj[jdx].valor
+        let valor = newObj[jdx].valor
         setArrmina(newArr)
         console.log("arrElements", arrmina[idx][jdx])
-        console.log(valor);
-        console.log(monto);
-        document.getElementById('monto').value=monto;
-        document.getElementById('nominas').value=valor;  
-        
+
+        document.getElementById('nominas').value = valor;
     }
-   
+
     const [arrElements, setArrElements] = React.useState([
-        [{ id: '1', clickeado: false },
-        { id: '2', clickeado: false },
-        { id: '3', clickeado: false },
-        { id: '4', clickeado: false }],
-        [{ id: '5', clickeado: false },
-        { id: '6', clickeado: false },
-        { id: '7', clickeado: false },
-        { id: '8', clickeado: false }],
-        [{ id: '9', clickeado: false },
-        { id: '10', clickeado: false },
-        { id: '11', clickeado: false },
-        { id: '12', clickeado: false }],
-        [{ id: '13', clickeado: false },
-        { id: '14', clickeado: false },
-        { id: '15', clickeado: false },
-        { id: '16', clickeado: false }],
-        [{ id: '17', clickeado: false },
-        { id: '18', clickeado: false },
-        { id: '19', clickeado: false },
-        { id: '20', clickeado: false }],
-        [{ id: '21', clickeado: false },
-        { id: '22', clickeado: false },
-        { id: '23', clickeado: false },
-        { id: '24', clickeado: false }],
+        [{ id: '1', clickeado: false, boton:'1' },
+        { id: '2', clickeado: false, boton:'2' },
+        { id: '3', clickeado: false, boton:'3' },
+        { id: '4', clickeado: false, boton:'4' }],
+        [{ id: '5', clickeado: false, boton:'5' },
+        { id: '6', clickeado: false, boton:'6' },
+        { id: '7', clickeado: false, boton:'7' },
+        { id: '8', clickeado: false, boton:'8' }],
+        [{ id: '9', clickeado: false, boton:'9' },
+        { id: '10', clickeado: false, boton:'10' },
+        { id: '11', clickeado: false, boton:'11' },
+        { id: '12', clickeado: false, boton:'12' }],
+        [{ id: '13', clickeado: false, boton:'13' },
+        { id: '14', clickeado: false, boton:'14' },
+        { id: '15', clickeado: false, boton:'15' },
+        { id: '16', clickeado: false, boton:'16' }],
+        [{ id: '17', clickeado: false, boton:'17' },
+        { id: '18', clickeado: false, boton:'18' },
+        { id: '19', clickeado: false, boton:'19' },
+        { id: '20', clickeado: false, boton:'20' }],
+        [{ id: '21', clickeado: false, boton:'21' },
+        { id: '22', clickeado: false, boton:'22' },
+        { id: '23', clickeado: false, boton:'23' },
+        { id: '24', clickeado: false, boton:'24' }],
 
     ])
+    const [num1, setNum1] = React.useState(1)
     const handleIsClickedElements = (idx, jdx) => {
+        
+        let numposibility= document.getElementById('nominas').value;
+        
+        console.log('numero de posibilidades '+numposibility)
+        
         let newArr = JSON.parse(JSON.stringify(arrElements))
         //let newArr = arrElements
         let newObj = newArr[idx]
 
-        newObj[jdx].clickeado = !newObj[jdx].clickeado
         newArr.splice(idx, newObj)
 
         setArrElements(newArr)
         console.log("arrElements", arrElements[idx][jdx])
+        
 
-        const styleDoc = document.createElement("style")
+
+        if(num1<=parseInt(numposibility)){
+            setNum1(num1+1)
+            console.log('entra en if '+num1);
+            if(deshabilitar===false){
+            newObj[jdx].clickeado = !newObj[jdx].clickeado
+
+            const styleDoc = document.createElement("style")
         const keyInjection = `@keyframes flipInY {
                 0% {
                    transform: perspective(400px) rotateY(-90deg);
@@ -152,16 +161,21 @@ const GameMines = () => {
         styleDoc.type = "text/css";
         styleDoc.appendChild(document.createTextNode(keyInjection))
         document.getElementsByTagName("head")[0].appendChild(styleDoc);
+    }
+        }else{
+            setNum1(num1+1)
+            console.log('termina '+num1)
+        }
+        
 
     }
-    
-    const hadleClickBet=(event)=> {
+
+    const hadleClickBet = (event) => {
         setUserAmount(event.target.value);
         console.log('click en bet')
-        console.log('montos '+userAmount)
-        //document.getElementById('amount').value=montos;
-        //document.getElementById('nominas').value=valores;
-       }
+        document.getElementById('monto').value = userAmount;
+
+    }
     const styles = {
         col1: {
             paddingTop: "15%"
@@ -253,23 +267,23 @@ const GameMines = () => {
 
                             <div style={styles.divaround}>
                                 <font color="white">Amount to bet</font>
-                                <input id='inputamount' type="text" style={styles.input} value={userAmount} onChange={(e) => setUserAmount(e.target.value)}  />
+                                <input id='inputamount' type="text" style={styles.input} value={userAmount} onChange={(e) => setUserAmount(e.target.value)} />
                                 <br />
                             </div>
                             <br />
                             <font color="white">Mines</font>
                             <br />
                             {arrmina.map((eachRow, idx) => (
-                            <Row className='d-flex justify-content-between'>
-                                {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} style={eachCol.click===false ? styleselectormines : changestyleselectormines} onClick={() => { handleIsClickedMines(idx, jdx) }} value={eachCol.valor}>{eachCol.valor}</button>
-                                ))}
+                                <Row className='d-flex justify-content-between'>
+                                    {eachRow.map((eachCol, jdx) => (
+                                        <button id={eachCol.id} name={eachCol.id} style={eachCol.click === false ? styleselectormines : changestyleselectormines} onClick={() => { handleIsClickedMines(idx, jdx) }} value={eachCol.valor}>{eachCol.valor}</button>
+                                    ))}
 
-                            </Row>
-                        ))}
+                                </Row>
+                            ))}
                             <br />
                             <div>
-                                <Button id="bet" style={styles.Buttonbet} disabled onClick={(e)=>{hadleClickBet(e)}} >BET</Button>{' '}
+                                <Button id="bet" style={styles.Buttonbet} disabled={deshabilitar} onClick={(e) => { hadleClickBet(e) }} >BET</Button>{' '}
                             </div>
                             <br />
 
@@ -279,13 +293,13 @@ const GameMines = () => {
                 <br />
                 <Col className='col-12 col-md-6 col-xs-12 list-unstyled'>
                     <Row className='d-flex justify-content-around'>
-                           <center><Col> <font color="white">Amount</font> <br />
-                            <input id='monto' type="text"  /></Col>
-                        <Col><font color="white"># Mines</font> <br />
-                        <input id='nominas' type="text" /></Col></center>
-                        </Row>
-                        <br />
-                    
+                        <center><Col> <font color="white">Amount</font> <br />
+                            <input id='monto' type="text" /></Col>
+                            <Col><font color="white"># Mines</font> <br />
+                                <input id='nominas' type="text" /></Col></center>
+                    </Row>
+                    <br />
+
                     <div style={styles.div2}>
                         <br />
                         {arrElements.map((eachRow, idx) => (
