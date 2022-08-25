@@ -32,12 +32,23 @@ const GameMines = () => {
         animationFillMode: "both",
         alignItems: "center",
         justifyContent: "center",
-        background: `url(${logo})`,
         backgroundSize: "cover",
         border: "1px solid #FFFFFF",
         borderRadius: "20px"
     }
-    
+    const styleMinaAnimated2 = {
+        width: "80px",
+        height: "80px",
+        animation: "flipInY2 4s  linear",
+        animationFillMode: "both",
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundSize: "cover",
+        border: "1px solid #FFFFFF",
+        borderRadius: "20px"
+    }
+    const [animacion, setAnimacion]=React.useState(styleMinaAnimated)
+
     const styleselectormines = {
         background: "rgba(231, 231, 231, 0.43)",
         border: "1px solid #FFFFFF",
@@ -119,6 +130,8 @@ const GameMines = () => {
         let newArr = JSON.parse(JSON.stringify(arrElements))
         //let newArr = arrElements
         let newObj = newArr[idx]
+        let id=newObj[jdx].id;
+        document.getElementById(id).disabled=true;
 
         newArr.splice(idx, newObj)
 
@@ -163,9 +176,40 @@ const GameMines = () => {
         document.getElementsByTagName("head")[0].appendChild(styleDoc);
     }
         }else{
+            if(deshabilitar===false){
+                newObj[jdx].clickeado = !newObj[jdx].clickeado
             setNum1(num1+1)
-            console.log('termina '+num1)
-        }
+            console.log('termina '+num1);
+            setAnimacion(styleMinaAnimated2)
+            const styleDoc = document.createElement("style")
+        const keyInjection = `@keyframes flipInY2 {
+                0% {
+                   transform: perspective(400px) rotateY(-90deg);
+                   background-color: green;
+                   background-size: cover;
+                }
+                40% {
+                   transform: perspective(400px) rotateY(-10deg);
+                   background-color: green;
+                   background-size: cover;
+
+                }
+                70% {
+                   transform: perspective(400px) rotateY(10deg);
+                   background-color: green;
+                   background-size: cover;
+                }
+                100% {
+                   transform: perspective(400px) rotateY(0deg);
+                   opacity: 1;
+                   background-color: green;
+                   background-size: cover;
+                }
+             }`
+        styleDoc.type = "text/css";
+        styleDoc.appendChild(document.createTextNode(keyInjection))
+        document.getElementsByTagName("head")[0].appendChild(styleDoc);
+        }}
         
 
     }
@@ -305,7 +349,7 @@ const GameMines = () => {
                         {arrElements.map((eachRow, idx) => (
                             <Row className='d-flex justify-content-around'>
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} style={eachCol.clickeado ? styleMinaAnimated : styleMinaOriigin} onClick={() => { handleIsClickedElements(idx, jdx) }}></button>
+                                    <button id={eachCol.id} style={eachCol.clickeado ? animacion : styleMinaOriigin} onClick={() => { handleIsClickedElements(idx, jdx) }}></button>
                                 ))}
 
                             </Row>

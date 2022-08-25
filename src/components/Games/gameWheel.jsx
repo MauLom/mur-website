@@ -34,7 +34,7 @@ const GameWheel = () => {
         let col1 = tabla.insertCell(0);
         let col2 = tabla.insertCell(1);
         
-        if (num1 < 8) {
+        if (num1 <= 7) {
             setNum1(num1+1)
             col1.innerHTML = num1+1;
             
@@ -42,7 +42,7 @@ const GameWheel = () => {
             
 
             
-        }else{
+        }else if(num1===8){
             setDeshabilitar(!deshabilitar)
             setDeshabilitar2(!deshabilitar2)
 
