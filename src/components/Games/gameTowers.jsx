@@ -23,46 +23,48 @@ const GameTowers = () => {
 
         opacity: "0.3"
     }
-    const [deshabulita, setDeshabilita]=React.useState([
-        [{name:1},{name2:2}, {name3:3}],
-        [{name:4},{name:5}, {name:6}],
-        [{name:7},{name:8}, {name:9}],
-        [{name:10},{name:11}, {name:12}],
-        [{name:13},{name:14}, {name:15}],
-        [{name:16},{name:17}, {name:18}],
-        [{name:19},{name:20}, {name:21}],
-        [{name:22},{name:23}, {name:24}],
-
-
-    ])
     const [arrElements, setArrElements] = React.useState([
-        [{ id: '1', monto: "$7.1", clickeado: false }],
-        [{ id: '4', monto: "$6.1", clickeado: false }],
-        [{ id: '7', monto: "$5.1", clickeado: false }],
-        [{ id: '10', monto: "$4.1", clickeado: false }],
-        [{ id: '13', monto: "$3.1", clickeado: false }],
-        [{ id: '16', monto: "$2.1", clickeado: false }],
-        [{ id: '19', monto: "$1.1", clickeado: false }],
-        [{ id: '22', monto: "$0.1", clickeado: false }],
+        [{ id: '1', monto: "$7.1", clickeado: false },
+        { id: '2', monto: "$7.1", clickeado: false },
+        { id: '3', monto: "$7.1", clickeado: false }],
+        [{ id: '4', monto: "$6.1", clickeado: false },
+        { id: '5', monto: "$6.1", clickeado: false },
+        { id: '6', monto: "$6.1", clickeado: false }],
+        [{ id: '7', monto: "$5.1", clickeado: false },
+        { id: '8', monto: "$5.1", clickeado: false },
+        { id: '9', monto: "$5.1", clickeado: false }],
+        [{ id: '10', monto: "$4.1", clickeado: false },
+        { id: '11', monto: "$4.1", clickeado: false },
+        { id: '12', monto: "$4.1", clickeado: false }],
+        [{ id: '13', monto: "$3.1", clickeado: false },
+        { id: '14', monto: "$3.1", clickeado: false },
+        { id: '15', monto: "$3.1", clickeado: false }],
+        [{ id: '16', monto: "$2.1", clickeado: false },
+        { id: '17', monto: "$2.1", clickeado: false },
+        { id: '18', monto: "$2.1", clickeado: false }],
+        [{ id: '19', monto: "$1.1", clickeado: false },
+        { id: '20', monto: "$1.1", clickeado: false },
+        { id: '21', monto: "$1.1", clickeado: false }],
+        [{ id: '22', monto: "$0.1", clickeado: false },
+        { id: '23', monto: "$0.1", clickeado: false },
+        { id: '24', monto: "$0.1", clickeado: false }],
     ])
     const handleIsClickedElements = (idx, jdx) => {
-        let habilitados=JSON.parse(JSON.stringify(deshabulita))
         let newArr = JSON.parse(JSON.stringify(arrElements))
         //let newArr = arrElements
         let newObj = newArr[idx]
-        let newdeshabilitado=habilitados[idx]
-        let id = newObj[jdx].id;
-        document.getElementById(id).disabled=true;
 
         newObj[jdx].clickeado = !newObj[jdx].clickeado
         newArr.splice(idx, newObj)
-        habilitados.splice(idx,newdeshabilitado)
+        let datarow1=newObj[0];
+        let datarow2=newObj[1];
+        let datarow3=newObj[2];
+        document.getElementById(datarow1.id).disabled=true;
+        document.getElementById(datarow2.id).disabled=true;
+        document.getElementById(datarow3.id).disabled=true;
 
         setArrElements(newArr)
-        setDeshabilita(habilitados)
         console.log("arrElements", arrElements[idx][jdx])
-        console.log("deshabulita", deshabulita[idx][jdx])
-
 
         const styleDoc = document.createElement("style")
         const keyInjection = `@keyframes zoom-in-zoom-out {
@@ -154,14 +156,9 @@ const GameTowers = () => {
                     <div style={styles.div2} >
 
                         {arrElements.map((eachRow, idx) => (
-                            <Row className='d-flex justify-content-around'>
+                            <Row className='d-flex justify-content-around' style={styleroworigin}>
                                 {eachRow.map((eachCol, jdx) => (
-                                    <Row className='d-flex justify-content-around' style={eachCol.clickeado? stylerowchange: styleroworigin}>
-                                    <button id={eachCol.id-1} name={eachCol.name} style={eachCol.clickeado? stylebuttonanimated: styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}{eachCol.name}</button>
-                                    <button id={eachCol.id} name={eachCol.name} style={eachCol.clickeado? stylebuttonanimated: styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}{eachCol.name2}</button>
-                                    <button id={eachCol.id+1} name={eachCol.name} style={eachCol.clickeado? stylebuttonanimated: styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}{eachCol.name3}</button>
-
-                                    </Row>
+                                    <button id={eachCol.id} style={eachCol.clickeado? stylebuttonanimated: styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}</button>
                                 ))}
 
                             </Row>

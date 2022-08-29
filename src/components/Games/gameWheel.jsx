@@ -128,19 +128,21 @@ const GameWheel = () => {
             justifyContent: "center"
 
         }, table: {
-            border: "1px solid black",
-            borderRadius: "5px",
             backgroundColor: "white",
             alignItems: "center",
-            with: "100%"
+            with: "100%",
+            background: "rgba(231, 231, 231, 0.43)",
+            border: "1px solid #000000",
 
         },
         td: {
             width: "100%",
             textAlign: "left",
             verticalAlign: "top",
-            border: "1px solid #000",
-            borderCollapse: "collapse"
+            border: "1px solid #000000",
+            borderCollapse: "collapse",
+            borderRadius: "41px",
+
         }
 
     }

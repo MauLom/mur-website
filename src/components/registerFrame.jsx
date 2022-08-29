@@ -113,11 +113,11 @@ const RegisterFrame = () => {
     }
 
     return (
-        <Row style={{ backgroundImage: `url(${Fondo})`, backgroundSize: "cover", height: "100%", overflow: "hidden" }}>
-            <Container fluid style={{ height: "100vh", width: "20%" }} >
-                <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
-                <Row style={{ height: "100vh" }}>
-                    <Container style={styles.frameLoginBg}>
+        <Row style={{ height: "100vh" }}>
+            <Container fluid style={{ height: "100vh" }} >
+            <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
+                    <Row style={{ height: "100vh" }}>
+                        <Container style={styles.frameLoginBg}>
                         
                             <Row className="mt-2"><Col><div style={styles.registerTitle}>Create an account</div></Col></Row>
                             <Row className="mt-3"><Col><div style={styles.divider}></div></Col></Row>

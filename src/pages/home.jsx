@@ -1,6 +1,7 @@
 import * as React from "react"
 import LoginFrame from "../components/loginFrame"
 import DashboardFrame from "../components/dashboardFrame"
+import RegisterFrame from "../components/registerFrame";
 
 /// Bootstrap components
 import Container from 'react-bootstrap/Container';
@@ -13,13 +14,17 @@ import Col from 'react-bootstrap/Col';
 import Fondo from '../assets/FONDO.jpg'
 const Home = () => {
 
+  
     return (
 
         <Container fluid style={{ backgroundImage: `url(${Fondo})`, backgroundSize: "cover", height: "100%", overflow: "hidden" }}>
             <Row>
                 <Col lg={2} md={12}>
+                    
                     <LoginFrame />
+                    <RegisterFrame />
                 </Col>
+
                 <Col lg={10} md={0} className="d-none d-lg-block" >
                     <DashboardFrame />
                 </Col>

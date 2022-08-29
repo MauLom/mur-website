@@ -4,13 +4,19 @@ import * as React from "react"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from "react-bootstrap/esm/Button";
 
 ///Other components
 import { Link } from "react-router-dom";
 import Logo from '../assets/LOGO.png'
 
 const LoginFrame = () => {
-
+ 
+    const [changeframe, setChangeframe]=React.useState(false)
+    const clickregister=()=>{
+        setChangeframe(!changeframe)
+        console.log(changeframe)
+    }
     const styles = {
         frameLoginBg: {
             height: "80%",
@@ -69,7 +75,7 @@ const LoginFrame = () => {
             color: "#FFFFFF",
         },
     }
-
+    
     return (
         <Row style={{ height: "100vh" }}>
                 <Container fluid style={{ height: "100vh" }} >
@@ -84,7 +90,7 @@ const LoginFrame = () => {
                             <Row className="mt-2"><Col><input style={styles.inputs} placeholder="Enter password" /></Col></Row>
                             <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin}>Login</button></Col></Row>
                             <Row className="mt-2"><Col className="text-center"><Link to="/">Forgot your password?</Link></Col></Row>
-                            <Row className="mt-5"><Col className="text-center"><Link to="/registerFrame">Register here</Link></Col></Row>
+                            <Row className="mt-5"><Col className="text-center"><Link to="/registerFrame"><Button variant="text" onClick={()=>{clickregister()}}>Register now</Button></Link></Col></Row>
                         </Container>
                     </Row>
                 </Container>
