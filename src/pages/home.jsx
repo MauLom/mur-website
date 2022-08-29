@@ -6,7 +6,7 @@ import RegisterFrame from "../components/registerFrame";
 /// Bootstrap components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col';
+import Col from 'react-bootstrap/Col';//ddd
 
 ///Other components
 
