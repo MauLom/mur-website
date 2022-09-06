@@ -4,6 +4,7 @@ import * as React from "react"
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from "react-bootstrap/esm/Button";
 
 ///Other components
 import { Link } from "react-router-dom";
@@ -12,7 +13,7 @@ import Fondo from '../assets/FONDO.jpg'
 import axios from 'axios';
 
 
-const RegisterFrame = () => {
+const RegisterFrame = ({changeregister}) => {
 
     //const axios = require('axios');
     const [userName, setUserName] = React.useState('')
@@ -130,7 +131,7 @@ const RegisterFrame = () => {
                             <Row className="mt-5"><Col className="text-center"><Link to="/">I have read and accept the terms and services</Link></Col></Row>
                             <Row className="mt-5"><Col className="text-center"><Link to="/">Im older than 18 years old</Link></Col></Row>
                             <Row className="mt-3"><Col className="text-center"><button style={styles.buttonRegister} onClick={(e) => { handlRegisterUser(e) }}>Register a</button></Col></Row>
-                            <Row className="mt-2"><Col className="text-center"><Link to="/">Want to Login?</Link></Col></Row>
+                            <Row className="mt-5"><Col className="text-center"><Link to="/"><Button variant="text" onClick={()=>{changeregister(false)}}>Want to Login?</Button></Link></Col></Row>
                         
                     </Container>
                 </Row>

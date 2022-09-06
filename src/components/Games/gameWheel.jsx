@@ -137,7 +137,7 @@ const GameWheel = () => {
         },
         td: {
             width: "100%",
-            textAlign: "left",
+            textAlign: "center",
             verticalAlign: "top",
             border: "1px solid #000000",
             borderCollapse: "collapse",
@@ -188,7 +188,7 @@ const GameWheel = () => {
                     Otras Mesas
 
                     <table id='tabla' style={styles.table}>
-                        <tr style={styles.td}><td>No. de jugador</td> <td style={styles.td}>Nombre</td></tr>
+                        <tr style={styles.td}><td><h3>Player</h3></td> <td style={styles.td}><h3>Name</h3></td></tr>
 
 
                     </table>

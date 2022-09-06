@@ -13,16 +13,16 @@ import Col from 'react-bootstrap/Col';//ddd
 ///Assets
 import Fondo from '../assets/FONDO.jpg'
 const Home = () => {
+    const [showregister, setShowregister] = React.useState(false);
 
-  
     return (
 
         <Container fluid style={{ backgroundImage: `url(${Fondo})`, backgroundSize: "cover", height: "100%", overflow: "hidden" }}>
             <Row>
                 <Col lg={2} md={12}>
-                    
-                    <LoginFrame />
-                    <RegisterFrame />
+
+                    {showregister ? <RegisterFrame changeregister={setShowregister} /> : <LoginFrame changeregister={setShowregister} />}
+
                 </Col>
 
                 <Col lg={10} md={0} className="d-none d-lg-block" >

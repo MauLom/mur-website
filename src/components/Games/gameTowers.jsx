@@ -14,54 +14,61 @@ const GameTowers = () => {
 
     const styleoriginbutton={background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px"}
     const stylebuttonanimated={background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px", animation: "zoom-in-zoom-out 1s  linear", animationFillMode: "both"}
+    const styleoriginbutton2={background: "red", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px"}
     const styleroworigin={
         width:"100%",
     }
     const stylerowchange={
         width:"100%",
         backgroundColor: "black",
-
         opacity: "0.3"
     }
-    const [arrElements, setArrElements] = React.useState([
-        [{ id: '1', monto: "$7.1", clickeado: false },
-        { id: '2', monto: "$7.1", clickeado: false },
-        { id: '3', monto: "$7.1", clickeado: false }],
-        [{ id: '4', monto: "$6.1", clickeado: false },
-        { id: '5', monto: "$6.1", clickeado: false },
-        { id: '6', monto: "$6.1", clickeado: false }],
-        [{ id: '7', monto: "$5.1", clickeado: false },
-        { id: '8', monto: "$5.1", clickeado: false },
-        { id: '9', monto: "$5.1", clickeado: false }],
-        [{ id: '10', monto: "$4.1", clickeado: false },
-        { id: '11', monto: "$4.1", clickeado: false },
-        { id: '12', monto: "$4.1", clickeado: false }],
-        [{ id: '13', monto: "$3.1", clickeado: false },
-        { id: '14', monto: "$3.1", clickeado: false },
-        { id: '15', monto: "$3.1", clickeado: false }],
-        [{ id: '16', monto: "$2.1", clickeado: false },
-        { id: '17', monto: "$2.1", clickeado: false },
-        { id: '18', monto: "$2.1", clickeado: false }],
-        [{ id: '19', monto: "$1.1", clickeado: false },
-        { id: '20', monto: "$1.1", clickeado: false },
-        { id: '21', monto: "$1.1", clickeado: false }],
-        [{ id: '22', monto: "$0.1", clickeado: false },
-        { id: '23', monto: "$0.1", clickeado: false },
-        { id: '24', monto: "$0.1", clickeado: false }],
+let fila=100;
+        const [arrElements, setArrElements] = React.useState([
+        [{ id: '1', monto: "$7.1", clickeado: false, fila:'100' },
+        { id: '2', monto: "$7.1", clickeado: false, fila:'100' },
+        { id: '3', monto: "$7.1", clickeado: false, fila:'100' }],
+        [{ id: '4', monto: "$6.1", clickeado: false, fila:'101' },
+        { id: '5', monto: "$6.1", clickeado: false, fila:'101' },
+        { id: '6', monto: "$6.1", clickeado: false, fila:'101' }],
+        [{ id: '7', monto: "$5.1", clickeado: false, fila:'102' },
+        { id: '8', monto: "$5.1", clickeado: false, fila:'102' },
+        { id: '9', monto: "$5.1", clickeado: false, fila:'102' }],
+        [{ id: '10', monto: "$4.1", clickeado: false, fila:'103' },
+        { id: '11', monto: "$4.1", clickeado: false, fila:'103' },
+        { id: '12', monto: "$4.1", clickeado: false, fila:'103' }],
+        [{ id: '13', monto: "$3.1", clickeado: false, fila:'104' },
+        { id: '14', monto: "$3.1", clickeado: false, fila:'104' },
+        { id: '15', monto: "$3.1", clickeado: false, fila:'104' }],
+        [{ id: '16', monto: "$2.1", clickeado: false, fila:'105' },
+        { id: '17', monto: "$2.1", clickeado: false, fila:'105' },
+        { id: '18', monto: "$2.1", clickeado: false, fila:'105' }],
+        [{ id: '19', monto: "$1.1", clickeado: false, fila:'106' },
+        { id: '20', monto: "$1.1", clickeado: false, fila:'106' },
+        { id: '21', monto: "$1.1", clickeado: false, fila:'106' }],
+        [{ id: '22', monto: "$0.1", clickeado: false, fila:'107' },
+        { id: '23', monto: "$0.1", clickeado: false, fila:'107' },
+        { id: '24', monto: "$0.1", clickeado: false, fila:'107' }],
     ])
     const handleIsClickedElements = (idx, jdx) => {
+
         let newArr = JSON.parse(JSON.stringify(arrElements))
-        //let newArr = arrElements
         let newObj = newArr[idx]
 
         newObj[jdx].clickeado = !newObj[jdx].clickeado
         newArr.splice(idx, newObj)
+        
         let datarow1=newObj[0];
         let datarow2=newObj[1];
         let datarow3=newObj[2];
+        let numfila=newObj[jdx].fila;
         document.getElementById(datarow1.id).disabled=true;
         document.getElementById(datarow2.id).disabled=true;
         document.getElementById(datarow3.id).disabled=true;
+        console.log(numfila);
+        let filas=document.getElementById(numfila);
+        filas.style.backgroundColor="red";
+
 
         setArrElements(newArr)
         console.log("arrElements", arrElements[idx][jdx])
@@ -156,11 +163,12 @@ const GameTowers = () => {
                     <div style={styles.div2} >
 
                         {arrElements.map((eachRow, idx) => (
-                            <Row className='d-flex justify-content-around' style={styleroworigin}>
+                            
+                            <Row id={fila++} className='d-flex justify-content-around' >
+                                
                                 {eachRow.map((eachCol, jdx) => (
                                     <button id={eachCol.id} style={eachCol.clickeado? stylebuttonanimated: styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}</button>
                                 ))}
-
                             </Row>
                         ))}
                         <br />
