@@ -9,8 +9,7 @@ import Button from "react-bootstrap/esm/Button";
 ///Other components
 import { Link } from "react-router-dom";
 import Logo from '../assets/LOGO.png'
-import Fondo from '../assets/FONDO.jpg'
-import axios from 'axios';
+
 
 
 const RegisterFrame = ({changeregister}) => {
@@ -29,11 +28,32 @@ const RegisterFrame = ({changeregister}) => {
         console.log(userName);
         console.log(userPassword);
         console.log(userEmail);
-        var email1 = userEmail;
-        var password1 = userPassword;
-        let registerdata = { 'email': email1, 'password': password1 };
+        //var email1 = userEmail;
+        //var password1 = userPassword;
 
-        axios.post('http://68.183.17.99:5000', registerdata).then(res => { return res }).then(data=>{console.log('data',data)})
+       // let registerdata = { 'email': email1, 'password': password1 };
+const UrlLogin = "http://localhost:8080/api/usuarios/register"
+        fetch(UrlLogin,{
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': 'true',
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                "username": userName,
+                "password": userPassword,
+                "email": userEmail
+            })
+        })
+        .then(res =>{
+            console.log('response',res)
+            return res.json();
+
+        })
+        .then((data)=>{
+            console.log('mensaje del servidor: ', data)
+        })
+        //axios.post('http://68.183.17.99:5000', registerdata).then(res => { return res }).then(data=>{console.log('data',data)})
 
        // async function doPostRequest() {
            // var email1 = userEmail;
@@ -130,7 +150,7 @@ const RegisterFrame = ({changeregister}) => {
                             <Row className="mt-2"><Col><input style={styles.inputs} value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Enter email" /></Col></Row>
                             <Row className="mt-5"><Col className="text-center"><Link to="/">I have read and accept the terms and services</Link></Col></Row>
                             <Row className="mt-5"><Col className="text-center"><Link to="/">Im older than 18 years old</Link></Col></Row>
-                            <Row className="mt-3"><Col className="text-center"><button style={styles.buttonRegister} onClick={(e) => { handlRegisterUser(e) }}>Register a</button></Col></Row>
+                            <Row className="mt-3"><Col className="text-center"><button style={styles.buttonRegister} onClick={(e) => { handlRegisterUser(e) }}>Register</button></Col></Row>
                             <Row className="mt-5"><Col className="text-center"><Link to="/"><Button variant="text" onClick={()=>{changeregister(false)}}>Want to Login?</Button></Link></Col></Row>
                         
                     </Container>

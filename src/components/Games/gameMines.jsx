@@ -47,7 +47,7 @@ const GameMines = () => {
         border: "1px solid #FFFFFF",
         borderRadius: "20px"
     }
-    const [animacion, setAnimacion]=React.useState(styleMinaAnimated)
+    const [animacion, setAnimacion]=React.useState(styleMinaOriigin)
 
     const styleselectormines = {
         background: "rgba(231, 231, 231, 0.43)",
@@ -63,6 +63,8 @@ const GameMines = () => {
         height: "50px",
         width: "50px"
     }
+    
+
     const [arrmina, setArrmina] = React.useState([
         [{ id: 'selector1', click: false, valor: '1' },
         { id: 'selector2', click: false, valor: '2' },
@@ -72,7 +74,8 @@ const GameMines = () => {
     const handleIsClickedMines = (idx, jdx) => {
 
         let monto = document.getElementById('inputamount').value;
-
+        
+        
         var val = 0;
         if (monto === "") {
             val++;
@@ -132,19 +135,23 @@ const GameMines = () => {
         let newObj = newArr[idx]
         let id=newObj[jdx].id;
         document.getElementById(id).disabled=true;
+        let estilo=document.getElementById(id);
 
         newArr.splice(idx, newObj)
 
         setArrElements(newArr)
         console.log("arrElements", arrElements[idx][jdx])
-        
-
-
+        let num = parseInt(Math.random() * 100);
+    console.log(num);
+    if(num===id){
+        console.log('son iguales');
+    }
         if(num1<=parseInt(numposibility)){
             setNum1(num1+1)
             console.log('entra en if '+num1);
             if(deshabilitar===false){
             newObj[jdx].clickeado = !newObj[jdx].clickeado
+            //setAnimacion(styleMinaAnimated)
 
             const styleDoc = document.createElement("style")
         const keyInjection = `@keyframes flipInY {
@@ -174,41 +181,45 @@ const GameMines = () => {
         styleDoc.type = "text/css";
         styleDoc.appendChild(document.createTextNode(keyInjection))
         document.getElementsByTagName("head")[0].appendChild(styleDoc);
+        estilo.style.backgroundColor="green";
+
     }
         }else{
             if(deshabilitar===false){
                 newObj[jdx].clickeado = !newObj[jdx].clickeado
             setNum1(num1+1)
             console.log('termina '+num1);
-            setAnimacion(styleMinaAnimated2)
+            //setAnimacion(styleMinaAnimated2)
             const styleDoc = document.createElement("style")
         const keyInjection = `@keyframes flipInY2 {
                 0% {
                    transform: perspective(400px) rotateY(-90deg);
-                   background-color: green;
+                   background-image: url(${Fondo});
                    background-size: cover;
                 }
                 40% {
                    transform: perspective(400px) rotateY(-10deg);
-                   background-color: green;
+                   background-image: url(${Fondo});
                    background-size: cover;
 
                 }
                 70% {
                    transform: perspective(400px) rotateY(10deg);
-                   background-color: green;
+                   background-image: url(${Fondo});
                    background-size: cover;
                 }
                 100% {
                    transform: perspective(400px) rotateY(0deg);
                    opacity: 1;
-                   background-color: green;
+                   background-image: url(${Fondo});
                    background-size: cover;
                 }
              }`
         styleDoc.type = "text/css";
         styleDoc.appendChild(document.createTextNode(keyInjection))
         document.getElementsByTagName("head")[0].appendChild(styleDoc);
+        estilo.style.backgroundColor="red";
+
         }}
         
 
@@ -349,7 +360,7 @@ const GameMines = () => {
                         {arrElements.map((eachRow, idx) => (
                             <Row className='d-flex justify-content-around'>
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} style={eachCol.clickeado ? animacion : styleMinaOriigin} onClick={() => { handleIsClickedElements(idx, jdx) }}></button>
+                                    <button id={eachCol.id} style={animacion} onClick={() => { handleIsClickedElements(idx, jdx) }}></button>
                                 ))}
 
                             </Row>
