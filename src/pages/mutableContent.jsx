@@ -15,6 +15,7 @@ import GameWheel from "../components/Games/gameWheel";
 import GameMines from "../components/Games/gameMines";
 import GameTowers from "../components/Games/gameTowers";
 import RegisterFrame from "../components/registerFrame";
+import UserFrame from "../components/userFrame";
 const MutableContent = () => {
 
     return (
@@ -32,6 +33,7 @@ const MutableContent = () => {
                     <Route path="/gameMines" element={<GameMines />}/>
                     <Route path="/gameTowers" element={<GameTowers />}></Route>
                     <Route path="/registerFrame" element={<RegisterFrame />}></Route>
+                    <Route path="/userFrame" element={<UserFrame />}></Route>
                 </Routes >
             </Router>
 
