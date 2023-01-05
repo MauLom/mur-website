@@ -29,7 +29,7 @@ const RegisterFrame = ({ changeregister }) => {
         console.log(userPassword);
         console.log(userEmail);
 
-        const UrlLogin = "http://localhost:8080/getUsers/register"
+        const UrlLogin = "http://localhost:8010/getUsers/register"
         fetch(UrlLogin, {
             method: 'POST',
             headers: {
@@ -132,7 +132,7 @@ const RegisterFrame = ({ changeregister }) => {
                         <Row className="mt-5"><Col className="text-center"><Link to="/">I have read and accept the terms and services</Link></Col></Row>
                         <Row className="mt-5"><Col className="text-center"><Link to="/">Im older than 18 years old</Link></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><button style={styles.buttonRegister} onClick={(e) => { handlRegisterUser(e) }}>Register</button></Col></Row>
-                        <Row className="mt-5"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister(false) }}>Want to Login?</Button></Link></Col></Row>
+                        <Row className="mt-5"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister("0") }}>Want to Login?</Button></Link></Col></Row>
 
                     </Container>
                 </Row>

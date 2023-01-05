@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import MutableContent from './pages/mutableContent';
+//import io from 'socket.io-client'
+//const socket= io('http://localhost:8010')
 
 function App() {
   return (

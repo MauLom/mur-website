@@ -5,20 +5,26 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
-import Logo from '../assets/LOGO.png'
+import Logo from '../assets/LOGO.png';
+import { io } from 'socket.io-client';
 
-const LoginFrame = ({ changeregister }) => {
+const LoginFrame = ( {changeregister} ) => {
+    //const socket = io('http://localhost:8010')
+    sessionStorage.setItem("username","data")
+
     const [username, setUsername]=React.useState('')
     const [pass, setPass]=React.useState('')
-    const [validateLogin, setValidateLogin]=React.useState('')
     
 
 
     const hadleLogin=(e)=>{
         setUsername(e.target.value)
         setPass(e.target.value)
-        console.log('nombre de usuario: '+username+' contraseña: '+pass)
-        const UrlLogin = "http://localhost:8080/getUsers/login"
+        if(username==='' || pass===''){
+
+        } else{
+        
+        const UrlLogin = "http://localhost:8010/getUsers/login"
         fetch(UrlLogin,{
             method: 'POST',
             headers: {
@@ -37,12 +43,22 @@ const LoginFrame = ({ changeregister }) => {
         })
         .then((data)=>{
             console.log('mensaje del servidor: ', data)
-            setValidateLogin(data.data)
+            if (data.data===false){
+
+            }else{
+                changeregister("2")
+                sessionStorage.setItem("username", data.data)
+                //socket.emit('joined', data.data)
+            }
+            
+            
         })
         
         
 
     }
+}
+
  
 
     const styles = {
@@ -113,15 +129,16 @@ const LoginFrame = ({ changeregister }) => {
                         <Row className="mt-2"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
                         <Row className="mt-3"><Col><div style={styles.divider}></div></Col></Row>
                         <Row className="mt-3"><Col><div style={styles.labelInputs}> Username</div></Col></Row>
-                        <Row className="mt-2"><Col><input type="text" style={styles.inputs} onChange={(e)=>setUsername(e.target.value)} placeholder="Enter username" /></Col></Row>
+                        <Row className="mt-2"><Col><input type="text" style={styles.inputs} onChange={(e)=>setUsername(e.target.value)} placeholder="Enter username" required/></Col></Row>
 
                         <Row className="mt-3"><Col><div style={styles.labelInputs}>Password</div></Col></Row>
-                        <Row className="mt-2"><Col><input type="text" style={styles.inputs} onChange={(e)=>setPass(e.target.value)} placeholder="Enter password" /></Col></Row>
+                        <Row className="mt-2"><Col><input type="text" style={styles.inputs} onChange={(e)=>setPass(e.target.value)} placeholder="Enter password"  required/></Col></Row>
 
                         <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin} onClick={(e)=>hadleLogin(e)}>Login</button></Col></Row>
 
+
                         <Row className="mt-2"><Col className="text-center"><Link to="/">Forgot your password?</Link></Col></Row>
-                        <Row className="mt-5"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister(true) }}>Register Now</Button></Link></Col></Row>
+                        <Row className="mt-5"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister("1","") }}>Register Now</Button></Link></Col></Row>
                     </Container>
                 </Row>
             </Container>

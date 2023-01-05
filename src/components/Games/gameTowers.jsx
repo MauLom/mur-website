@@ -8,48 +8,69 @@ import HeaderOptions from '../headerOptions';
 import Form from 'react-bootstrap/Form';
 import ruleta from '../../assets/RULETA.png'
 import bomba from '../../assets/BOMBAS.png'
+//import { io } from 'socket.io-client';
 
 
 const GameTowers = () => {
 
-    const styleoriginbutton={background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px"}
-    const stylebuttonanimated={background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px", animation: "zoom-in-zoom-out 1s  linear", animationFillMode: "both"}
-    const styleoriginbutton2={background: "red", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px"}
-    const styleroworigin={
-        width:"100%",
-    }
-    const stylerowchange={
-        width:"100%",
-        backgroundColor: "black",
-        opacity: "0.3"
-    }
-let fila=100;
-        const [arrElements, setArrElements] = React.useState([
-        [{ id: '1', monto: "$7.1", clickeado: false, fila:'100' },
-        { id: '2', monto: "$7.1", clickeado: false, fila:'100' },
-        { id: '3', monto: "$7.1", clickeado: false, fila:'100' }],
-        [{ id: '4', monto: "$6.1", clickeado: false, fila:'101' },
-        { id: '5', monto: "$6.1", clickeado: false, fila:'101' },
-        { id: '6', monto: "$6.1", clickeado: false, fila:'101' }],
-        [{ id: '7', monto: "$5.1", clickeado: false, fila:'102' },
-        { id: '8', monto: "$5.1", clickeado: false, fila:'102' },
-        { id: '9', monto: "$5.1", clickeado: false, fila:'102' }],
-        [{ id: '10', monto: "$4.1", clickeado: false, fila:'103' },
-        { id: '11', monto: "$4.1", clickeado: false, fila:'103' },
-        { id: '12', monto: "$4.1", clickeado: false, fila:'103' }],
-        [{ id: '13', monto: "$3.1", clickeado: false, fila:'104' },
-        { id: '14', monto: "$3.1", clickeado: false, fila:'104' },
-        { id: '15', monto: "$3.1", clickeado: false, fila:'104' }],
-        [{ id: '16', monto: "$2.1", clickeado: false, fila:'105' },
-        { id: '17', monto: "$2.1", clickeado: false, fila:'105' },
-        { id: '18', monto: "$2.1", clickeado: false, fila:'105' }],
-        [{ id: '19', monto: "$1.1", clickeado: false, fila:'106' },
-        { id: '20', monto: "$1.1", clickeado: false, fila:'106' },
-        { id: '21', monto: "$1.1", clickeado: false, fila:'106' }],
-        [{ id: '22', monto: "$0.1", clickeado: false, fila:'107' },
-        { id: '23', monto: "$0.1", clickeado: false, fila:'107' },
-        { id: '24', monto: "$0.1", clickeado: false, fila:'107' }],
+    // const socket = io('http://localhost:8010')
+    // const namegame="Game Towers"
+    // var dataroom={}
+    // const roomAssignment = () => {
+    //     var length = 16;
+    //     var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+    //     var charLength = chars.length;
+    //     var result = '';
+    //     for (var i = 0; i < length; i++) {
+    //         result += chars.charAt(Math.floor(Math.random() * charLength));
+    //     }
+    //     dataroom={"room":namegame, "token":result}
+    //     console.log(result)
+
+    //     socket.emit('room', dataroom)
+
+    // }
+    // roomAssignment();
+    const [amount, setAmount] = React.useState(0);
+    const styleoriginbutton = { background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px" }
+    const stylebuttonanimated = { background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px", animation: "zoom-in-zoom-out 1s  linear", animationFillMode: "both" }
+    const [scaladefloor, setScaledfloor] = React.useState('107');
+    var lista = ['1','2','3'];
+    let fila = 100;
+    const [arrElements, setArrElements] = React.useState([
+        [{ id: '1', monto: "$7.1", clickeado: false, fila: '100',position:'1' },
+        { id: '2', monto: "$7.1", clickeado: false, fila: '100' ,position:'2' },
+        { id: '3', monto: "$7.1", clickeado: false, fila: '100' ,position:'3' }],
+        [{ id: '4', monto: "$6.1", clickeado: false, fila: '101',position:'1' },
+        { id: '5', monto: "$6.1", clickeado: false, fila: '101' ,position:'2'},
+        { id: '6', monto: "$6.1", clickeado: false, fila: '101' ,position:'3'}],
+        [{ id: '7', monto: "$5.1", clickeado: false, fila: '102',position:'1' },
+        { id: '8', monto: "$5.1", clickeado: false, fila: '102' ,position:'2'},
+        { id: '9', monto: "$5.1", clickeado: false, fila: '102' ,position:'3'}],
+        [{ id: '10', monto: "$4.1", clickeado: false, fila: '103',position:'1' },
+        { id: '11', monto: "$4.1", clickeado: false, fila: '103' ,position:'2'},
+        { id: '12', monto: "$4.1", clickeado: false, fila: '103' ,position:'3'}],
+        [{ id: '13', monto: "$3.1", clickeado: false, fila: '104',position:'1' },
+        { id: '14', monto: "$3.1", clickeado: false, fila: '104' ,position:'2'},
+        { id: '15', monto: "$3.1", clickeado: false, fila: '104' ,position:'3'}],
+        [{ id: '16', monto: "$2.1", clickeado: false, fila: '105',position:'1' },
+        { id: '17', monto: "$2.1", clickeado: false, fila: '105' ,position:'2'},
+        { id: '18', monto: "$2.1", clickeado: false, fila: '105' ,position:'3'}],
+        [{ id: '19', monto: "$1.1", clickeado: false, fila: '106',position:'1' },
+        { id: '20', monto: "$1.1", clickeado: false, fila: '106' ,position:'2'},
+        { id: '21', monto: "$1.1", clickeado: false, fila: '106' ,position:'3'}],
+        [{ id: '22', monto: "$0.1", clickeado: false, fila: '107',position:'1' },
+        { id: '23', monto: "$0.1", clickeado: false, fila: '107' ,position:'2'},
+        { id: '24', monto: "$0.1", clickeado: false, fila: '107' ,position:'3'}],
     ])
+    lista = lista.sort(function() {return Math.random() - 0.5});
+    var m1=lista[0]
+    if (amount === 0) {
+    } else {
+        console.log(amount)
+        
+    }
+
     const handleIsClickedElements = (idx, jdx) => {
 
         let newArr = JSON.parse(JSON.stringify(arrElements))
@@ -57,23 +78,30 @@ let fila=100;
 
         newObj[jdx].clickeado = !newObj[jdx].clickeado
         newArr.splice(idx, newObj)
-        
-        let datarow1=newObj[0];
-        let datarow2=newObj[1];
-        let datarow3=newObj[2];
-        let numfila=newObj[jdx].fila;
-        document.getElementById(datarow1.id).disabled=true;
-        document.getElementById(datarow2.id).disabled=true;
-        document.getElementById(datarow3.id).disabled=true;
-        console.log(numfila);
-        let filas=document.getElementById(numfila);
-        filas.style.backgroundColor="red";
+
+        let datarow1 = newObj[0];
+        let datarow2 = newObj[1];
+        let datarow3 = newObj[2];
+        let numfila = newObj[jdx].fila;
+        document.getElementById(datarow1.id).disabled = true;
+        document.getElementById(datarow2.id).disabled = true;
+        document.getElementById(datarow3.id).disabled = true;
 
 
+        let fila=parseInt(numfila)-1
+        setScaledfloor(fila.toString());
+
+        //console.log('next fila',fila);
+        let filas = document.getElementById(numfila);
+
+        filas.style.backgroundColor = "red";
         setArrElements(newArr)
-        console.log("arrElements", arrElements[idx][jdx])
-
-        const styleDoc = document.createElement("style")
+        //console.log("arrElements", arrElements[idx][jdx])
+        let id = newObj[jdx].id;
+        let estilo = document.getElementById(id);
+        if(m1===newObj[jdx].position){
+            console.log('te moriste')
+            const styleDoc = document.createElement("style")
         const keyInjection = `@keyframes zoom-in-zoom-out {
             0% {
               transform: scale(1, 1);
@@ -93,11 +121,22 @@ let fila=100;
         styleDoc.type = "text/css";
         styleDoc.appendChild(document.createTextNode(keyInjection))
         document.getElementsByTagName("head")[0].appendChild(styleDoc);
+        estilo.style.backgroundColor = "red";
+        }else{
+            console.log('te salvaste de mi maldito')
+            estilo.style.backgroundColor = "green";
+        }
+        
+
 
     }
 
+
+
+
+
     const styles = {
-        
+
         col1: {
             paddingTop: "12%"
         },
@@ -138,7 +177,7 @@ let fila=100;
             height: "70px",
             width: "30%",
         },
-        
+
 
     }
     return (
@@ -154,7 +193,7 @@ let fila=100;
                         <Row><center><h2><font color="white">Monto de apuesta</font></h2></center></Row>
                         <br />
 
-                        <Row><center><Form.Control style={styles.form1} type="text" placeholder="$0.00" /></center></Row>
+                        <Row><center><Form.Control id='amount' style={styles.form1} type="text" placeholder="$0.00" onChange={(e) => { setAmount(e.target.value) }} /></center></Row>
                         <br />
                         <br />
                     </div>
@@ -163,11 +202,11 @@ let fila=100;
                     <div style={styles.div2} >
 
                         {arrElements.map((eachRow, idx) => (
-                            
+
                             <Row id={fila++} className='d-flex justify-content-around' >
-                                
+
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} style={eachCol.clickeado? stylebuttonanimated: styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx ) }}>{eachCol.monto}</button>
+                                    <button id={eachCol.id} disabled={eachCol.fila===scaladefloor? false: true} style={eachCol.clickeado ? stylebuttonanimated : styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx) }}>{eachCol.monto}</button>
                                 ))}
                             </Row>
                         ))}
@@ -188,6 +227,7 @@ let fila=100;
                     <button style={styles.button2}><h2><font color="white">Retirar Ganancia</font></h2></button>
                 </Col>
             </Row>
+            
 
         </Container>
 
