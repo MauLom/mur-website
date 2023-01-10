@@ -8,33 +8,22 @@ import HeaderOptions from '../headerOptions';
 import Form from 'react-bootstrap/Form';
 import ruleta from '../../assets/RULETA.png'
 import bomba from '../../assets/BOMBAS.png'
-//import { io } from 'socket.io-client';
+import io from 'socket.io-client'
 
 
 const GameTowers = () => {
+    const User = sessionStorage.getItem("username")
+    const socket = io('http://localhost:8010')
+    
 
-    // const socket = io('http://localhost:8010')
-    // const namegame="Game Towers"
-    // var dataroom={}
-    // const roomAssignment = () => {
-    //     var length = 16;
-    //     var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
-    //     var charLength = chars.length;
-    //     var result = '';
-    //     for (var i = 0; i < length; i++) {
-    //         result += chars.charAt(Math.floor(Math.random() * charLength));
-    //     }
-    //     dataroom={"room":namegame, "token":result}
-    //     console.log(result)
-
-    //     socket.emit('room', dataroom)
-
-    // }
-    // roomAssignment();
+     
+    
     const [amount, setAmount] = React.useState(0);
     const styleoriginbutton = { background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px" }
     const stylebuttonanimated = { background: "rgba(231, 231, 231, 0.43)", border: "1px solid #ffffff", borderRadius: "20px", height: "50px", width: "100px", animation: "zoom-in-zoom-out 1s  linear", animationFillMode: "both" }
     const [scaladefloor, setScaledfloor] = React.useState('107');
+    const [profitobtained, setProfitobtained]=React.useState(0);
+    const [withdraw, setWithdraw]=React.useState(true);
     var lista = ['1','2','3'];
     let fila = 100;
     const [arrElements, setArrElements] = React.useState([
@@ -65,6 +54,7 @@ const GameTowers = () => {
     ])
     lista = lista.sort(function() {return Math.random() - 0.5});
     var m1=lista[0]
+    var m2=lista[2]
     if (amount === 0) {
     } else {
         console.log(amount)
@@ -82,6 +72,7 @@ const GameTowers = () => {
         let datarow1 = newObj[0];
         let datarow2 = newObj[1];
         let datarow3 = newObj[2];
+        let revenue = newObj[jdx].monto;
         let numfila = newObj[jdx].fila;
         document.getElementById(datarow1.id).disabled = true;
         document.getElementById(datarow2.id).disabled = true;
@@ -89,7 +80,9 @@ const GameTowers = () => {
 
 
         let fila=parseInt(numfila)-1
-        setScaledfloor(fila.toString());
+        
+        let filamain=parseInt(numfila)
+        
 
         //console.log('next fila',fila);
         let filas = document.getElementById(numfila);
@@ -99,6 +92,7 @@ const GameTowers = () => {
         //console.log("arrElements", arrElements[idx][jdx])
         let id = newObj[jdx].id;
         let estilo = document.getElementById(id);
+        if(filamain>=104){
         if(m1===newObj[jdx].position){
             console.log('te moriste')
             const styleDoc = document.createElement("style")
@@ -122,15 +116,63 @@ const GameTowers = () => {
         styleDoc.appendChild(document.createTextNode(keyInjection))
         document.getElementsByTagName("head")[0].appendChild(styleDoc);
         estilo.style.backgroundColor = "red";
+        setWithdraw(true)
         }else{
             console.log('te salvaste de mi maldito')
             estilo.style.backgroundColor = "green";
+            setProfitobtained(revenue);
+            setScaledfloor(fila.toString());
+            setWithdraw(false)
+
         }
+    }else if (filamain<104){
+        if(m1===newObj[jdx].position || m2===newObj[jdx].position){
+            console.log('te moriste')
+            const styleDoc = document.createElement("style")
+        const keyInjection = `@keyframes zoom-in-zoom-out {
+            0% {
+              transform: scale(1, 1);
+              
+            }
+            50% {
+              transform: scale(1.5, 1.5);
+              background-image: url(${bomba});
+                   background-size: cover;
+            }
+            100% {
+              transform: scale(1, 1);
+              background-image: url(${bomba});
+                   background-size: cover;
+            }
+          }`
+        styleDoc.type = "text/css";
+        styleDoc.appendChild(document.createTextNode(keyInjection))
+        document.getElementsByTagName("head")[0].appendChild(styleDoc);
+        estilo.style.backgroundColor = "red";
+        setWithdraw(true)
+        }else{
+            console.log('te salvaste de mi maldito')
+            estilo.style.backgroundColor = "green";
+            setProfitobtained(revenue)
+            setScaledfloor(fila.toString());
+            setWithdraw(false)
+        }
+
+    }
         
 
 
     }
-
+    const withdrawals =(e)=>{
+        if (User !== '' || User !== null || User !== 'data' || amount !==0) {
+            let data=[User,'GameTowers',profitobtained, amount]
+            socket.emit('client:withdrawals',data)
+        }else{
+            console.log('no ha iniciado sesion')
+            
+        }
+        
+    }
 
 
 
@@ -224,7 +266,7 @@ const GameTowers = () => {
             <br />
             <Row>
                 <Col className='d-flex justify-content-center' lg={12} sm={12}>
-                    <button style={styles.button2}><h2><font color="white">Retirar Ganancia</font></h2></button>
+                    <button disabled={withdraw} style={styles.button2} onClick={(e)=>{withdrawals(e)}}><h2><font color="white">Retirar Ganancia</font></h2></button>
                 </Col>
             </Row>
             
