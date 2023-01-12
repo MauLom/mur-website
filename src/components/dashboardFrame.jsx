@@ -57,7 +57,7 @@ const DashboardFrame = () => {
                         <Col><div style={styles.titleHall}>Hall of fame</div></Col>
                     </Row>
                     <Row>
-                        <Col className="mt-4" style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "1469px", height: "428px" }} >Contenido tabla</Col>
+                        <Col className="mt-4" style={{ background: "rgba(231, 231, 231, 0.43)", borderRadius: "41px", width: "100%", height: "300px" }} >Contenido tabla</Col>
                     </Row>
                 </Col>
 

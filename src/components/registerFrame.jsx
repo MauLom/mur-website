@@ -117,7 +117,7 @@ const RegisterFrame = ({ changeregister }) => {
     return (
         <Container>
         <Row >
-            <Container fluid style={{ height: "100vh" }} >
+            <Container fluid >
                 <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
                 <Row >
                     <Container style={styles.frameLoginBg}>
