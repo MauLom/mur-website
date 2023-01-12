@@ -12,24 +12,9 @@ import Button from 'react-bootstrap/Button';
 import { io } from 'socket.io-client';
 
 const GameMines = () => {
-    //  const socket = io('http://localhost:8010')
-    //  const namegame="Game Mines"
-    //  var dataroom={}
-    //  const roomAssignment = () => {
-    //      var length = 16;
-    //      var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
-    //      var charLength = chars.length;
-    //      var result = '';
-    //      for (var i = 0; i < length; i++) {
-    //          result += chars.charAt(Math.floor(Math.random() * charLength));
-    //      }
-    //      dataroom={"room":namegame, "token":result}
-    //      console.log(result)
+    const User = sessionStorage.getItem("username")
+    const socket = io('http://localhost:8010')
 
-    //      socket.emit('room', dataroom)
-
-    //  }
-    //  roomAssignment();
     const [deshabilitar, setDeshabilitar] = React.useState(true)
 
     const [userAmount, setUserAmount] = React.useState('')
@@ -46,8 +31,6 @@ const GameMines = () => {
         border: "1px solid #FFFFFF",
         borderRadius: "20px"
     }
-    
-    
     const [animacion, setAnimacion] = React.useState(styleMinaOriigin)
 
     const styleselectormines = {
@@ -71,7 +54,7 @@ const GameMines = () => {
         { id: 'selector3', click: false, valor: '5' },
         { id: 'selector4', click: false, valor: '10' }]
     ])
-    
+
     const handleIsClickedMines = (idx, jdx) => {
 
         let monto = document.getElementById('inputamount').value;
@@ -136,7 +119,7 @@ const GameMines = () => {
 
         setArrElements(newArr)
         let numposibility = document.getElementById('nominas').value;
-        let pos=parseInt(numposibility);
+        let pos = parseInt(numposibility);
         let numran1 = randomnumber[0];
         let numran2 = randomnumber[1];
         let numran3 = randomnumber[2];
@@ -150,85 +133,85 @@ const GameMines = () => {
 
 
         console.log("arrElements", arrElements[idx][jdx], "posibilidades", numposibility)
-        var i=0
-        if(pos===1){
-            if(numran1===id){
+        var i = 0
+        if (pos === 1) {
+            if (numran1 === id) {
                 console.log("mina", randomnumber[0], id)
-                i=1
-            }else{
+                i = 1
+            } else {
                 console.log("no mina")
-                i=0
+                i = 0
             }
-        }else if(pos===2){
-            if(numran1===id){
+        } else if (pos === 2) {
+            if (numran1 === id) {
                 console.log("mina", randomnumber[0], id)
-                i=1
-            }else if(numran2===id){
-                console.log("mina", randomnumber[1], id) 
-                i=1
-            }else{
+                i = 1
+            } else if (numran2 === id) {
+                console.log("mina", randomnumber[1], id)
+                i = 1
+            } else {
                 console.log("no mina")
             }
 
-        }else if(pos===5){
-            if(numran1===id){
+        } else if (pos === 5) {
+            if (numran1 === id) {
                 console.log("mina", randomnumber[0], id)
-                i=1
-            }else if(numran2===id){
+                i = 1
+            } else if (numran2 === id) {
                 console.log("mina", randomnumber[1], id)
-                i=1
-            }else if(numran3===id){
+                i = 1
+            } else if (numran3 === id) {
                 console.log("mina", randomnumber[2], id)
-                i=1
-            }else if(numran4===id){
+                i = 1
+            } else if (numran4 === id) {
                 console.log("mina", randomnumber[3], id)
-                i=1
-            }else if(numran5===id){
+                i = 1
+            } else if (numran5 === id) {
                 console.log("mina", randomnumber[4], id)
-                i=1
-            }else{
+                i = 1
+            } else {
                 console.log("no mina")
-                i=0
+                i = 0
             }
-        }else if(pos===10){
-            if(numran1===id){
+        } else if (pos === 10) {
+            if (numran1 === id) {
                 console.log("mina", randomnumber[0], id)
-                i=1
-            }else if(numran2===id){
+                i = 1
+            } else if (numran2 === id) {
                 console.log("mina", randomnumber[1], id)
-                i=1
-            }else if(numran3===id){
+                i = 1
+            } else if (numran3 === id) {
                 console.log("mina", randomnumber[2], id)
-                i=1
-            }else if(numran4===id){
+                i = 1
+            } else if (numran4 === id) {
                 console.log("mina", randomnumber[3], id)
-                i=1
-            }else if(numran5===id){
+                i = 1
+            } else if (numran5 === id) {
                 console.log("mina", randomnumber[4], id)
-                i=1
-            }else if(numran6===id){
+                i = 1
+            } else if (numran6 === id) {
                 console.log("mina", randomnumber[5], id)
-                i=1
-            }else if(numran7===id){
+                i = 1
+            } else if (numran7 === id) {
                 console.log("mina", randomnumber[6], id)
-                i=1
-            }else if(numran8===id){
+                i = 1
+            } else if (numran8 === id) {
                 console.log("mina", randomnumber[7], id)
-                i=1
-            }else if(numran9===id){
+                i = 1
+            } else if (numran9 === id) {
                 console.log("mina", randomnumber[8], id)
-                i=1
-            }else if(numran10===id){
+                i = 1
+            } else if (numran10 === id) {
                 console.log("mina", randomnumber[9], id)
-                i=1
-            }else{
+                i = 1
+            } else {
                 console.log("no mina")
             }
         }
-        if(i===0){
+        if (i === 0) {
             console.log('no mina x2');
             const styleDoc = document.createElement("style")
-                     const keyInjection = `@keyframes flipInY2 {
+            const keyInjection = `@keyframes flipInY2 {
                      0% {
                         transform: perspective(400px) rotateY(-90deg);
                         background-image: url(${Fondo});
@@ -252,11 +235,11 @@ const GameMines = () => {
                         background-size: cover;
                      }
                   }`
-                     styleDoc.type = "text/css";
-                     styleDoc.appendChild(document.createTextNode(keyInjection))
-                     document.getElementsByTagName("head")[0].appendChild(styleDoc);
-                     estilo.style.backgroundColor = "green";
-        }else if (i===1) {
+            styleDoc.type = "text/css";
+            styleDoc.appendChild(document.createTextNode(keyInjection))
+            document.getElementsByTagName("head")[0].appendChild(styleDoc);
+            estilo.style.backgroundColor = "green";
+        } else if (i === 1) {
             console.log('mina x2')
             const styleDoc = document.createElement("style")
             const keyInjection = `@keyframes flipInY2 {
@@ -291,17 +274,22 @@ const GameMines = () => {
 
     }
 
-    var lista = ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24'];
+    var lista = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
 
     const hadleClickBet = (event) => {
-        setUserAmount(event.target.value);
+        if (User!=""|| User!="data"|| User!=null){
+            setUserAmount(event.target.value);
         console.log('click en bet')
         document.getElementById('monto').value = userAmount;
+
+
+        lista = lista.sort(function () { return Math.random() - 0.5 });
+        console.log('lista de minas', lista)
+        setRandomnumber(lista)
+        }else{
+            console.log("no ha iniciado sesión")
+        }
         
-        
-            lista = lista.sort(function() {return Math.random() - 0.5});
-            console.log('lista de minas',lista)
-            setRandomnumber(lista)
 
 
 
@@ -314,7 +302,6 @@ const GameMines = () => {
             background: "rgba(231, 231, 231, 0.43)",
             border: "1px solid #FFFFFF",
             borderRadius: "41px",
-            height: "100%",
             width: "100%",
             backgroundPosition: "center center"
         },
@@ -446,7 +433,8 @@ const GameMines = () => {
 
                 </Col>
                 <br />
-                <Col className='col-12 col-md-3 col-xs-12 d-flex justify-content-end'>
+                <br />
+                <Col className='col-12 col-md-3 col-xs-12 d-flex justify-content-center'>
                     <div style={styles.div3} className='d-flex justify-content-around'>
                         <img src={ruleta} height="20%" width="40%" alt="" />
                         <h1> <font color="white">Winners</font> </h1>
