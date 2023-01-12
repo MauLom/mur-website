@@ -371,7 +371,7 @@ const GameMines = () => {
 
     }
     return (
-        <Container fluid style={{ backgroundImage: `url(${Fondo})`, backgroundSize: "cover", height: "100%", overflow: "hidden" }}>
+        <Container fluid >
             <br />
             <HeaderOptions />
             <br />
