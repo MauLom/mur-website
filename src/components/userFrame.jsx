@@ -67,15 +67,16 @@ const UserFrame = ({changeframe})=>{
         },
     }
     return (
-        <Row style={{ height: "100vh" }}>
-            <Container fluid style={{ height: "100vh" }} >
+        <Container>
+        <Row>
+            <Container fluid >
                 <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
                 <Row style={{ height: "100vh" }}>
                     <Container style={styles.frameLoginBg}>
-                        <Row className="mt-2"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
-                        <Row className="mt-3"><Col><div style={styles.divider}></div></Col></Row>
-                        <Row className="mt-3"><Col><div style={styles.labelInputs}> Username</div></Col></Row>
-                        <Row className="mt-2"><Col><input type="text" style={styles.inputs}   /></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><div style={styles.loginTitle}>Login to Account</div></Col></Row>
+                        <Row className="mt-3"><Col className="text-center"><div style={styles.divider}></div></Col></Row>
+                        <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}> Username</div></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input type="text" style={styles.inputs}   /></Col></Row>
 
 
                         <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin} >Log out</button></Col></Row>
@@ -85,6 +86,7 @@ const UserFrame = ({changeframe})=>{
                 </Row>
             </Container>
         </Row>
+        </Container>
     )
 }
 export  default UserFrame

@@ -7,6 +7,7 @@ import {
     Navigate
 
 } from "react-router-dom";
+import Fondo from '../assets/FONDO.jpg'
 
 import Home from "./home";
 import TransactionsFrame  from "../components/transactionsWindow";
@@ -19,7 +20,7 @@ import UserFrame from "../components/userFrame";
 const MutableContent = () => {
 
     return (
-        <div style={{height:"100vh"}}> 
+        <div > 
             <Router>
                 <Routes >
                     <Route

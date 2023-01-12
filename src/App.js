@@ -24,9 +24,9 @@ function App() {
     //     </a>
     //   </header>
     // </div>
-    <div className='App'>
+    
        <MutableContent />
-    </ div>
+    
   );
 }
 

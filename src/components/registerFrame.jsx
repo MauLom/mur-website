@@ -89,7 +89,7 @@ const RegisterFrame = ({ changeregister }) => {
         },
         inputs: {
             minHeight: "60px",
-
+            width: "100%",
             background: "linear-gradient(120.37deg, rgba(239, 239, 239, 0.048) 0%, rgba(255, 255, 255, 0.008) 100%)",
             border: "2px solid #EFEFEF",
             boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.25)",
@@ -115,20 +115,21 @@ const RegisterFrame = ({ changeregister }) => {
     }
 
     return (
-        <Row style={{ height: "100vh" }}>
+        <Container>
+        <Row >
             <Container fluid style={{ height: "100vh" }} >
                 <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
-                <Row style={{ height: "100vh" }}>
+                <Row >
                     <Container style={styles.frameLoginBg}>
 
-                        <Row className="mt-2"><Col><div style={styles.registerTitle}>Create an account</div></Col></Row>
-                        <Row className="mt-3"><Col><div style={styles.divider}></div></Col></Row>
-                        <Row className="mt-3"><Col><div style={styles.labelInputs}> Username</div></Col></Row>
-                        <Row className="mt-2"><Col><input style={styles.inputs} value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Enter username" /></Col></Row>
-                        <Row className="mt-3"><Col><div style={styles.labelInputs}>Password</div></Col></Row>
-                        <Row className="mt-2"><Col><input style={styles.inputs} value={userPassword} onChange={(e) => setUserPassword(e.target.value)} placeholder="Enter password" /></Col></Row>
-                        <Row className="mt-3"><Col><div style={styles.labelInputs}>Email</div></Col></Row>
-                        <Row className="mt-2"><Col><input style={styles.inputs} value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Enter email" /></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><div style={styles.registerTitle}>Create an account</div></Col></Row>
+                        <Row className="mt-3"><Col className="text-center"><div style={styles.divider}></div></Col></Row>
+                        <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}> Username</div></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input style={styles.inputs} value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Enter username" /></Col></Row>
+                        <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}>Password</div></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input style={styles.inputs} value={userPassword} onChange={(e) => setUserPassword(e.target.value)} placeholder="Enter password" /></Col></Row>
+                        <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}>Email</div></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input style={styles.inputs} value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Enter email" /></Col></Row>
                         <Row className="mt-5"><Col className="text-center"><Link to="/">I have read and accept the terms and services</Link></Col></Row>
                         <Row className="mt-5"><Col className="text-center"><Link to="/">Im older than 18 years old</Link></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><button style={styles.buttonRegister} onClick={(e) => { handlRegisterUser(e) }}>Register</button></Col></Row>
@@ -138,6 +139,7 @@ const RegisterFrame = ({ changeregister }) => {
                 </Row>
             </Container>
         </Row>
+        </Container>
     )
 }
 
