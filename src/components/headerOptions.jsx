@@ -8,6 +8,11 @@ import Row from 'react-bootstrap/Row'
 import Dropdown from 'react-bootstrap/Dropdown';
 
 const HeaderOptions = () => {
+    const datauser= sessionStorage.getItem("username");
+    let user="Usuario"
+    if (datauser!=null || datauser!='' || datauser!='data'){
+        user=datauser
+    }
     const styles={
         row1: {
             width: "100%",
@@ -33,7 +38,7 @@ const HeaderOptions = () => {
             <Row style={styles.row1}>
                 <div className='d-flex justify-content-around' style={styles.content1}>
                     <Col lg={4} sm={4}>
-                        <DropdownButton variant="text" id="dropdown-basic-button" title="Usuarios">
+                        <DropdownButton variant="text" id="dropdown-basic-button" title={user}>
                             <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
                             <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
                             <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>

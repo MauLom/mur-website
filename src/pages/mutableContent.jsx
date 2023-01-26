@@ -7,7 +7,6 @@ import {
     Navigate
 
 } from "react-router-dom";
-import Fondo from '../assets/FONDO.jpg'
 
 import Home from "./home";
 import TransactionsFrame  from "../components/transactionsWindow";
@@ -17,6 +16,7 @@ import GameMines from "../components/Games/gameMines";
 import GameTowers from "../components/Games/gameTowers";
 import RegisterFrame from "../components/registerFrame";
 import UserFrame from "../components/userFrame";
+import DashboardFrame from "../components/dashboardFrame";
 const MutableContent = () => {
 
     return (
@@ -35,6 +35,7 @@ const MutableContent = () => {
                     <Route path="/gameTowers" element={<GameTowers />}></Route>
                     <Route path="/registerFrame" element={<RegisterFrame />}></Route>
                     <Route path="/userFrame" element={<UserFrame />}></Route>
+                    <Route path="/dashboardFrame" element={<DashboardFrame />}></Route>
                 </Routes >
             </Router>
 

@@ -5,12 +5,14 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Logo from '../assets/LOGO.png';
-import { io } from 'socket.io-client';
+import DashboardFrame from "./dashboardFrame";
 
 const LoginFrame = ({ changeregister }) => {
-    //const socket = io('http://localhost:8010')
+    const nav= useNavigate();
     sessionStorage.setItem("username", "data")
+    sessionStorage.setItem("Active", "data")
 
     const [username, setUsername] = React.useState('')
     const [pass, setPass] = React.useState('')
@@ -18,9 +20,10 @@ const LoginFrame = ({ changeregister }) => {
 
 
     const hadleLogin = (e) => {
+
         setUsername(e.target.value)
         setPass(e.target.value)
-        if (username === '' || pass === '') {
+        if (username === '' || pass === ''|| username==='data' || pass==='data') {
 
         } else {
 
@@ -43,11 +46,13 @@ const LoginFrame = ({ changeregister }) => {
                 })
                 .then((data) => {
                     console.log('mensaje del servidor: ', data)
-                    if (data.data === false) {
+                    if (data.data === false || data.data==='data' || data.data===null) {
 
                     } else {
                         changeregister("2")
                         sessionStorage.setItem("username", data.data)
+                        sessionStorage.setItem("Active", true)
+                        nav('/dashboardFrame')
                         //socket.emit('joined', data.data)
                     }
 
