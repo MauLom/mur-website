@@ -78,17 +78,17 @@ const DashboardFrame = () => {
                     <nav class="nav">
                         <div id='divhalf'>
                             
-                                <p><h1>Half of Fame</h1></p><br />
+                                <p><h1><font color='white'>Hall of Fame</font></h1></p><br />
                                 <hr style={styles.hr} />
-                                <p><h3>....00Xe364A ------ 50$</h3></p><br />
+                                <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p><br />
                                 <hr style={styles.hr} />
-                                <p><h3>....00Xe364A ------ 50$</h3></p><br />
+                                <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p><br />
                                 <hr style={styles.hr} />
-                                <p><h3>....00Xe364A ------ 50$</h3></p><br />
+                                <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p><br />
                                 <hr style={styles.hr} />
-                                <p><h3>....00Xe364A ------ 50$</h3></p><br />
+                                <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p><br />
                                 <hr style={styles.hr} />
-                                <p><h3>....00Xe364A ------ 50$</h3></p><br />
+                                <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p><br />
                             
                         </div>
                     </nav>
