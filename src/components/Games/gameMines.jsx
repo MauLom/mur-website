@@ -9,11 +9,11 @@ import ruleta from '../../assets/RULETA.png'
 import logo from '../../assets/LOGO.png'
 import HeaderOptions from '../headerOptions';
 import Button from 'react-bootstrap/Button';
-import { io } from 'socket.io-client';
+//import { io } from 'socket.io-client';
 
 const GameMines = () => {
     const User = sessionStorage.getItem("username")
-    const socket = io('http://localhost:8010')
+    //const socket = io('http://localhost:8010')
 
     const [deshabilitar, setDeshabilitar] = React.useState(true)
 
@@ -151,6 +151,7 @@ const GameMines = () => {
                 i = 1
             } else {
                 console.log("no mina")
+                i = 0
             }
 
         } else if (pos === 5) {
@@ -206,6 +207,7 @@ const GameMines = () => {
                 i = 1
             } else {
                 console.log("no mina")
+                i = 0
             }
         }
         if (i === 0) {

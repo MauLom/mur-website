@@ -8,12 +8,11 @@ import HeaderOptions from '../headerOptions';
 import Form from 'react-bootstrap/Form';
 import ruleta from '../../assets/RULETA.png'
 import bomba from '../../assets/BOMBAS.png'
-import io from 'socket.io-client'
+import { emitwithdrawals } from '../sockets.js';
 
 
 const GameTowers = () => {
     const User = sessionStorage.getItem("username")
-    const socket = io('http://localhost:8010')
     
 
      
@@ -166,7 +165,7 @@ const GameTowers = () => {
     const withdrawals =(e)=>{
         if (User !== '' || User !== null || User !== 'data' || amount !==0) {
             let data=[User,'GameTowers',profitobtained, amount]
-            socket.emit('client:withdrawals',data)
+            emitwithdrawals(data)
         }else{
             console.log('no ha iniciado sesion')
             

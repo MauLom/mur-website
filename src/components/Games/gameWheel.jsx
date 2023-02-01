@@ -1,26 +1,17 @@
 import * as React from 'react'
-
 ///Assets
 import OnlyWheel from '../../assets/OnlyWheel.png'
 import './games.css'
-
 /// Bootstrap components
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
-import Fondo from '../../assets/FONDO.jpg'
-
-
-
 /// Components
-
 import HeaderOptions from '../headerOptions';
 import WindowWinnerWheel from './windowwinnerwheel';
-import io from 'socket.io-client'
-
-
+import { initgamewheel, onnewroom, onnumberofusers, readytoplayGW } from '../sockets.js'
+import { ondataroom, onnumerofturns, onregisterstatus, regwinner, clearplayers} from '../sockets.js';
 const GameWheel = () => {
-    const socket = io('http://localhost:8010')
 
     const [deshabilitar, setDeshabilitar] = React.useState(false)
     const [num1, setNum1] = React.useState(0)
@@ -30,64 +21,60 @@ const GameWheel = () => {
     const [modalShow, setModalShow] = React.useState(false);
     const [datawinner, setDataWinner] = React.useState([]);
     const [listusers, setListUsers] = React.useState([]);
-    const [position, setPosition]= React.useState(0);
+    const [position, setPosition] = React.useState(0);
     const User = sessionStorage.getItem("username")
-    const roomlist = document.querySelector('#rooms');
-    const colorsmian = ["orange", "purple", "yellow", "red", "white", "green", "pink", "blue"]
+    const colorsmain = ["orange", "purple", "yellow", "red", "white", "green", "pink", "blue"]
     let arr = []
+    
+
     if (User !== '' || User !== null || User !== 'data') {
-        //console.log("ingresó sesion", User)
-
-        var dataroom = []
-        dataroom = [User, numberofroom]
-        socket.emit('client:register-wheel', dataroom)
-        socket.on('server:next-room', (room) => {
-            setNumberofroom(room + 1)
-        })
-        socket.on('server:numberofusers', (usersconnected) => {
-            //console.log('usuarios conectados', usersconnected[0])
-            setPlayers(usersconnected[0]);
-            setListUsers(usersconnected[1]);
-            //reggamewheel()
-        })
-        const roomUI= rooms=>{
-            const div= document.createElement('div');
-            div.innerHTML= `
-            <div> 
-            <p>${rooms.users[num1]} </p>
-            
-            </div>
-            `
-            return div
-            setNum1(num1+1)
-        }
- 
+        var dataofroom = []
+        dataofroom = [User, numberofroom]
         arr = [true, numberofroom]
-        socket.emit('client:readytoplay', arr);
 
-        socket.on('server:dataroom', (room) => {
-            setRoom(room)
-        })
-        socket.on('server:numerofturns', (turns) => {
-            if (turns === 0) {
+        initgamewheel(dataofroom)
+        const newroom = (room) => {
+            setNumberofroom(room + 1)
+            console.log("entra en clase newroom")
+        }
+        onnewroom(newroom)
+        const numberofusers = (data) => {
+            setPlayers(data[0]);
+            setListUsers(data[1]);
+        }
+        onnumberofusers(numberofusers)
+        readytoplayGW(arr);
+        const dataroom = (data) => {
+            setRoom(data)
+        }
+        ondataroom(dataroom)
+        const numberofturns=(data)=>{
+            if (data === 0) {
             } else {
-                girarimagen(turns)
-                
-            }
-        })
-        socket.on('server:register-wheel', (data) => {
+                girarimagen(data)
+    
+            } 
+        }
+        onnumerofturns(numberofturns)
+        const status=(data)=>{
             if (data === false) {
-                //console.log('ya esta inscrito')
-
+                console.log('ya esta inscrito')
+    
             } else if (data === true) {
-                //console.log('inscribiendo')
-
+                console.log('inscribiendo')
+    
             }
-        })
-    } else {
-        console.log("no ha ingresado sesion")
-    }
+        }
+        onregisterstatus(status)
+        
+        
+        
+        
+        
 
+    } else {
+        //     console.log("no ha ingresado sesion")
+    }
 
     const styleDoc = document.createElement("style")
 
@@ -191,7 +178,7 @@ const GameWheel = () => {
         const colors = ["", "orange", "purple", "yellow", "red", "white", "green", "pink", "blue"]
         const users = ["", listusers[0], listusers[1], listusers[2], listusers[3], listusers[4], listusers[5], listusers[6], listusers[7]]
 
-        
+
         col1.innerHTML = colors[num1];
         col2.innerHTML = users[num1];
         setNum1(num1 + 1)
@@ -202,14 +189,14 @@ const GameWheel = () => {
         } else {
             let game = 'Game Wheel'
             let room = numberofroom
-            let arrwinner = [room, game,color,listusers[position]]
-            socket.emit('client:regwinner', arrwinner)
+            let arrwinner = [room, game, color, listusers[position]]
+            regwinner(arrwinner);
             setTimeout(function () {
                 setModalShow(true)
             }, 4000)
             const arr = [color, listusers[position]]
             setDataWinner(arr)
-            socket.emit('client:clear-players', numberofroom)
+            clearplayers(numberofroom)
         }
     }
 
@@ -328,14 +315,14 @@ const GameWheel = () => {
                         <tr style={styles.td}><td><h3>Color</h3></td> <td style={styles.td}><h3>Player</h3></td></tr>
                     </table>
                     <table id='tablw' style={styles.table}>
-                        <tr style={styles.td}><td><h3>{colorsmian[0]}</h3></td> <td style={styles.td}><h3>{listusers[0]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmian[1]}</h3></td> <td style={styles.td}><h3>{listusers[1]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmian[2]}</h3></td> <td style={styles.td}><h3>{listusers[2]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmian[3]}</h3></td> <td style={styles.td}><h3>{listusers[3]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmian[4]}</h3></td> <td style={styles.td}><h3>{listusers[4]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmian[5]}</h3></td> <td style={styles.td}><h3>{listusers[5]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmian[6]}</h3></td> <td style={styles.td}><h3>{listusers[6]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmian[7]}</h3></td> <td style={styles.td}><h3>{listusers[7]}</h3></td></tr>
+                        <tr style={styles.td}><td><h3>{colorsmain[0]}</h3></td> <td style={styles.td}><h3>{listusers[0]}</h3></td></tr>
+                        <tr style={styles.td}><td><h3>{colorsmain[1]}</h3></td> <td style={styles.td}><h3>{listusers[1]}</h3></td></tr>
+                        <tr style={styles.td}><td><h3>{colorsmain[2]}</h3></td> <td style={styles.td}><h3>{listusers[2]}</h3></td></tr>
+                        <tr style={styles.td}><td><h3>{colorsmain[3]}</h3></td> <td style={styles.td}><h3>{listusers[3]}</h3></td></tr>
+                        <tr style={styles.td}><td><h3>{colorsmain[4]}</h3></td> <td style={styles.td}><h3>{listusers[4]}</h3></td></tr>
+                        <tr style={styles.td}><td><h3>{colorsmain[5]}</h3></td> <td style={styles.td}><h3>{listusers[5]}</h3></td></tr>
+                        <tr style={styles.td}><td><h3>{colorsmain[6]}</h3></td> <td style={styles.td}><h3>{listusers[6]}</h3></td></tr>
+                        <tr style={styles.td}><td><h3>{colorsmain[7]}</h3></td> <td style={styles.td}><h3>{listusers[7]}</h3></td></tr>
                     </table>
                     <ul id="rooms">
 
