@@ -5,6 +5,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from "react-bootstrap/esm/Button";
+import { Form } from "react-bootstrap";
+
 
 ///Other components
 import { Link } from "react-router-dom";
@@ -58,12 +60,12 @@ const RegisterFrame = ({ changeregister }) => {
     const styles = {
         frameLoginBg: {
             height: "80%",
-
             boxSizing: "border-box",
             background: "linear-gradient(120.37deg, rgba(239, 239, 239, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%)",
             border: "1px solid #EFEFEF",
             backdropFilter: "blur(60px)",
             borderRadius: "25px",
+            alignItems: "center"
         },
         registerTitle: {
             fontStyle: "normal",
@@ -89,11 +91,11 @@ const RegisterFrame = ({ changeregister }) => {
         },
         inputs: {
             minHeight: "60px",
-            width: "100%",
             background: "linear-gradient(120.37deg, rgba(239, 239, 239, 0.048) 0%, rgba(255, 255, 255, 0.008) 100%)",
             border: "2px solid #EFEFEF",
             boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.25)",
             borderRadius: "25px",
+            width: "100%",
         },
         buttonRegister: {
             minWidth: "120px",
@@ -115,31 +117,29 @@ const RegisterFrame = ({ changeregister }) => {
     }
 
     return (
-        <Container>
-        <Row >
-            <Container fluid >
+        <Col>
+            <Container>
                 <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
+                <br />
                 <Row >
                     <Container style={styles.frameLoginBg}>
 
                         <Row className="mt-2"><Col className="text-center"><div style={styles.registerTitle}>Create an account</div></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><div style={styles.divider}></div></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}> Username</div></Col></Row>
-                        <Row className="mt-2"><Col className="text-center"><input style={styles.inputs} value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Enter username" /></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input id="inputID" style={styles.inputs} value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Enter username" /></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}>Password</div></Col></Row>
-                        <Row className="mt-2"><Col className="text-center"><input style={styles.inputs} value={userPassword} onChange={(e) => setUserPassword(e.target.value)} placeholder="Enter password" /></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input id="inputID" style={styles.inputs} value={userPassword} onChange={(e) => setUserPassword(e.target.value)} placeholder="Enter password" /></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}>Email</div></Col></Row>
-                        <Row className="mt-2"><Col className="text-center"><input style={styles.inputs} value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Enter email" /></Col></Row>
-                        <Row className="mt-5"><Col className="text-center"><Link to="/">I have read and accept the terms and services</Link></Col></Row>
-                        <Row className="mt-5"><Col className="text-center"><Link to="/">Im older than 18 years old</Link></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input id="inputID" style={styles.inputs} value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Enter email" /></Col></Row>
+                        <p alignItems="center"><Form.Check type="switch" fontColor="white" label="I have read and accept the terms and services" /> </p>
+                        <p><Form.Check type="switch" label="Im older than 18 years old"/></p>
                         <Row className="mt-3"><Col className="text-center"><button style={styles.buttonRegister} onClick={(e) => { handlRegisterUser(e) }}>Register</button></Col></Row>
-                        <Row className="mt-5"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister("0") }}>Want to Login?</Button></Link></Col></Row>
-
+                        <Row className="mt-3"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister("0") }}><h5>Want to Login?</h5></Button></Link></Col></Row>
                     </Container>
                 </Row>
             </Container>
-        </Row>
-        </Container>
+        </Col>
     )
 }
 

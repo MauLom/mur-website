@@ -1,6 +1,13 @@
 import io from 'socket.io-client';
 const socket = io('http://localhost:8010')
-
+//section for use in login andlog out whit the server
+export const emitstateofuser=(data)=>{
+    socket.emit("client:statusofuser",data)
+}
+export const onstatusofuser=(callback)=>{
+    socket.on("server:statusofuser",callback)
+}
+//end section
 //section for use in Gamewhhel whit sockets and the server  
 export const initgamewheel=(data)=>{
     socket.emit('client:register-wheel', data)

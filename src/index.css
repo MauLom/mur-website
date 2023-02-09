@@ -102,3 +102,7 @@ code {
   transform: rotate(180deg);
   box-shadow: 0 0 0 0 transparent;
 }
+#inputID::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}

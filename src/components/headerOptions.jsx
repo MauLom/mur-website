@@ -6,21 +6,33 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row'
 import Dropdown from 'react-bootstrap/Dropdown';
+import { emitstateofuser } from './sockets.js';
 
-const HeaderOptions = () => {
-    const datauser= sessionStorage.getItem("username");
-    let user="Usuario"
-    if (datauser!=null || datauser!='' || datauser!='data'){
-        user=datauser
+const HeaderOptions = ({changeregister}) => {
+    const datauser = sessionStorage.getItem("username");
+    let user = "Usuario"
+
+    if (datauser !== null || datauser !== '' || datauser !== 'data') {
+        user = datauser
     }
-    const styles={
+    const HadleLogOut = (e) => {
+        if (user !== "" || user !== null || user !== 'data') {
+            var data = { "user": user, "status": "idle" }
+            setTimeout(function () {
+                emitstateofuser(data)
+                changeregister("0")
+            }, 1000)
+        }
+    }
+
+    const styles = {
         row1: {
             width: "100%",
             alignItems: "center",
             justifyContent: "center",
 
         },
-        content1:{
+        content1: {
             width: "80%",
             backgroundPosition: "center center",
             height: "60px",
@@ -30,7 +42,7 @@ const HeaderOptions = () => {
             alignItems: "center",
             justifyContent: "center"
         },
-        
+
     }
 
     return (
@@ -39,9 +51,9 @@ const HeaderOptions = () => {
                 <div className='d-flex justify-content-around' style={styles.content1}>
                     <Col lg={4} sm={4}>
                         <DropdownButton variant="text" id="dropdown-basic-button" title={user}>
-                            <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                            <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                            <Dropdown.Item href="#/action-1">Account</Dropdown.Item>
+                            <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
+                            <Dropdown.Item onClick={(e) => { HadleLogOut(e) }}>Log out</Dropdown.Item>
                         </DropdownButton>
                     </Col >
                     <Col lg={4} sm={4}><center><Button variant="success">Depositar</Button>{' '}</center></Col>

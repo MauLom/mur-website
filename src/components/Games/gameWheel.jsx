@@ -66,11 +66,6 @@ const GameWheel = () => {
             }
         }
         onregisterstatus(status)
-        
-        
-        
-        
-        
 
     } else {
         //     console.log("no ha ingresado sesion")
