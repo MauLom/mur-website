@@ -14,7 +14,7 @@ const halloffame = () => {
     ondataHalloffame(datahalloffame)
     
     return (
-        <div class="container" id='floatcontent'>
+        <div class="container d-md-none d-xl-none d-lg-none " id='floatcontent'>
             <input type="checkbox" id='toggle' />
             <label htmlFor="toggle" class="button"><center></center></label>
             <nav class="nav">
