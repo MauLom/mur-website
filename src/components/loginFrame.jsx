@@ -102,7 +102,6 @@ const LoginFrame = ({ changeregister }) => {
             border: "2px solid #EFEFEF",
             boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.25)",
             borderRadius: "20px",
-
             fontStyle: "normal",
             fontWeight: "500",
             fontSize: "25px",

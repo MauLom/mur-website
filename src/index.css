@@ -30,12 +30,10 @@ code {
 .button{
   z-index: 999;
   height: 43px;
-  width: 100px;
-  background: rgba(231, 231, 231, 0.43);
-  border-radius: 41px;
+  width: 100%;
   transition: all 0.5s ease-in-out;
-  box-shadow: 1px 3px 10px 0 rgba(0,0,0,0.3);
   cursor: pointer;
+
 }
 .button::before{
   position: absolute;
@@ -58,7 +56,7 @@ code {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  border-radius: 100%;
+
 }
 .nav{
   
@@ -96,13 +94,14 @@ code {
 }
 #toggle:checked ~ .nav{
   opacity: 1;
-  transform: translateY(-100%);
+  transform: translateY(-95%);
 }
 #toggle:checked ~ .button{
-  transform: rotate(180deg);
+  transform: rotateX(180deg), translateY(-95%);
   box-shadow: 0 0 0 0 transparent;
 }
 #inputID::placeholder {
   color: #ffffff;
   opacity: 1;
+  text-align: center;
 }
