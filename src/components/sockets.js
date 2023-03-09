@@ -15,7 +15,7 @@ export const initgamewheel=(data)=>{
 }
 export const onnewroom=(callback)=>{
     socket.on("server:next-room", callback)
-    console.log("entra en clase  onnewroom")
+    //console.log("entra en clase  onnewroom")
 }
 export const onnumberofusers=(callback)=>{
     socket.on('server:numberofusers', callback)

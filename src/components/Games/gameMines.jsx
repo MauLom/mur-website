@@ -3,35 +3,46 @@ import './games.css'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
-import Fondo from '../../assets/FONDO.jpg'
 //import bomba from '../../assets/BOMBAS.png'
 import ruleta from '../../assets/RULETA.png'
 import logo from '../../assets/LOGO.png'
+import bomba from '../../assets/BOMBAS.png'
 import HeaderOptions from '../headerOptions';
 import Button from 'react-bootstrap/Button';
-//import { io } from 'socket.io-client';
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 const GameMines = () => {
     const User = sessionStorage.getItem("username")
-    //const socket = io('http://localhost:8010')
-
     const [deshabilitar, setDeshabilitar] = React.useState(true)
-
     const [userAmount, setUserAmount] = React.useState('')
-
     const [randomnumber, setRandomnumber] = React.useState([]);
-
-    const styleMinaOriigin = {
-        width: "80px",
+    const [numposibility, setNumposibility] = React.useState(0);
+    const [playerstate, setPlayerstate]= React.useState(true);
+    const styleMinaChange = {
+        width: "20%",
         height: "80px",
         alignItems: "center",
         justifyContent: "center",
         background: `url(${logo})`,
-        backgroundSize: "cover",
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
         border: "1px solid #FFFFFF",
-        borderRadius: "20px"
+        borderRadius: "25px"
     }
-    const [animacion, setAnimacion] = React.useState(styleMinaOriigin)
+    const styleMinaOriigin = {
+        width: "20%",
+        height: "80px",
+        alignItems: "center",
+        justifyContent: "center",
+        background: "#5F04A5",
+        backgroundSize: "contain",
+        backgroundPosition: "center",
+        border: "1px solid #FFFFFF",
+        borderRadius: "25px",
+        animation: ''
+    }
 
     const styleselectormines = {
         background: "rgba(231, 231, 231, 0.43)",
@@ -41,43 +52,98 @@ const GameMines = () => {
         width: "50px"
     }
     const changestyleselectormines = {
-        background: "#FF0000",
+        background: "#9C9493",
         border: "1px solid #FFFFFF",
         borderRadius: "20px",
         height: "50px",
         width: "50px"
     }
-
     const [arrmina, setArrmina] = React.useState([
-        [{ id: 'selector1', click: false, valor: '1' },
-        { id: 'selector2', click: false, valor: '2' },
-        { id: 'selector3', click: false, valor: '5' },
-        { id: 'selector4', click: false, valor: '10' }]
+        [{ id: '101', click: false, valor: 1, posicion: 1 },
+        { id: '102', click: false, valor: 2, posicion: 2 },
+        { id: '103', click: false, valor: 5, posicion: 3 },
+        { id: '104', click: false, valor: 10, posicion: 4 }]
     ])
 
     const handleIsClickedMines = (idx, jdx) => {
-
         let monto = document.getElementById('inputamount').value;
-
-
         var val = 0;
         if (monto === "") {
-            val++;
+
+        } else {
+
+            let newArr = JSON.parse(JSON.stringify(arrmina))
+            let newObj = newArr[idx]
+            let aprovacion = false
+            newObj[jdx].click = !newObj[jdx].click
+            newArr.splice(idx, newObj)
+
+            let id = newObj[jdx].id
+            setArrmina(newArr)
+            console.log("arrElements", arrmina[idx][jdx])
+            if (id === '101') {
+                let estilo = document.getElementById(id);
+                estilo.style.backgroundColor = "#565657";
+                let estilo2 = document.getElementById('102');
+                estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                let estilo3 = document.getElementById('103');
+                estilo3.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                let estilo4 = document.getElementById('104');
+                estilo4.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                //newObj[0].click=true
+                newObj[1].click = false
+                newObj[2].click = false
+                newObj[3].click = false
+                setDeshabilitar(aprovacion)
+                setNumposibility(1)
+            } else if (id === '102') {
+                let estilo = document.getElementById(id);
+                estilo.style.backgroundColor = "#565657";
+                let estilo2 = document.getElementById('101');
+                estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                let estilo3 = document.getElementById('103');
+                estilo3.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                let estilo4 = document.getElementById('104');
+                estilo4.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                newObj[0].click = false
+                //newObj[1].click=true
+                newObj[2].click = false
+                newObj[3].click = false
+                setDeshabilitar(aprovacion)
+                setNumposibility(2)
+            } else if (id === '103') {
+                let estilo = document.getElementById(id);
+                estilo.style.backgroundColor = "#565657";
+                let estilo2 = document.getElementById('101');
+                estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                let estilo3 = document.getElementById('102');
+                estilo3.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                let estilo4 = document.getElementById('104');
+                estilo4.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                newObj[0].click = false
+                newObj[1].click = false
+                //newObj[2].click=true
+                newObj[3].click = false
+                setDeshabilitar(aprovacion)
+                setNumposibility(5)
+            } else if (id === '104') {
+                let estilo = document.getElementById(id);
+                estilo.style.backgroundColor = "#565657";
+                let estilo2 = document.getElementById('101');
+                estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                let estilo3 = document.getElementById('102');
+                estilo3.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                let estilo4 = document.getElementById('103');
+                estilo4.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
+                newObj[0].click = false
+                newObj[1].click = false
+                newObj[2].click = false
+                //newObj[3].click=true
+                setDeshabilitar(aprovacion)
+                setNumposibility(10)
+
+            }
         }
-        if (val === 0) {
-            setDeshabilitar(!deshabilitar)
-
-        }
-        let newArr = JSON.parse(JSON.stringify(arrmina))
-        let newObj = newArr[idx]
-
-        newObj[jdx].click = !newObj[jdx].click
-        newArr.splice(idx, newObj)
-        let valor = newObj[jdx].valor
-        setArrmina(newArr)
-        console.log("arrElements", arrmina[idx][jdx])
-
-        document.getElementById('nominas').value = valor;
     }
 
     const [arrElements, setArrElements] = React.useState([
@@ -109,17 +175,18 @@ const GameMines = () => {
     ])
 
     const handleIsClickedElements = (idx, jdx) => {
+        if(playerstate===true){
         let newArr = JSON.parse(JSON.stringify(arrElements))
         let newObj = newArr[idx]
         let id = newObj[jdx].id;
         document.getElementById(id).disabled = true;
-        let estilo = document.getElementById(id);
+        let stylesclickmines = document.getElementById(id);
 
         newArr.splice(idx, newObj)
 
         setArrElements(newArr)
-        let numposibility = document.getElementById('nominas').value;
-        let pos = parseInt(numposibility);
+
+        let pos = numposibility;
         let numran1 = randomnumber[0];
         let numran2 = randomnumber[1];
         let numran3 = randomnumber[2];
@@ -212,100 +279,118 @@ const GameMines = () => {
         }
         if (i === 0) {
             console.log('no mina x2');
-            const styleDoc = document.createElement("style")
-            const keyInjection = `@keyframes flipInY2 {
-                     0% {
-                        transform: perspective(400px) rotateY(-90deg);
-                        background-image: url(${Fondo});
-                        background-size: cover;
-                     }
-                     40% {
-                        transform: perspective(400px) rotateY(-10deg);
-                        background-image: url(${Fondo});
-                        background-size: cover;
-    
-                     }
-                     70% {
-                        transform: perspective(400px) rotateY(10deg);
-                        background-image: url(${Fondo});
-                        background-size: cover;
-                     }
-                     100% {
-                        transform: perspective(400px) rotateY(0deg);
-                        opacity: 1;
-                        background-image: url(${Fondo});
-                        background-size: cover;
-                     }
-                  }`
-            styleDoc.type = "text/css";
-            styleDoc.appendChild(document.createTextNode(keyInjection))
-            document.getElementsByTagName("head")[0].appendChild(styleDoc);
-            estilo.style.backgroundColor = "green";
+            document.getElementById(id).animate([
+                {
+                    transform: 'perspective(400px) rotateY(-90deg)',
+                    backgroundImage: `url(${logo})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat"
+                },
+                {
+                    transform: 'perspective(400px) rotateY(-10deg)',
+                    backgroundImage: `url(${logo})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat"
+                },
+                {
+                    transform: 'perspective(400px) rotateY(10deg)',
+                    backgroundImage: `url(${logo})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat"
+                },
+                {
+                    transform: 'perspective(400px) rotateY(0deg)',
+                    opacity: "1",
+                    backgroundImage: `url(${logo})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat"
+                }
+            ], {
+                duration: 1000,
+                //iterations: Infinity
+            });
+            setTimeout(function () {
+                stylesclickmines.style.backgroundImage=`url(${logo})`;
+                stylesclickmines.style.backgroundSize= "contain";
+                stylesclickmines.style.backgroundRepeat= "no-repeat";
+            }, 1200)
         } else if (i === 1) {
+            setPlayerstate(false)
             console.log('mina x2')
-            const styleDoc = document.createElement("style")
-            const keyInjection = `@keyframes flipInY2 {
-            0% {
-               transform: perspective(400px) rotateY(-90deg);
-               background-image: url(${Fondo});
-               background-size: cover;
-            }
-            40% {
-               transform: perspective(400px) rotateY(-10deg);
-               background-image: url(${Fondo});
-               background-size: cover;
+            document.getElementById(id).animate([
+                {
+                    transform: 'perspective(400px) rotateY(-90deg)',
+                    backgroundImage: `url(${bomba})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat"
+                },
+                {
+                    transform: 'perspective(400px) rotateY(-10deg)',
+                    backgroundImage: `url(${bomba})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat"
 
-            }
-            70% {
-               transform: perspective(400px) rotateY(10deg);
-               background-image: url(${Fondo});
-               background-size: cover;
-            }
-            100% {
-               transform: perspective(400px) rotateY(0deg);
-               opacity: 1;
-               background-image: url(${Fondo});
-               background-size: cover;
-            }
-         }`
-            styleDoc.type = "text/css";
-            styleDoc.appendChild(document.createTextNode(keyInjection))
-            document.getElementsByTagName("head")[0].appendChild(styleDoc);
-            estilo.style.backgroundColor = "red";
+                },
+                {
+                    transform: 'perspective(400px) rotateY(10deg)',
+                    backgroundImage: `url(${bomba})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat"
+                },
+                {
+                    transform: 'perspective(400px) rotateY(0deg)',
+                    opacity: "1",
+                    backgroundImage: `url(${bomba})`,
+                    backgroundSize: "contain",
+                    backgroundRepeat: "no-repeat"
+                }
+            ], {
+                duration: 1000,
+                //iterations: Infinity
+            });
+            setTimeout(function () {
+                stylesclickmines.style.backgroundImage=`url(${bomba})`;
+                stylesclickmines.style.backgroundSize= "contain";
+                stylesclickmines.style.backgroundRepeat= "no-repeat";
+            }, 1200)
         }
-
+    }else{
+        alert('juego terminado')
+    }
     }
 
     var lista = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
 
     const hadleClickBet = (event) => {
-        if (User!=""|| User!="data"|| User!=null){
+        if (User !== "" || User !== "data" || User !== null) {
             setUserAmount(event.target.value);
-        console.log('click en bet')
-        document.getElementById('monto').value = userAmount;
+            console.log('click en bet')
 
 
-        lista = lista.sort(function () { return Math.random() - 0.5 });
-        console.log('lista de minas', lista)
-        setRandomnumber(lista)
-        }else{
+            lista = lista.sort(function () { return Math.random() - 0.5 });
+            console.log('lista de minas', lista)
+            setRandomnumber(lista)
+        } else {
             console.log("no ha iniciado sesión")
         }
-        
+
 
 
 
     }
     const styles = {
         col1: {
-            paddingTop: "15%"
+            paddingTop: "10%"
         },
         div2: {
             background: "rgba(231, 231, 231, 0.43)",
             border: "1px solid #FFFFFF",
             borderRadius: "41px",
-            width: "100%",
-            backgroundPosition: "center center"
+            width: "95%",
+            backgroundPosition: "center center",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "95%"
         },
         div3: {
             background: "rgba(231, 231, 231, 0.43)",
@@ -363,11 +448,13 @@ const GameMines = () => {
 
         },
         input: {
-            width: "100%",
-            background: "rgba(231, 231, 231, 0.43)",
-            borderRadius: "15px",
-            height: "50%",
-            apacity: "1"
+
+            backgroundColor: "transparent",
+            apacity: "0",
+            border: "0",
+            color: "white"
+        }, col2: {
+            paddingTop: "2%"
         }
 
 
@@ -386,7 +473,11 @@ const GameMines = () => {
 
                             <div style={styles.divaround}>
                                 <font color="white">Amount to bet</font>
-                                <input id='inputamount' type="text" style={styles.input} value={userAmount} onChange={(e) => setUserAmount(e.target.value)} />
+                                <InputGroup className="mb-3">
+                                    <InputGroup.Text style={styles.input} ><font color="white">$</font> </InputGroup.Text>
+                                    <Form.Control id='inputamount' aria-label="Amount (to the nearest dollar)" style={styles.input} value={userAmount} onChange={(e) => setUserAmount(e.target.value)} />
+                                    <InputGroup.Text style={styles.input}><font color="white">.00</font></InputGroup.Text>
+                                </InputGroup>
                                 <br />
                             </div>
                             <br />
@@ -395,7 +486,7 @@ const GameMines = () => {
                             {arrmina.map((eachRow, idx) => (
                                 <Row className='d-flex justify-content-between'>
                                     {eachRow.map((eachCol, jdx) => (
-                                        <button id={eachCol.id} name={eachCol.id} style={eachCol.click === false ? styleselectormines : changestyleselectormines} onClick={() => { handleIsClickedMines(idx, jdx) }} value={eachCol.valor}>{eachCol.valor}</button>
+                                        <button id={eachCol.id} name={eachCol.id} style={eachCol.click === false ? styleselectormines : changestyleselectormines} onClick={() => { handleIsClickedMines(idx, jdx) }} value={eachCol.valor}><font color="white">{eachCol.valor}</font></button>
                                     ))}
 
                                 </Row>
@@ -410,21 +501,17 @@ const GameMines = () => {
                     </div></center>
                 </Col>
                 <br />
-                <Col className='col-12 col-md-6 col-xs-12 list-unstyled'>
-                    <Row className='d-flex justify-content-around'>
-                        <center><Col> <font color="white">Amount</font> <br />
-                            <input id='monto' type="text" /></Col>
-                            <Col><font color="white"># Mines</font> <br />
-                                <input id='nominas' type="text" /></Col></center>
-                    </Row>
+                <Col className='col-12 col-md-6 col-xs-12 list-unstyled' style={styles.col2}>
+
                     <br />
 
-                    <div style={styles.div2}>
+                    <div className='justify-content-center ms-3' style={styles.div2}>
                         <br />
+
                         {arrElements.map((eachRow, idx) => (
-                            <Row className='d-flex justify-content-around'>
+                            <Row className='d-flex justify-content-evenly mb-4 me-4 ms-3'>
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} style={animacion} onClick={() => { handleIsClickedElements(idx, jdx) }}></button>
+                                    <button id={eachCol.id} style={styleMinaOriigin} onClick={() => { handleIsClickedElements(idx, jdx) }}></button>
                                 ))}
 
                             </Row>

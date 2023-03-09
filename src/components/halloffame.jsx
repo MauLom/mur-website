@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { ondataHalloffame } from './sockets.js'
+import icon2 from '../assets/icon2.png'
 const halloffame = () => {
 
     const styles = {
@@ -18,8 +19,10 @@ const halloffame = () => {
             <input type="checkbox" id='toggle' />
             
             <nav class="nav">
+            <label htmlFor="toggle" class="button"><center><img src={icon2} alt="" height="10%" width="10%" /></center></label>
                 <div id='divhalf'>
-                <label htmlFor="toggle" class="button"></label>
+                
+                
                 <br />
                 <br />
                     <p><h1><font color='white'>Hall of Fame</font></h1></p><br />

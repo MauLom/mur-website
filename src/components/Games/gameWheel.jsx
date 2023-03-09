@@ -1,6 +1,9 @@
 import * as React from 'react'
 ///Assets
 import OnlyWheel from '../../assets/OnlyWheel.png'
+import logo from '../../assets/LOGO.png'
+import token from '../../assets/token.png'
+import vectorusers from '../../assets/vectorusers.png'
 import './games.css'
 /// Bootstrap components
 import Container from 'react-bootstrap/Container';
@@ -10,7 +13,7 @@ import Col from 'react-bootstrap/Col';
 import HeaderOptions from '../headerOptions';
 import WindowWinnerWheel from './windowwinnerwheel';
 import { initgamewheel, onnewroom, onnumberofusers, readytoplayGW } from '../sockets.js'
-import { ondataroom, onnumerofturns, onregisterstatus, regwinner, clearplayers} from '../sockets.js';
+import { ondataroom, onnumerofturns, onregisterstatus, regwinner, clearplayers } from '../sockets.js';
 const GameWheel = () => {
 
     const [deshabilitar, setDeshabilitar] = React.useState(false)
@@ -25,7 +28,7 @@ const GameWheel = () => {
     const User = sessionStorage.getItem("username")
     const colorsmain = ["orange", "purple", "yellow", "red", "white", "green", "pink", "blue"]
     let arr = []
-    
+
 
     if (User !== '' || User !== null || User !== 'data') {
         var dataofroom = []
@@ -35,7 +38,7 @@ const GameWheel = () => {
         initgamewheel(dataofroom)
         const newroom = (room) => {
             setNumberofroom(room + 1)
-            console.log("entra en clase newroom")
+            //console.log("entra en clase newroom")
         }
         onnewroom(newroom)
         const numberofusers = (data) => {
@@ -48,21 +51,21 @@ const GameWheel = () => {
             setRoom(data)
         }
         ondataroom(dataroom)
-        const numberofturns=(data)=>{
+        const numberofturns = (data) => {
             if (data === 0) {
             } else {
                 girarimagen(data)
-    
-            } 
+
+            }
         }
         onnumerofturns(numberofturns)
-        const status=(data)=>{
+        const status = (data) => {
             if (data === false) {
-                console.log('ya esta inscrito')
-    
+                // console.log('ya esta inscrito')
+
             } else if (data === true) {
-                console.log('inscribiendo')
-    
+                // console.log('inscribiendo')
+
             }
         }
         onregisterstatus(status)
@@ -147,7 +150,7 @@ const GameWheel = () => {
         let numerovuleta = String(num);
 
 
-        console.log('numero de vuelta: ' + numerovuleta)
+        // console.log('numero de vuelta: ' + numerovuleta)
         const keyInjection = `@keyframes rotation {
             from {
                 transform: rotate(0deg);
@@ -197,14 +200,17 @@ const GameWheel = () => {
 
 
     const styles = {
-        glassRectangle: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #000000",
-            borderRadius: "41px",
+        div1: {
+
+            width: "90%",
+            height: "100%",
+
+
+
         },
         imgWheel: {
-            maxWidth: "50%",
-            maxHeight: "50%",
+            maxWidth: "80%",
+            maxHeight: "80%",
             animation: "rotation 4s  linear",
             animationFillMode: "forwards",
             alignItems: "center",
@@ -213,17 +219,21 @@ const GameWheel = () => {
         rotationCss: {
         },
         content1: {
-            width: "85%",
+            width: "60%",
             backgroundPosition: "center center",
             height: "60px",
             background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #000000",
+            border: "1px solid #ffffff",
             borderRadius: "41px",
             alignItems: "center",
-            justifyContent: "center"
+            justifyContent: "center",
 
         },
         row1: {
+            width: "100%",
+
+        },
+        rowmain: {
             width: "100%",
             alignItems: "center",
             justifyContent: "center",
@@ -234,7 +244,7 @@ const GameWheel = () => {
             backgroundPosition: "center center",
             height: "60px",
             background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #000000",
+            border: "1px solid #ffffff",
             borderRadius: "41px",
             alignItems: "center",
             justifyContent: "center"
@@ -244,92 +254,222 @@ const GameWheel = () => {
             backgroundPosition: "center center",
             height: "60px",
             background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #000000",
+            border: "1px solid #ffffff",
             borderRadius: "41px",
             alignItems: "center",
             justifyContent: "center",
 
         }, table: {
-            backgroundColor: "white",
             alignItems: "center",
-            with: "100%",
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #000000",
-
+            width: "90%",
+            justifyContent: "center",
+            height:"100%"
         },
         td: {
             width: "100%",
             textAlign: "center",
-            verticalAlign: "top",
-            border: "1px solid #000000",
-            borderCollapse: "collapse",
-            borderRadius: "41px",
+
 
         },
         btready: {
             background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #FFFFFF",
+            border: "1px solid #ffffff",
             borderRadius: "20px",
             height: "100%",
             width: "100%"
+        }, token: {
+            width: "50%"
+        }, imglogo: {
+            height: '30px',
+            with: '30px',
+            left: '15%'
+
+        },
+        glassRectangle: {
+            width: "90%",
+            background: "rgba(231, 231, 231, 0.43)",
+            border: "1px solid #ffffff",
+            borderRadius: "41px",
+        },
+        btroom: {
+            width: "100%",
+            backgroundPosition: "center center",
+            height: "60%",
+            background: "rgba(231, 231, 231, 0.43)",
+            border: "1px solid #ffffff",
+            borderRadius: "20px",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        vector: {
+            position: "relative",
+            paddingTop: "2%",
+            height: "20%",
+            width: "20%",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        rommbt: {
+            height: "100%",
+            width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+        },
+        colroom1: {
+            height: "100%",
+            width: "30%",
+        },
+        colroom2: {
+            height: "100%",
+            width: "40%",
+        },
+        colroom3: {
+            height: "100%",
+            width: "30%",
         }
 
     }
 
     return (
         <Container fluid >
+            <br />
             <HeaderOptions />
             <br />
             <br />
-            <Row style={styles.row1}>
-                <div className='row' style={styles.content2}>
-                    <div className='col'> Icono</div>
-                    <div className='col'><center><h1>{players}/8</h1></center></div>
-                    <div className='col'><h1>Ganancia</h1></div>
-
+            <Row style={styles.rowmain}>
+                <div className='d-flex justify-content-around' style={styles.content1}>
+                    <Col><img height="50px" width="50px" src={logo} alt="" /> </Col>
+                    <Col ><center><h2><font color="white">{players}/8</font></h2></center></Col>
+                    <Col className='d-flex justify-content-end'>
+                        <Row className='d-flex justify-content-end'>
+                            <Col className='d-flex justify-content-end'>
+                                <h3><font color="white">Ganancia:50$</font></h3>
+                            </Col >
+                            <Col style={styles.token} className='d-flex justify-content-end'>
+                                <img src={token} height="40px" width="60px" alt="" />
+                            </Col>
+                        </Row>
+                    </Col>
                 </div>
-
             </Row>
             <br />
             <br />
             <Row className='d-flex justify-content-center'>
-                <Col lg={2} style={styles.glassRectangle}>
-                    <Row className='d-flex justify-content-center'>
-                        Ganancias
-                    </Row>
+                <Col className='d-flex justify-content-center' lg={3} sm={12}>
+                    <div style={styles.glassRectangle}>
+                        <center>
+                            <br />
+                            <div style={styles.div1}>
+                                
+                                <Row >
+                                        <Col className='d-flex justify-content-end'><font color="white"size="6">Ganancia</font></Col>
+                                </Row>
+                                <Row className='d-flex justify-content-center mb-3'>
+                                    <Col className='d-flex justify-content-start d-flex align-items-center'><img src={vectorusers} alt="" width="40%" height="40%" /></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color={colorsmain[0]} size="6">{listusers[0]}</font></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color="white" size="5">$50</font></Col>
+                                </Row>
+                                <Row className='d-flex justify-content-center mb-3'>
+                                    <Col className='d-flex justify-content-start d-flex align-items-center'><img src={vectorusers} alt="" width="40%" height="40%" /></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color={colorsmain[1]} size="6">{listusers[1]}</font></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color="white" size="5">$50</font></Col>
+                                </Row>
+                                <Row className='d-flex justify-content-center mb-3'>
+                                    <Col className='d-flex justify-content-start d-flex align-items-center'><img src={vectorusers} alt="" width="40%" height="40%" /></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color={colorsmain[2]} size="6">{listusers[2]}</font></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color="white" size="5">$50</font></Col>
+                                </Row>
+                                <Row className='d-flex justify-content-center mb-3'>
+                                    <Col className='d-flex justify-content-start d-flex align-items-center'><img src={vectorusers} alt="" width="40%" height="40%" /></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color={colorsmain[3]} size="6">{listusers[3]}</font></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color="white" size="5">$50</font></Col>
+                                </Row>
+                                <Row className='d-flex justify-content-center mb-3'>
+                                    <Col className='d-flex justify-content-start d-flex align-items-center'><img src={vectorusers} alt="" width="40%" height="40%" /></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color={colorsmain[4]} size="6">{listusers[4]}</font></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color="white" size="5">$50</font></Col>
+                                </Row>
+                                <Row className='d-flex justify-content-center mb-3'>
+                                    <Col className='d-flex justify-content-start d-flex align-items-center'><img src={vectorusers} alt="" width="40%" height="40%" /></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color={colorsmain[5]} size="6">{listusers[5]}</font></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color="white" size="5">$50</font></Col>
+                                </Row>
+                                <Row className='d-flex justify-content-center mb-3'>
+                                    <Col className='d-flex justify-content-start d-flex align-items-center'><img src={vectorusers} alt="" width="40%" height="40%" /></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color={colorsmain[6]} size="6">{listusers[6]}</font></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color="white" size="5">$50</font></Col>
+                                </Row>
+                                <Row className='d-flex justify-content-center mb-3'>
+                                    <Col className='d-flex justify-content-start d-flex align-items-center'><img src={vectorusers} alt="" width="40%" height="40%" /></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color={colorsmain[7]} size="6">{listusers[7]}</font></Col>
+                                    <Col className='d-flex justify-content-center align-items-center'><font color="white" size="5">$50</font></Col>
+                                </Row>
+                            </div>
+                        </center>
+                    </div>
+
 
                 </Col>
-                <Col lg={8}>
-                    {/* <ImgStylized />  */}
+                <Col lg={6}>
                     <center><img style={styles.imgWheel} src={OnlyWheel} alt="" /></center>
                 </Col>
-                <Col lg={2} style={styles.glassRectangle}>
-                    Conectado en la rala:<h3>{room}</h3>
-
-                    <table id='tabla' style={styles.table}>
-                        <tr style={styles.td}><td><h3>Color</h3></td> <td style={styles.td}><h3>Player</h3></td></tr>
-                    </table>
-                    <table id='tablw' style={styles.table}>
-                        <tr style={styles.td}><td><h3>{colorsmain[0]}</h3></td> <td style={styles.td}><h3>{listusers[0]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmain[1]}</h3></td> <td style={styles.td}><h3>{listusers[1]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmain[2]}</h3></td> <td style={styles.td}><h3>{listusers[2]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmain[3]}</h3></td> <td style={styles.td}><h3>{listusers[3]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmain[4]}</h3></td> <td style={styles.td}><h3>{listusers[4]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmain[5]}</h3></td> <td style={styles.td}><h3>{listusers[5]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmain[6]}</h3></td> <td style={styles.td}><h3>{listusers[6]}</h3></td></tr>
-                        <tr style={styles.td}><td><h3>{colorsmain[7]}</h3></td> <td style={styles.td}><h3>{listusers[7]}</h3></td></tr>
-                    </table>
-                    <ul id="rooms">
-
-                    </ul>
+                <Col lg={3} className='d-flex justify-content-center' >
+                    <div style={styles.glassRectangle}>
+                        <br />
+                        <div style={styles.row1}>
+                            <Row style={styles.row1}>
+                                <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
+                                <Col className='d-flex justify-content-center align-items-center'><button style={styles.btroom}><Row className=''><Col style={styles.rommbt}><font color="white" size="5">5</font></Col><Col ><img src={token} height="100%" width="150%" alt="" /></Col></Row></button>
+                                    <img style={styles.vector} src={vectorusers} alt="" />
+                                </Col>
+                                <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
+                            </Row>
+                            <Row style={styles.row1}>
+                                <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
+                                <Col className='d-flex justify-content-center align-items-center'><button style={styles.btroom}><Row className=''><Col style={styles.rommbt}><font color="white" size="5">10</font></Col><Col ><img src={token} height="100%" width="150%" alt="" /></Col></Row></button>
+                                    <img style={styles.vector} src={vectorusers} alt="" />
+                                </Col>
+                                <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
+                            </Row>
+                            <Row style={styles.row1}>
+                                <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
+                                <Col className='d-flex justify-content-center align-items-center'><button style={styles.btroom}><Row className=''><Col style={styles.rommbt}><font color="white" size="5">20</font></Col><Col ><img src={token} height="100%" width="150%" alt="" /></Col></Row></button>
+                                    <img style={styles.vector} src={vectorusers} alt="" />
+                                </Col>
+                                <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
+                            </Row>
+                            <Row style={styles.row1}>
+                                <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
+                                <Col className='d-flex justify-content-center align-items-center'><button style={styles.btroom}><Row className=''><Col style={styles.rommbt}><font color="white" size="5">30</font></Col><Col ><img src={token} height="100%" width="150%" alt="" /></Col></Row></button>
+                                    <img style={styles.vector} src={vectorusers} alt="" />
+                                </Col>
+                                <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
+                            </Row>
+                            <Row style={styles.row1}>
+                                <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
+                                <Col className='d-flex justify-content-center align-items-center'><button style={styles.btroom}><Row className=''><Col style={styles.rommbt}><font color="white" size="5">40</font></Col><Col ><img src={token} height="100%" width="150%" alt="" /></Col></Row></button>
+                                    <img style={styles.vector} src={vectorusers} alt="" />
+                                </Col>
+                                <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
+                            </Row>
+                            <Row style={styles.row1}>
+                                <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
+                                <Col className='d-flex justify-content-center align-items-center'><button style={styles.btroom}><Row className=''><Col style={styles.rommbt}><font color="white" size="5">50</font></Col><Col ><img src={token} height="100%" width="150%" alt="" /></Col></Row></button>
+                                    <img style={styles.vector} src={vectorusers} alt="" />
+                                </Col>
+                                <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
+                            </Row>
+                        </div>
+                    </div>
                 </Col>
             </Row>
             <br />
             <Row style={styles.row1}>
-                <div className='row' >
+                
                     <center><button disabled={deshabilitar} style={styles.mesas} onClick={() => { reggamewheel() }}><h1>5</h1></button></center>
-                </div>
+                
             </Row>
+
             <WindowWinnerWheel props={datawinner}
                 show={modalShow}
                 onHide={() => setModalShow(false)}

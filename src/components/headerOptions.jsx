@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row'
 import Dropdown from 'react-bootstrap/Dropdown';
 import { emitstateofuser } from './sockets.js';
+import Logo from '../assets/LOGO.png'
 
 const HeaderOptions = ({changeregister}) => {
     const datauser = sessionStorage.getItem("username");
@@ -42,25 +43,35 @@ const HeaderOptions = ({changeregister}) => {
             alignItems: "center",
             justifyContent: "center"
         },
+        imglogo: {
+            height: '30px',
+            with: '30px',
+            top:'1%',
+            position:'fixed',
+            left: '1%'
+            
+        }
+
 
     }
 
     return (
         <>
             <Row style={styles.row1}>
+                <div class='container d-none d-md-block d-lg-block' style={styles.imglogo}><img height="80px" width="80px" src={Logo} alt="" /></div>
                 <div className='d-flex justify-content-around' style={styles.content1}>
-                    <Col lg={4} sm={4}>
+                    <Col>
                         <DropdownButton variant="text" id="dropdown-basic-button" title={user}>
                             <Dropdown.Item href="#/action-1">Account</Dropdown.Item>
                             <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
                             <Dropdown.Item onClick={(e) => { HadleLogOut(e) }}>Log out</Dropdown.Item>
                         </DropdownButton>
                     </Col >
-                    <Col lg={4} sm={4}><center><Button variant="success">Depositar</Button>{' '}</center></Col>
-                    <Col lg={4} sm={4}><center><Button variant="info" className="">Retirar</Button>{' '}</center></Col>
+                    <Col><center><Button variant="success">Depositar</Button>{' '}</center></Col>
+                    <Col><center><Button variant="info" className="">Retirar</Button>{' '}</center></Col>
 
                 </div>
-
+                <div></div>
             </Row>
         </>
     )
