@@ -61,36 +61,36 @@ const GameTowers = () => {
         }
 
     ]
-    const duration={
+    const duration = {
         duration: 1000,
     }
     var lista = ['1', '2', '3'];
     let fila = 100;
     const [arrElements, setArrElements] = React.useState([
-        [{ id: '1', monto: "$7.1", clickeado: false, fila: '100', position: '1' },
-        { id: '2', monto: "$7.1", clickeado: false, fila: '100', position: '2' },
-        { id: '3', monto: "$7.1", clickeado: false, fila: '100', position: '3' }],
-        [{ id: '4', monto: "$6.1", clickeado: false, fila: '101', position: '1' },
-        { id: '5', monto: "$6.1", clickeado: false, fila: '101', position: '2' },
-        { id: '6', monto: "$6.1", clickeado: false, fila: '101', position: '3' }],
-        [{ id: '7', monto: "$5.1", clickeado: false, fila: '102', position: '1' },
-        { id: '8', monto: "$5.1", clickeado: false, fila: '102', position: '2' },
-        { id: '9', monto: "$5.1", clickeado: false, fila: '102', position: '3' }],
-        [{ id: '10', monto: "$4.1", clickeado: false, fila: '103', position: '1' },
-        { id: '11', monto: "$4.1", clickeado: false, fila: '103', position: '2' },
-        { id: '12', monto: "$4.1", clickeado: false, fila: '103', position: '3' }],
-        [{ id: '13', monto: "$3.1", clickeado: false, fila: '104', position: '1' },
-        { id: '14', monto: "$3.1", clickeado: false, fila: '104', position: '2' },
-        { id: '15', monto: "$3.1", clickeado: false, fila: '104', position: '3' }],
-        [{ id: '16', monto: "$2.1", clickeado: false, fila: '105', position: '1' },
-        { id: '17', monto: "$2.1", clickeado: false, fila: '105', position: '2' },
-        { id: '18', monto: "$2.1", clickeado: false, fila: '105', position: '3' }],
-        [{ id: '19', monto: "$1.1", clickeado: false, fila: '106', position: '1' },
-        { id: '20', monto: "$1.1", clickeado: false, fila: '106', position: '2' },
-        { id: '21', monto: "$1.1", clickeado: false, fila: '106', position: '3' }],
-        [{ id: '22', monto: "$0.1", clickeado: false, fila: '107', position: '1' },
-        { id: '23', monto: "$0.1", clickeado: false, fila: '107', position: '2' },
-        { id: '24', monto: "$0.1", clickeado: false, fila: '107', position: '3' }],
+        [{ id: '1', monto: "$7.1", clickeado: false, fila: '100', position: '1', iddiv: 'div1' },
+        { id: '2', monto: "$7.1", clickeado: false, fila: '100', position: '2', iddiv: 'div2' },
+        { id: '3', monto: "$7.1", clickeado: false, fila: '100', position: '3', iddiv: 'div3' }],
+        [{ id: '4', monto: "$6.1", clickeado: false, fila: '101', position: '1', iddiv: 'div4' },
+        { id: '5', monto: "$6.1", clickeado: false, fila: '101', position: '2', iddiv: 'div5' },
+        { id: '6', monto: "$6.1", clickeado: false, fila: '101', position: '3', iddiv: 'div6' }],
+        [{ id: '7', monto: "$5.1", clickeado: false, fila: '102', position: '1', iddiv: 'div7' },
+        { id: '8', monto: "$5.1", clickeado: false, fila: '102', position: '2', iddiv: 'div8' },
+        { id: '9', monto: "$5.1", clickeado: false, fila: '102', position: '3', iddiv: 'div9' }],
+        [{ id: '10', monto: "$4.1", clickeado: false, fila: '103', position: '1', iddiv: 'div10' },
+        { id: '11', monto: "$4.1", clickeado: false, fila: '103', position: '2', iddiv: 'div11' },
+        { id: '12', monto: "$4.1", clickeado: false, fila: '103', position: '3', iddiv: 'div12' }],
+        [{ id: '13', monto: "$3.1", clickeado: false, fila: '104', position: '1', iddiv: 'div13' },
+        { id: '14', monto: "$3.1", clickeado: false, fila: '104', position: '2', iddiv: 'div14' },
+        { id: '15', monto: "$3.1", clickeado: false, fila: '104', position: '3', iddiv: 'div15' }],
+        [{ id: '16', monto: "$2.1", clickeado: false, fila: '105', position: '1', iddiv: 'div16' },
+        { id: '17', monto: "$2.1", clickeado: false, fila: '105', position: '2', iddiv: 'div17' },
+        { id: '18', monto: "$2.1", clickeado: false, fila: '105', position: '3', iddiv: 'div18' }],
+        [{ id: '19', monto: "$1.1", clickeado: false, fila: '106', position: '1', iddiv: 'div19' },
+        { id: '20', monto: "$1.1", clickeado: false, fila: '106', position: '2', iddiv: 'div20' },
+        { id: '21', monto: "$1.1", clickeado: false, fila: '106', position: '3', iddiv: 'div21' }],
+        [{ id: '22', monto: "$0.1", clickeado: false, fila: '107', position: '1', iddiv: 'div22' },
+        { id: '23', monto: "$0.1", clickeado: false, fila: '107', position: '2', iddiv: 'div23' },
+        { id: '24', monto: "$0.1", clickeado: false, fila: '107', position: '3', iddiv: 'div24' }],
     ])
     lista = lista.sort(function () { return Math.random() - 0.5 });
     var m1 = lista[0]
@@ -114,9 +114,11 @@ const GameTowers = () => {
         let datarow3 = newObj[2];
         let revenue = newObj[jdx].monto;
         let numfila = newObj[jdx].fila;
+        let numdiv = newObj[jdx].iddiv;
         document.getElementById(datarow1.id).disabled = true;
         document.getElementById(datarow2.id).disabled = true;
         document.getElementById(datarow3.id).disabled = true;
+
 
 
         let fila = parseInt(numfila) - 1
@@ -132,26 +134,36 @@ const GameTowers = () => {
         //console.log("arrElements", arrElements[idx][jdx])
         let id = newObj[jdx].id;
         let estilo = document.getElementById(id);
+        let estilodiv = document.getElementById(numdiv);
         if (filamain >= 104) {
             if (m1 === newObj[jdx].position) {
                 console.log('te moriste')
-                document.getElementById(id).animate(animationlose,duration)
+                estilodiv.style.opacity = '0';
+                document.getElementById(id).animate(animationlose, duration)
                 setTimeout(function () {
-                    estilo.style.backgroundImage=`url(${bomba})`;
-                    estilo.style.backgroundSize= "contain";
-                    estilo.style.backgroundRepeat= "no-repeat";
-                    estilo.style.backgroundPosition= "center"
-                }, 1200)
+                    estilo.style.backgroundImage = `url(${bomba})`;
+                    estilo.style.backgroundSize = "contain";
+                    estilo.style.backgroundRepeat = "no-repeat";
+                    estilo.style.backgroundPosition = "center";
+                    document.getElementById(datarow1.id).style.opacity = '0.5';
+                    document.getElementById(datarow2.id).style.opacity = '0.5';
+                    document.getElementById(datarow3.id).style.opacity = '0.5';
+
+                }, 1000)
                 setWithdraw(true)
             } else {
                 console.log('te salvaste de mi maldito')
-                document.getElementById(id).animate(animationwin,duration)
+                estilodiv.style.opacity = '0';
+                document.getElementById(id).animate(animationwin, duration)
                 setTimeout(function () {
-                    estilo.style.backgroundImage=`url(${logo})`;
-                    estilo.style.backgroundSize= "contain";
-                    estilo.style.backgroundRepeat= "no-repeat";
-                    estilo.style.backgroundPosition= "center"
-                }, 1200)
+                    estilo.style.backgroundImage = `url(${logo})`;
+                    estilo.style.backgroundSize = "contain";
+                    estilo.style.backgroundRepeat = "no-repeat";
+                    estilo.style.backgroundPosition = "center";
+                    document.getElementById(datarow1.id).style.opacity = '0.5';
+                    document.getElementById(datarow2.id).style.opacity = '0.5';
+                    document.getElementById(datarow3.id).style.opacity = '0.5';
+                }, 1000)
                 setProfitobtained(revenue);
                 setScaledfloor(fila.toString());
                 setWithdraw(false)
@@ -160,23 +172,31 @@ const GameTowers = () => {
         } else if (filamain < 104) {
             if (m1 === newObj[jdx].position || m2 === newObj[jdx].position) {
                 console.log('te moriste')
-                document.getElementById(id).animate(animationlose,duration)
+                estilodiv.style.opacity = '0';
+                document.getElementById(id).animate(animationlose, duration)
                 setTimeout(function () {
-                    estilo.style.backgroundImage=`url(${bomba})`;
-                    estilo.style.backgroundSize= "contain";
-                    estilo.style.backgroundRepeat= "no-repeat";
-                    estilo.style.backgroundPosition= "center"
-                }, 1200)
+                    estilo.style.backgroundImage = `url(${bomba})`;
+                    estilo.style.backgroundSize = "contain";
+                    estilo.style.backgroundRepeat = "no-repeat";
+                    estilo.style.backgroundPosition = "center";
+                    document.getElementById(datarow1.id).style.opacity = '0.5';
+                    document.getElementById(datarow2.id).style.opacity = '0.5';
+                    document.getElementById(datarow3.id).style.opacity = '0.5';
+                }, 1000)
                 setWithdraw(true)
             } else {
                 console.log('te salvaste de mi maldito')
-                document.getElementById(id).animate(animationwin,duration)
+                estilodiv.style.opacity = '0';
+                document.getElementById(id).animate(animationwin, duration)
                 setTimeout(function () {
-                    estilo.style.backgroundImage=`url(${logo})`;
-                    estilo.style.backgroundSize= "contain";
-                    estilo.style.backgroundRepeat= "no-repeat";
-                    estilo.style.backgroundPosition= "center"
-                }, 1200)
+                    estilo.style.backgroundImage = `url(${logo})`;
+                    estilo.style.backgroundSize = "contain";
+                    estilo.style.backgroundRepeat = "no-repeat";
+                    estilo.style.backgroundPosition = "center";
+                    document.getElementById(datarow1.id).style.opacity = '0.5';
+                    document.getElementById(datarow2.id).style.opacity = '0.5';
+                    document.getElementById(datarow3.id).style.opacity = '0.5';
+                }, 1000)
                 setProfitobtained(revenue)
                 setScaledfloor(fila.toString());
                 setWithdraw(false)
@@ -263,9 +283,9 @@ const GameTowers = () => {
 
                         {arrElements.map((eachRow, idx) => (
 
-                            <Row id={fila++} className='d-flex justify-content-evenly mb-4 me-4 ms-3 pt-2' >
+                            <Row id={fila++} className='d-flex justify-content-evenly align-items-center mb-4 me-4 ms-3 pt-2' >
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} disabled={eachCol.fila === scaladefloor ? false : true} style={eachCol.clickeado ? stylebuttonanimated : styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx) }}><img src={ficha} height="80%" width="30%" /> <font color="white" size="4">{eachCol.monto}</font></button>
+                                    <button id={eachCol.id} disabled={eachCol.fila === scaladefloor ? false : true} style={eachCol.clickeado ? stylebuttonanimated : styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx) }}><div id={eachCol.iddiv}><img src={ficha} height="80%" width="30%" /> <font color="white" size="4">{eachCol.monto}</font></div></button>
                                 ))}
                             </Row>
                         ))}
