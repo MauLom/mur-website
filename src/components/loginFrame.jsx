@@ -55,7 +55,7 @@ const LoginFrame = ({ changeregister }) => {
     }
     const styles = {
         frameLoginBg: {
-            height: "80%",
+            height: "95vh",
             boxSizing: "border-box",
             background: "linear-gradient(120.37deg, rgba(239, 239, 239, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%)",
             border: "1px solid #EFEFEF",
@@ -118,23 +118,22 @@ const LoginFrame = ({ changeregister }) => {
             <Col>
                 
                     <Container>
-                        <Row><Col className="text-center"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
-                        
                         <Row >
                             <Container style={styles.frameLoginBg}>
-                                <Row className="mt-2"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
-                                <Row className="mt-3"><Col><div style={styles.divider}></div></Col></Row>
-                                <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}> Username</div></Col></Row>
-                                <Row className="mt-2"><Col className="text-center"><input id="inputID" type="text" style={styles.inputs} onChange={(e) => setUsername(e.target.value)} placeholder="Enter username" required /></Col></Row>
+                            <Row><Col className="text-center mb-4"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
+                                <Row className="mt-2 mb-4"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
+                                <Row className="mt-3 mb-4"><Col><div style={styles.divider}></div></Col></Row>
+                                <Row className="mt-3 mb-4"><Col className="text-center"><div style={styles.labelInputs}> Username</div></Col></Row>
+                                <Row className="mt-2 mb-4"><Col className="text-center"><input id="inputID" type="text" style={styles.inputs} onChange={(e) => setUsername(e.target.value)} placeholder="Enter username" required /></Col></Row>
 
-                                <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}>Password</div></Col></Row>
-                                <Row className="mt-2"><Col className="text-center"><input id="inputID" type="text" style={styles.inputs} onChange={(e) => setPass(e.target.value)} placeholder="Enter password" required /></Col></Row>
+                                <Row className="mt-3 mb-4"><Col className="text-center"><div style={styles.labelInputs}>Password</div></Col></Row>
+                                <Row className="mt-2 "><Col className="text-center"><input id="inputID" type="text" style={styles.inputs} onChange={(e) => setPass(e.target.value)} placeholder="Enter password" required /></Col></Row>
                                 <br />
                                 <br />
                                 <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin} onClick={(e) => hadleLogin(e)}>Login</button></Col></Row>
                                 <br />
 
-                                <Row className="mt-2"><Col className="text-center"><Link to="/"><Button variant="text"><h5>Forgot your password?</h5> </Button></Link></Col></Row>
+                                <Row className="mt-2 "><Col className="text-center"><Link to="/"><Button variant="text"><h5>Forgot your password?</h5> </Button></Link></Col></Row>
                                 <Row className="mt-3"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister("1", "") }}><h5>Register Now</h5></Button></Link></Col></Row>
                             </Container>
                         </Row>

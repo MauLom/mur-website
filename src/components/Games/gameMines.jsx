@@ -18,19 +18,64 @@ const GameMines = () => {
     const [userAmount, setUserAmount] = React.useState('')
     const [randomnumber, setRandomnumber] = React.useState([]);
     const [numposibility, setNumposibility] = React.useState(0);
-    const [playerstate, setPlayerstate]= React.useState(true);
-    const styleMinaChange = {
-        width: "20%",
-        height: "80px",
-        alignItems: "center",
-        justifyContent: "center",
-        background: `url(${logo})`,
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        border: "1px solid #FFFFFF",
-        borderRadius: "25px"
-    }
+    const [playerstate, setPlayerstate] = React.useState(true);
+    const [readytoplay, setReadytoplay] = React.useState(0);
+    const animationwin =[
+        {
+            transform: 'perspective(400px) rotateY(-90deg)',
+            backgroundImage: `url(${logo})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        },
+        {
+            transform: 'perspective(400px) rotateY(-10deg)',
+            backgroundImage: `url(${logo})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        },
+        {
+            transform: 'perspective(400px) rotateY(10deg)',
+            backgroundImage: `url(${logo})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        },
+        {
+            transform: 'perspective(400px) rotateY(0deg)',
+            opacity: "1",
+            backgroundImage: `url(${logo})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        }
+    ]
+    const animationlose=[
+        {
+            transform: 'perspective(400px) rotateY(-90deg)',
+            backgroundImage: `url(${bomba})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        },
+        {
+            transform: 'perspective(400px) rotateY(-10deg)',
+            backgroundImage: `url(${bomba})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+
+        },
+        {
+            transform: 'perspective(400px) rotateY(10deg)',
+            backgroundImage: `url(${bomba})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        },
+        {
+            transform: 'perspective(400px) rotateY(0deg)',
+            opacity: "1",
+            backgroundImage: `url(${bomba})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        }
+    ]
+    const duration={duration: 1000}
     const styleMinaOriigin = {
         width: "20%",
         height: "80px",
@@ -175,208 +220,150 @@ const GameMines = () => {
     ])
 
     const handleIsClickedElements = (idx, jdx) => {
-        if(playerstate===true){
-        let newArr = JSON.parse(JSON.stringify(arrElements))
-        let newObj = newArr[idx]
-        let id = newObj[jdx].id;
-        document.getElementById(id).disabled = true;
-        let stylesclickmines = document.getElementById(id);
 
-        newArr.splice(idx, newObj)
+        if (readytoplay === 1) {
+            console.log('listo',readytoplay)
+            if (playerstate === true) {
+                let newArr = JSON.parse(JSON.stringify(arrElements))
+                let newObj = newArr[idx]
+                let id = newObj[jdx].id;
+                document.getElementById(id).disabled = true;
+                let stylesclickmines = document.getElementById(id);
 
-        setArrElements(newArr)
+                newArr.splice(idx, newObj)
 
-        let pos = numposibility;
-        let numran1 = randomnumber[0];
-        let numran2 = randomnumber[1];
-        let numran3 = randomnumber[2];
-        let numran4 = randomnumber[3];
-        let numran5 = randomnumber[4];
-        let numran6 = randomnumber[5];
-        let numran7 = randomnumber[6];
-        let numran8 = randomnumber[7];
-        let numran9 = randomnumber[8];
-        let numran10 = randomnumber[9];
+                setArrElements(newArr)
+
+                let pos = numposibility;
+                let numran1 = randomnumber[0];
+                let numran2 = randomnumber[1];
+                let numran3 = randomnumber[2];
+                let numran4 = randomnumber[3];
+                let numran5 = randomnumber[4];
+                let numran6 = randomnumber[5];
+                let numran7 = randomnumber[6];
+                let numran8 = randomnumber[7];
+                let numran9 = randomnumber[8];
+                let numran10 = randomnumber[9];
 
 
-        console.log("arrElements", arrElements[idx][jdx], "posibilidades", numposibility)
-        var i = 0
-        if (pos === 1) {
-            if (numran1 === id) {
-                console.log("mina", randomnumber[0], id)
-                i = 1
-            } else {
-                console.log("no mina")
-                i = 0
-            }
-        } else if (pos === 2) {
-            if (numran1 === id) {
-                console.log("mina", randomnumber[0], id)
-                i = 1
-            } else if (numran2 === id) {
-                console.log("mina", randomnumber[1], id)
-                i = 1
-            } else {
-                console.log("no mina")
-                i = 0
-            }
+                console.log("arrElements", arrElements[idx][jdx], "posibilidades", numposibility)
+                var i = 0
+                if (pos === 1) {
+                    if (numran1 === id) {
+                        console.log("mina", randomnumber[0], id)
+                        i = 1
+                    } else {
+                        console.log("no mina")
+                        i = 0
+                    }
+                } else if (pos === 2) {
+                    if (numran1 === id) {
+                        console.log("mina", randomnumber[0], id)
+                        i = 1
+                    } else if (numran2 === id) {
+                        console.log("mina", randomnumber[1], id)
+                        i = 1
+                    } else {
+                        console.log("no mina")
+                        i = 0
+                    }
 
-        } else if (pos === 5) {
-            if (numran1 === id) {
-                console.log("mina", randomnumber[0], id)
-                i = 1
-            } else if (numran2 === id) {
-                console.log("mina", randomnumber[1], id)
-                i = 1
-            } else if (numran3 === id) {
-                console.log("mina", randomnumber[2], id)
-                i = 1
-            } else if (numran4 === id) {
-                console.log("mina", randomnumber[3], id)
-                i = 1
-            } else if (numran5 === id) {
-                console.log("mina", randomnumber[4], id)
-                i = 1
-            } else {
-                console.log("no mina")
-                i = 0
-            }
-        } else if (pos === 10) {
-            if (numran1 === id) {
-                console.log("mina", randomnumber[0], id)
-                i = 1
-            } else if (numran2 === id) {
-                console.log("mina", randomnumber[1], id)
-                i = 1
-            } else if (numran3 === id) {
-                console.log("mina", randomnumber[2], id)
-                i = 1
-            } else if (numran4 === id) {
-                console.log("mina", randomnumber[3], id)
-                i = 1
-            } else if (numran5 === id) {
-                console.log("mina", randomnumber[4], id)
-                i = 1
-            } else if (numran6 === id) {
-                console.log("mina", randomnumber[5], id)
-                i = 1
-            } else if (numran7 === id) {
-                console.log("mina", randomnumber[6], id)
-                i = 1
-            } else if (numran8 === id) {
-                console.log("mina", randomnumber[7], id)
-                i = 1
-            } else if (numran9 === id) {
-                console.log("mina", randomnumber[8], id)
-                i = 1
-            } else if (numran10 === id) {
-                console.log("mina", randomnumber[9], id)
-                i = 1
-            } else {
-                console.log("no mina")
-                i = 0
-            }
-        }
-        if (i === 0) {
-            console.log('no mina x2');
-            document.getElementById(id).animate([
-                {
-                    transform: 'perspective(400px) rotateY(-90deg)',
-                    backgroundImage: `url(${logo})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat"
-                },
-                {
-                    transform: 'perspective(400px) rotateY(-10deg)',
-                    backgroundImage: `url(${logo})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat"
-                },
-                {
-                    transform: 'perspective(400px) rotateY(10deg)',
-                    backgroundImage: `url(${logo})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat"
-                },
-                {
-                    transform: 'perspective(400px) rotateY(0deg)',
-                    opacity: "1",
-                    backgroundImage: `url(${logo})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat"
+                } else if (pos === 5) {
+                    if (numran1 === id) {
+                        console.log("mina", randomnumber[0], id)
+                        i = 1
+                    } else if (numran2 === id) {
+                        console.log("mina", randomnumber[1], id)
+                        i = 1
+                    } else if (numran3 === id) {
+                        console.log("mina", randomnumber[2], id)
+                        i = 1
+                    } else if (numran4 === id) {
+                        console.log("mina", randomnumber[3], id)
+                        i = 1
+                    } else if (numran5 === id) {
+                        console.log("mina", randomnumber[4], id)
+                        i = 1
+                    } else {
+                        console.log("no mina")
+                        i = 0
+                    }
+                } else if (pos === 10) {
+                    if (numran1 === id) {
+                        console.log("mina", randomnumber[0], id)
+                        i = 1
+                    } else if (numran2 === id) {
+                        console.log("mina", randomnumber[1], id)
+                        i = 1
+                    } else if (numran3 === id) {
+                        console.log("mina", randomnumber[2], id)
+                        i = 1
+                    } else if (numran4 === id) {
+                        console.log("mina", randomnumber[3], id)
+                        i = 1
+                    } else if (numran5 === id) {
+                        console.log("mina", randomnumber[4], id)
+                        i = 1
+                    } else if (numran6 === id) {
+                        console.log("mina", randomnumber[5], id)
+                        i = 1
+                    } else if (numran7 === id) {
+                        console.log("mina", randomnumber[6], id)
+                        i = 1
+                    } else if (numran8 === id) {
+                        console.log("mina", randomnumber[7], id)
+                        i = 1
+                    } else if (numran9 === id) {
+                        console.log("mina", randomnumber[8], id)
+                        i = 1
+                    } else if (numran10 === id) {
+                        console.log("mina", randomnumber[9], id)
+                        i = 1
+                    } else {
+                        console.log("no mina")
+                        i = 0
+                    }
                 }
-            ], {
-                duration: 1000,
-                //iterations: Infinity
-            });
-            setTimeout(function () {
-                stylesclickmines.style.backgroundImage=`url(${logo})`;
-                stylesclickmines.style.backgroundSize= "contain";
-                stylesclickmines.style.backgroundRepeat= "no-repeat";
-            }, 1200)
-        } else if (i === 1) {
-            setPlayerstate(false)
-            console.log('mina x2')
-            document.getElementById(id).animate([
-                {
-                    transform: 'perspective(400px) rotateY(-90deg)',
-                    backgroundImage: `url(${bomba})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat"
-                },
-                {
-                    transform: 'perspective(400px) rotateY(-10deg)',
-                    backgroundImage: `url(${bomba})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat"
-
-                },
-                {
-                    transform: 'perspective(400px) rotateY(10deg)',
-                    backgroundImage: `url(${bomba})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat"
-                },
-                {
-                    transform: 'perspective(400px) rotateY(0deg)',
-                    opacity: "1",
-                    backgroundImage: `url(${bomba})`,
-                    backgroundSize: "contain",
-                    backgroundRepeat: "no-repeat"
+                if (i === 0) {
+                    console.log('no mina x2');
+                    document.getElementById(id).animate(animationwin, duration);
+                    setTimeout(function () {
+                        stylesclickmines.style.backgroundImage = `url(${logo})`;
+                        stylesclickmines.style.backgroundSize = "contain";
+                        stylesclickmines.style.backgroundRepeat = "no-repeat";
+                    }, 1000)
+                } else if (i === 1) {
+                    setPlayerstate(false)
+                    console.log('mina x2')
+                    document.getElementById(id).animate(animationlose, duration);
+                    setTimeout(function () {
+                        stylesclickmines.style.backgroundImage = `url(${bomba})`;
+                        stylesclickmines.style.backgroundSize = "contain";
+                        stylesclickmines.style.backgroundRepeat = "no-repeat";
+                    }, 1000)
                 }
-            ], {
-                duration: 1000,
-                //iterations: Infinity
-            });
-            setTimeout(function () {
-                stylesclickmines.style.backgroundImage=`url(${bomba})`;
-                stylesclickmines.style.backgroundSize= "contain";
-                stylesclickmines.style.backgroundRepeat= "no-repeat";
-            }, 1200)
+            } else {
+                alert('juego terminado')
+            }
+        }else if(readytoplay===0){
+            alert('coloque monto y numero de minas')
         }
-    }else{
-        alert('juego terminado')
-    }
     }
 
     var lista = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
 
     const hadleClickBet = (event) => {
+        
         if (User !== "" || User !== "data" || User !== null) {
-            setUserAmount(event.target.value);
+            setReadytoplay(readytoplay+1)
             console.log('click en bet')
-
-
+            document.getElementById('bet').disabled = true;
             lista = lista.sort(function () { return Math.random() - 0.5 });
-            console.log('lista de minas', lista)
             setRandomnumber(lista)
         } else {
             console.log("no ha iniciado sesión")
         }
-
-
-
-
     }
     const styles = {
         col1: {
@@ -451,8 +438,10 @@ const GameMines = () => {
 
             backgroundColor: "transparent",
             apacity: "0",
-            border: "0",
-            color: "white"
+            border: "none",
+            color: "white",
+            textAlign: "center"
+
         }, col2: {
             paddingTop: "2%"
         }
@@ -475,8 +464,8 @@ const GameMines = () => {
                                 <font color="white">Amount to bet</font>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Text style={styles.input} ><font color="white">$</font> </InputGroup.Text>
-                                    <Form.Control id='inputamount' aria-label="Amount (to the nearest dollar)" style={styles.input} value={userAmount} onChange={(e) => setUserAmount(e.target.value)} />
-                                    <InputGroup.Text style={styles.input}><font color="white">.00</font></InputGroup.Text>
+                                    <input type="number" id='inputamount' value={userAmount} onChange={(e) => setUserAmount(e.target.value)} />
+
                                 </InputGroup>
                                 <br />
                             </div>
@@ -493,7 +482,7 @@ const GameMines = () => {
                             ))}
                             <br />
                             <div>
-                                <Button id="bet" style={styles.Buttonbet} disabled={deshabilitar} onClick={(e) => { hadleClickBet(e) }} >BET</Button>{' '}
+                                <Button id="bet" style={styles.Buttonbet} onClick={(e) => { hadleClickBet(e) }} >BET</Button>
                             </div>
                             <br />
 

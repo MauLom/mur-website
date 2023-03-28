@@ -6,29 +6,34 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url(./assets/FONDO.jpg);
-  background-size: cover;
+  background-size: auto;
   background-repeat: no-repeat;
-  
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
- .button, .nav{
+
+.button,
+.nav {
   position: absolute;
 }
-#floatcontent{
+
+#floatcontent {
   position: fixed;
   margin: auto;
   top: 95%;
   justify-content: center;
   display: flex;
-} 
-#toggle{
+}
+
+#toggle {
   display: none;
 }
-.button{
+
+.button {
   z-index: 999;
   height: 43px;
   width: 100%;
@@ -36,6 +41,7 @@ code {
   cursor: pointer;
 
 }
+
 .button {
   position: absolute;
   border-radius: 100%;
@@ -43,12 +49,12 @@ code {
   width: 100%;
   height: 100%;
   transform: rotateX(0deg);
-  
-  
+
+
 }
 
-.nav{
-  
+.nav {
+
   opacity: 1;
   transition: all 0.5s ease-in-out;
   background: linear-gradient(120.37deg, rgba(33, 6, 6, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%);
@@ -59,11 +65,12 @@ code {
   border-style: solid;
   width: 90%;
   transform: translateY(0%);
-  box-shadow: 2px 3px 10 px 0 rgba(0,0,0,0.1);
+  box-shadow: 2px 3px 10 px 0 rgba(0, 0, 0, 0.1);
   justify-content: space-around;
   display: flex;
 }
-.nav p{
+
+.nav p {
   text-align: center;
   justify-content: space-around;
   align-content: space-around;
@@ -73,30 +80,83 @@ code {
   text-transform: uppercase;
   border-color: white;
   opacity: 1;
-  
+
 }
-#divhalf{
+
+#divhalf {
   height: auto;
   width: 100%;
   align-items: center;
   justify-content: space-around;
 }
-#toggle:checked ~ .nav{
+
+#toggle:checked~.nav {
   opacity: 1;
   transform: translateY(-95%);
 }
-#toggle:checked ~ .nav .button{
+
+#toggle:checked~.nav .button {
   transform: rotateX(180deg) translateY(93%);
-  
+
 }
+
+#inputID {
+  text-align: center;
+  color: #ffffff;
+  size: auto;
+}
+
 #inputID::placeholder {
   color: #ffffff;
   opacity: 1;
   text-align: center;
+  align-content: center;
+  align-items: center;
 }
-#inputTowers::placeholder{
+
+#inputTowers::placeholder {
   color: #000000;
   opacity: 1;
   font-size: 1.5em;
 }
 
+#inputamount {
+  text-align: center;
+  color: #ffffff;
+  size: auto;
+  border: none;
+  background-color: transparent;
+  border: 0;
+  outline: none;
+  width: 60%;
+}
+#inputamount:focus {
+  border: 0;
+  outline: none;
+}
+
+#inputamount:active {
+  border: 0;
+  outline: none;
+}
+
+#inputamount::placeholder {
+  color: #ffffff;
+  opacity: 0;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
+#btroomwheel{
+  width: 100%;
+  background-image: url(./assets/token.png);
+  background-position: right 0% bottom 45%;
+  background-size: 50%;
+  background-repeat: no-repeat;
+  height: 60%;
+  background-color: rgba(231, 231, 231, 0.43);
+  border: 1px solid #ffffff;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: start;
+}

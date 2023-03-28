@@ -18,8 +18,11 @@ import { onstatusofuser } from './sockets.js';
 const DashboardFrame = () => {
 
     const styles = {
+        loginframestyle: {
+            height: "100%"
+        },
         glassSquares: {
-            background: "rgba(231, 231, 231, 0.43)",
+            background: "linear-gradient(120.37deg, rgba(239, 239, 239, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%)",
             borderRadius: "41px",
             height: "90%",
             width: "100%"
@@ -34,14 +37,17 @@ const DashboardFrame = () => {
             height: "5px"
         },
         halloffamesquare: {
-            background: "rgba(231, 231, 231, 0.43)",
-            borderRadius: "41px",
+            background: "linear-gradient(120.37deg, rgba(239, 239, 239, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%)",
+            borderRadius: "21px",
             height: "100%",
-            width: "75%",
+            width: "100%",
             alignContent:"center",
             justifyContent:"center"
 
         },
+        gamesandhall:{
+            height: "100%"
+        }
     }
     const [showregister, setShowregister] = React.useState('0');
     const [statusUser, setStatusUser] = React.useState('idle');
@@ -74,14 +80,14 @@ const DashboardFrame = () => {
                     <br />
                     {showregister === '0' ? <LoginFrame changeregister={setShowregister} /> : showregister === "1" ? <RegisterFrame changeregister={setShowregister} /> : showregister === '2' || statusUser === 'active' ? console.log('sesion iniciada') : false}
                 </Col>
-                <Col lg={columns2[1]} md={columns2[1]} sm={columns2[2]}>
+                <Col style={styles.gamesandhall} lg={columns2[1]} md={columns2[1]} sm={columns2[2]}>
                     <Row className='justify-content-center' lg={12} md={12} sm={12}>
                         {statusUser === "active" ? <HeaderOptions changeregister={setShowregister} /> : false}
                     </Row>
                     <br />
                     <br />
                     <br />
-                    <Row className='justify-content-center'>
+                    <Row className='justify-content-center mb-2'>
                         <Col lg={3} md={3} sm={4}  >
 
                             <div style={styles.glassSquares}><Link to="/gameMines"><img style={styles.imgGames} src={GameBombs} alt="game-bombs" /></Link><br /></div>
@@ -94,7 +100,9 @@ const DashboardFrame = () => {
                             <div style={styles.glassSquares}><Link to="/gameTowers"><img style={styles.imgGames} src={GameTower} alt="game-towers" /></Link><br /></div>
                         </Col>
                     </Row>
-                    <Row className='justify-content-center'>
+                     
+                    
+                    <Row className='justify-content-center '>
                         <center><Col lg={12} md={12} sm={0}  >
                         <div class='container d-none d-md-block d-lg-block' style={styles.halloffamesquare}>
 

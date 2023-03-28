@@ -8,6 +8,7 @@ import Row from 'react-bootstrap/Row'
 import Dropdown from 'react-bootstrap/Dropdown';
 import { emitstateofuser } from './sockets.js';
 import Logo from '../assets/LOGO.png'
+import { Link } from 'react-router-dom';
 
 const HeaderOptions = ({changeregister}) => {
     const datauser = sessionStorage.getItem("username");
@@ -58,7 +59,7 @@ const HeaderOptions = ({changeregister}) => {
     return (
         <>
             <Row style={styles.row1}>
-                <div class='container d-none d-md-block d-lg-block' style={styles.imglogo}><img height="80px" width="80px" src={Logo} alt="" /></div>
+                <div class='container d-none d-md-block d-lg-block' style={styles.imglogo}><Link to='/'><img height="80px" width="80px" src={Logo} alt="" /></Link></div>
                 <div className='d-flex justify-content-around' style={styles.content1}>
                     <Col>
                         <DropdownButton variant="text" id="dropdown-basic-button" title={user}>
