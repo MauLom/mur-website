@@ -275,9 +275,11 @@ const GameTowers = () => {
             border: "1px solid #FFFFFF",
             borderRadius: "15px",
             height: "60px"
-
-
         },
+        divficha:{
+            width: "100%",
+            height: "100%"
+        }
 
 
     }
@@ -310,7 +312,7 @@ const GameTowers = () => {
 
                             <Row id={fila++} className='d-flex justify-content-evenly align-items-center mb-4 me-4 ms-3 pt-2' >
                                 {eachRow.map((eachCol, jdx) => (
-                                    <button id={eachCol.id} disabled={eachCol.fila === scaladefloor ? false : true} style={eachCol.clickeado ? stylebuttonanimated : styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx) }}><div id={eachCol.iddiv}><img src={ficha} height="80%" width="30%" /> <font color="white" size="4">{eachCol.monto}</font></div></button>
+                                    <button id={eachCol.id} disabled={eachCol.fila === scaladefloor ? false : true} style={eachCol.clickeado ? stylebuttonanimated : styleoriginbutton} onClick={() => { handleIsClickedElements(idx, jdx) }}><div style={styles.divficha} id={eachCol.iddiv}><img src={ficha} height="100%" width="30%" /> <font color="white" size="4">{eachCol.monto}</font></div></button>
                                 ))}
                             </Row>
                         ))}
