@@ -7,6 +7,14 @@ export const emitstateofuser=(data)=>{
 export const onstatusofuser=(callback)=>{
     socket.on("server:statusofuser",callback)
 }
+export const onloginrunning=(callback)=>{
+    socket.on('server:infouser',callback);
+    console.log('accede a funcion onloginrunning')
+}
+export const stateofuser=(data)=>{
+    socket.emit('client:mystate',data)
+    console.log('se ejecuta mystate')
+}
 //end section
 //section for use in Gamewhhel whit sockets and the server  
 export const initgamewheel=(data)=>{

@@ -5,13 +5,11 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from "react-bootstrap/esm/Button";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import Logo from '../assets/LOGO.png';
-import DashboardFrame from "./dashboardFrame";
 import { emitstateofuser } from "./sockets";
 
 const LoginFrame = ({ changeregister }) => {
-    const nav= useNavigate();
+    
     
     const [username, setUsername] = React.useState('')
     const [pass, setPass] = React.useState('')
@@ -45,6 +43,7 @@ const LoginFrame = ({ changeregister }) => {
                     } else {
                         changeregister("2")
                         var data = { "user": data.data, "status": "active" }
+
                         setTimeout(function () {
                             emitstateofuser(data)
                         }, 1000)

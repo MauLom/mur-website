@@ -4,7 +4,7 @@ import HeaderOptions from './headerOptions';
 ///Bootstrap components
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Container, Form } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 ///Assets
 import GameBombs from '../assets/BOMBAS.png'
 import GameWheel from '../assets/RULETA.png'
@@ -14,7 +14,7 @@ import Halloffame from './halloffame';
 import { Link } from 'react-router-dom';
 import LoginFrame from './loginFrame';
 import RegisterFrame from './registerFrame';
-import { onstatusofuser } from './sockets.js';
+import { onstatusofuser, onloginrunning, stateofuser } from './sockets.js';
 const DashboardFrame = () => {
 
     const styles = {
@@ -49,18 +49,38 @@ const DashboardFrame = () => {
             height: "100%"
         }
     }
+    
     const [showregister, setShowregister] = React.useState('0');
     const [statusUser, setStatusUser] = React.useState('idle');
     const [userName, setUserName] = React.useState('');
     const statusglobal = sessionStorage.setItem('username', 'data')
+    var auto=true
+    stateofuser(auto)
     const statusofuser = (data) => {
         var usuario = data.username
         var status = data.status
+        if(data.status==='active'){
+            setShowregister('2')
+        }else if(data.status==='idle'){
+            setShowregister('0')
+        }
         setStatusUser(status)
         setUserName(usuario)
         console.log('el estatus del juagdor es: ', status)
     }
+    const dataofuserinroom=(data)=>{
+        console.log('entra en dataofuserinroom')
+        if(data.status==='active'){
+            setShowregister('2')
+        }else if(data.status==='idle'){
+            setShowregister('0')
+        }
+        setStatusUser(data.status)
+        setUserName(data.username)
+    }
+   
     onstatusofuser(statusofuser)
+    onloginrunning(dataofuserinroom)
     var columns1 = [2, 2, 12]
     var columns2 = [10, 10, 12]
     if (statusUser === null || statusUser === '' || statusUser === 'data') {
@@ -69,8 +89,12 @@ const DashboardFrame = () => {
     } else if (statusUser === 'active') {
         sessionStorage.setItem('username', userName)
         console.log("datos del usuario " + userName)
+        
         columns1 = [0, 0, 0]
         columns2 = [12, 12, 12]
+    }else if (statusUser === 'idle'){
+        columns1 = [2, 2, 12]
+        columns2 = [10, 10, 12]
     }
 
     return (

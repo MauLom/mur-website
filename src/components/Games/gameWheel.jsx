@@ -28,7 +28,9 @@ const GameWheel = () => {
     const User = sessionStorage.getItem("username")
     const colorsmain = ["orange", "purple", "yellow", "red", "white", "green", "pink", "blue"]
     let arr = []
-
+    const [arrElementsTable, setArrElementsTable]=React.useState([
+        [{}]
+    ])
 
     if (User !== '' || User !== null || User !== 'data') {
         var dataofroom = []
@@ -296,8 +298,6 @@ const GameWheel = () => {
             border: "1px solid #ffffff",
             borderRadius: "41px",
         },
-        btroom: {
-        },
         vector: {
             position: "relative",
             paddingTop: "2%",
@@ -411,42 +411,43 @@ const GameWheel = () => {
                         <div style={styles.row1}>
                             <Row style={styles.row1}>
                                 <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
-                                <Col className='d-flex  align-items-center'><button id='btroomwheel' className='d-flex justify-content-start' style={styles.btroom}><font color="white" size="4" textAlign='left'>5</font></button>
+                                <Col className='d-flex  align-items-center'><button id='btroomwheel' className='d-flex justify-content-start'><font color="white" size="4" textAlign='left'>5</font></button>
+                                    <img style={styles.vector} src={vectorusers} alt="" />
+                                </Col>
+                                <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
+                            </Row>
+
+                            <Row style={styles.row1}>
+                                <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
+                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start'><font color="white" size="100%">10</font></button>
                                     <img style={styles.vector} src={vectorusers} alt="" />
                                 </Col>
                                 <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
                             </Row>
                             <Row style={styles.row1}>
                                 <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
-                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start' style={styles.btroom}><font color="white" size="100%">10</font></button>
+                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start'><font color="white" size="100%">20</font></button>
                                     <img style={styles.vector} src={vectorusers} alt="" />
                                 </Col>
                                 <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
                             </Row>
                             <Row style={styles.row1}>
                                 <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
-                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start' style={styles.btroom}><font color="white" size="100%">20</font></button>
+                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start'><font color="white" size="100%">30</font></button>
                                     <img style={styles.vector} src={vectorusers} alt="" />
                                 </Col>
                                 <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
                             </Row>
                             <Row style={styles.row1}>
                                 <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
-                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start' style={styles.btroom}><font color="white" size="100%">30</font></button>
+                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start'><font color="white" size="100%">40</font></button>
                                     <img style={styles.vector} src={vectorusers} alt="" />
                                 </Col>
                                 <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
                             </Row>
                             <Row style={styles.row1}>
                                 <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
-                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start' style={styles.btroom}><font color="white" size="100%">40</font></button>
-                                    <img style={styles.vector} src={vectorusers} alt="" />
-                                </Col>
-                                <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
-                            </Row>
-                            <Row style={styles.row1}>
-                                <Col className='d-flex justify-content-center align-content-start'><img src={OnlyWheel} alt="" height="100%" width="100%" /></Col>
-                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start' style={styles.btroom}><font color="white" size="100%">50</font></button>
+                                <Col className='d-flex align-items-center'><button id='btroomwheel' className='d-flex justify-content-start'><font color="white" size="100%">50</font></button>
                                     <img style={styles.vector} src={vectorusers} alt="" />
                                 </Col>
                                 <Col className='d-flex justify-content-end align-items-center'><font color="white" size="6">{players}/8</font></Col>
