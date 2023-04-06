@@ -128,7 +128,8 @@ const LoginFrame = ({ changeregister, handleErrors }) => {
                                 <input id="inputID" type="text" style={styles.inputs} onChange={(e) => setUsername(e.target.value)} placeholder="Enter username" required /></Col></Row>
 
                         <Row className="mt-3 mb-4"><Col className="text-center"><div style={styles.labelInputs}>Password</div></Col></Row>
-                        <Row className="mt-2 "><Col className="text-center"><input id="inputID" type="text" style={styles.inputs} onChange={(e) => setPass(e.target.value)} placeholder="Enter password" required /></Col></Row>
+                        <Row className="mt-2 "><Col className="text-center">
+                            <input id="inputID" type="password" style={styles.inputs} onChange={(e) => setPass(e.target.value)} placeholder="Enter password"  required /></Col></Row>
                         <br />
                         <br />
                         <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin} onClick={(e) => hadleLogin(e)}>Login</button></Col></Row>
