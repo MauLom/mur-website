@@ -9,21 +9,17 @@ export const onstatusofuser=(callback)=>{
 }
 export const onloginrunning=(callback)=>{
     socket.on('server:infouser',callback);
-    console.log('accede a funcion onloginrunning')
 }
 export const stateofuser=(data)=>{
     socket.emit('client:mystate',data)
-    console.log('se ejecuta mystate')
 }
 //end section
 //section for use in Gamewhhel whit sockets and the server  
 export const initgamewheel=(data)=>{
     socket.emit('client:register-wheel', data)
-    console.log('entra en clase initgamewheel')
 }
 export const onnewroom=(callback)=>{
     socket.on("server:next-room", callback)
-    //console.log("entra en clase  onnewroom")
 }
 export const onnumberofusers=(callback)=>{
     socket.on('server:numberofusers', callback)

@@ -66,10 +66,8 @@ const DashboardFrame = () => {
         }
         setStatusUser(status)
         setUserName(usuario)
-        console.log('el estatus del juagdor es: ', status)
     }
     const dataofuserinroom = (data) => {
-        console.log('entra en dataofuserinroom')
         if (data.status === 'active') {
             setShowregister('2')
         } else if (data.status === 'idle') {
@@ -83,15 +81,10 @@ const DashboardFrame = () => {
     onloginrunning(dataofuserinroom)
     var columns1 = [2, 2, 12]
     var columns2 = [10, 10, 12]
-
-    console.log("showRegister:", showregister)
     if (statusUser === null || statusUser === '' || statusUser === 'data') {
 
-        console.log("igresa sesión para comenzar")
     } else if (statusUser === 'active') {
         sessionStorage.setItem('username', userName)
-        console.log("datos del usuario " + userName)
-
         columns1 = [0, 0, 0]
         columns2 = [12, 12, 12]
     } else if (statusUser === 'idle') {
@@ -107,14 +100,12 @@ const DashboardFrame = () => {
                         <br />
                         <LoginFrame changeregister={setShowregister} />
                     </Col>
-                    : showregister === "1" ?
-
+                    : showregister === "1" && (
                         <Col Col lg={columns1[0]} md={columns1[1]} sm={columns1[2]}>
                             <br />
                             <RegisterFrame changeregister={setShowregister} />
-                        </Col>
-                        : showregister === '2' || statusUser === 'active' ? console.log('sesion iniciada') :
-                            false}
+                        </Col>)
+                }
                 <Col style={styles.gamesandhall} lg={columns2[1]} md={columns2[1]} sm={columns2[2]}>
                     <Row className='justify-content-center' lg={12} md={12} sm={12}>
                         {statusUser === "active" ? <HeaderOptions changeregister={setShowregister} /> : false}

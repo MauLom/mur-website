@@ -9,9 +9,7 @@ const halloffame = () => {
             height: "10px"
         }
     }
-    const datahalloffame=(data)=>{
-        console.log('datos de hall of fame', data)
-    }
+    const datahalloffame=(data)=>{}
     ondataHalloffame(datahalloffame)
     
     return (

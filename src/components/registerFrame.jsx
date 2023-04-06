@@ -27,9 +27,6 @@ const RegisterFrame = ({ changeregister }) => {
         setUserName(event.target.value)
         setUserEmail(event.target.value)
         setUserPassword(event.target.value)
-        console.log(userName);
-        console.log(userPassword);
-        console.log(userEmail);
 
         const UrlLogin = "http://localhost:8010/getUsers/register"
         fetch(UrlLogin, {
@@ -45,12 +42,10 @@ const RegisterFrame = ({ changeregister }) => {
             })
         })
             .then(res => {
-                console.log('response', res)
                 return res.json();
 
             })
             .then((data) => {
-                console.log('mensaje del servidor: ', data)
             })
 
     }
@@ -133,7 +128,7 @@ const RegisterFrame = ({ changeregister }) => {
                         <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}>Email</div></Col></Row>
                         <Row className="mt-2"><Col className="text-center"><input id="inputID" style={styles.inputs} value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Enter email" /></Col></Row>
                         <p alignItems="center"><Form.Check type="switch" fontColor="white" label="I have read and accept the terms and services" /> </p>
-                        <p><Form.Check type="switch" label="Im older than 18 years old"/></p>
+                        <p><Form.Check type="switch" label="Im older than 18 years old" /></p>
                         <Row className="mt-3"><Col className="text-center"><button style={styles.buttonRegister} onClick={(e) => { handlRegisterUser(e) }}>Register</button></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister("0") }}><h5>Want to Login?</h5></Button></Link></Col></Row>
                     </Container>

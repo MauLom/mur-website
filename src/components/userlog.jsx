@@ -13,9 +13,7 @@ const Userlog = ({ changeregister }) => {
 
     const User = sessionStorage.getItem("username")
     socket.on('joined', (data)=>{
-        console.log('usuario conectado como:',data)
     })
-    console.log(User);
     const styles = {
         frameLoginBg: {
             height: "80%",
