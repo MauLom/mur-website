@@ -16,6 +16,7 @@ import LoginFrame from './loginFrame';
 import RegisterFrame from './registerFrame';
 import { onstatusofuser, onloginrunning, stateofuser } from './sockets.js';
 import Toast from 'react-bootstrap/Toast';
+import HallOfFame from './ReusableModules/hallOfFame';
 
 const DashboardFrame = () => {
 
@@ -28,7 +29,6 @@ const DashboardFrame = () => {
             borderRadius: "41px",
             height: "90%",
             width: "100%"
-
         },
         imgGames: {
             width: "100%",
@@ -51,16 +51,16 @@ const DashboardFrame = () => {
             height: "100%"
         },
         positionToast: {
-            position:"absolute",
-            top:"0",
-            right:"0"
+            position: "absolute",
+            top: "0",
+            right: "0"
         }
     }
 
     const [showregister, setShowregister] = React.useState('0');
     const [statusUser, setStatusUser] = React.useState('idle');
     const [userName, setUserName] = React.useState('');
-    const [showToast, setShowToast] = React.useState(true)
+    const [showToast, setShowToast] = React.useState(false)
     const [errorMessage, setErrorMessage] = React.useState("The error message could not be loaded")
     var auto = true
 
@@ -107,7 +107,7 @@ const DashboardFrame = () => {
     }
 
     return (
-        <Container fluid>
+        <Container fluid className='mt-4 mb-4'>
             <Row>
                 {showregister === '0' ?
                     <Col Col lg={columns1[0]} md={columns1[1]} sm={columns1[2]}>
@@ -127,16 +127,15 @@ const DashboardFrame = () => {
                     <br />
                     <br />
                     <br />
-                    <Row className='justify-content-center mb-2'>
-                        <Col lg={3} md={3} sm={4}  >
-
+                    <Row className='justify-content-around mb-2'>
+                        <Col lg={3} md={4} sm={4}  >
                             <div style={styles.glassSquares}><Link to="/gameMines"><img style={styles.imgGames} src={GameBombs} alt="game-bombs" /></Link><br /></div>
                         </Col>
                         <br />
-                        <Col lg={3} md={3} sm={4}  >
+                        <Col lg={3} md={4} sm={4}  >
                             <div style={styles.glassSquares}> <Link to="/gameWheel"><img style={styles.imgGames} src={GameWheel} alt="game-wheel" /></Link><br /></div>
                         </Col><br />
-                        <Col lg={3} md={3} sm={4} >
+                        <Col lg={3} md={4} sm={4} >
                             <div style={styles.glassSquares}><Link to="/gameTowers"><img style={styles.imgGames} src={GameTower} alt="game-towers" /></Link><br /></div>
                         </Col>
                     </Row>
@@ -144,21 +143,8 @@ const DashboardFrame = () => {
 
                     <Row className='justify-content-center '>
                         <center><Col lg={12} md={12} sm={0}  >
-                            <div class='container d-none d-md-block d-lg-block' style={styles.halloffamesquare}>
-
-                                <center><p><h1><font color='white'>Hall of Fame</font></h1></p>
-                                    <hr style={styles.hr} />
-                                    <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p>
-                                    <hr style={styles.hr} />
-                                    <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p>
-                                    <hr style={styles.hr} />
-                                    <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p>
-                                    <hr style={styles.hr} />
-                                    <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p>
-                                    <hr style={styles.hr} />
-                                    <p><h3><font color='white'>....00Xe364A ------ 50$</font></h3></p><br /></center>
-
-                            </div></Col></center>
+                            <HallOfFame />
+                        </Col></center>
                     </Row>
                 </Col>
 
@@ -166,7 +152,7 @@ const DashboardFrame = () => {
             <Row className='justify-content-center' >
                 <Halloffame />
             </Row>
-            <Toast style={styles.positionToast}  onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide bg="danger" >
+            <Toast style={styles.positionToast} onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide bg="danger" >
                 <Toast.Header>
                     <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
                     <strong className="me-auto">Error</strong>
