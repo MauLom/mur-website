@@ -97,11 +97,6 @@ const GameTowers = () => {
     lista = lista.sort(function () { return Math.random() - 0.5 });
     var m1 = lista[0]
     var m2 = lista[2]
-    if (amount === 0) {
-    } else {
-        console.log(amount)
-
-    }
 
     const handleIsClickedElements = (idx, jdx) => {
         if (readytoplay === 1) {
@@ -128,7 +123,6 @@ const GameTowers = () => {
         let estilodiv = document.getElementById(numdiv);
         if (filamain >= 104) {
             if (m1 === newObj[jdx].position) {
-                console.log('te moriste')
                 setPlayerstate(false)
                 estilodiv.style.opacity = '0';
                 document.getElementById(id).animate(animationlose, duration)
@@ -144,7 +138,6 @@ const GameTowers = () => {
                 }, 1000)
                 setWithdraw(true)
             } else {
-                console.log('te salvaste de mi maldito')
                 estilodiv.style.opacity = '0';
                 document.getElementById(id).animate(animationwin, duration)
                 setTimeout(function () {
@@ -163,7 +156,6 @@ const GameTowers = () => {
             }
         } else if (filamain < 104) {
             if (m1 === newObj[jdx].position || m2 === newObj[jdx].position) {
-                console.log('te moriste')
                 setPlayerstate(false)
                 estilodiv.style.opacity = '0';
                 document.getElementById(id).animate(animationlose, duration)
@@ -178,7 +170,6 @@ const GameTowers = () => {
                 }, 1000)
                 setWithdraw(true)
             } else {
-                console.log('te salvaste de mi maldito')
                 estilodiv.style.opacity = '0';
                 document.getElementById(id).animate(animationwin, duration)
                 setTimeout(function () {
@@ -207,17 +198,12 @@ const GameTowers = () => {
         if (User !== '' || User !== null || User !== 'data' || amount !== 0) {
             let data = [User, 'GameTowers', profitobtained, amount]
             emitwithdrawals(data)
-        } else {
-            console.log('no ha iniciado sesion')
-
-        }
-
+        } 
     }
     const hadleClickBet = (event) => {
         if (User !== "" || User !== "data" || User !== null) {
             if(amount>0){
                 setReadytoplay(readytoplay+1)
-            console.log('click en bet')
             document.getElementById('bet').disabled = true;
             }else{
                 alert('coloque un monto de apuesta')

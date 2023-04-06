@@ -40,7 +40,6 @@ const GameWheel = () => {
         initgamewheel(dataofroom)
         const newroom = (room) => {
             setNumberofroom(room + 1)
-            //console.log("entra en clase newroom")
         }
         onnewroom(newroom)
         const numberofusers = (data) => {
@@ -62,19 +61,10 @@ const GameWheel = () => {
         }
         onnumerofturns(numberofturns)
         const status = (data) => {
-            if (data === false) {
-                // console.log('ya esta inscrito')
-
-            } else if (data === true) {
-                // console.log('inscribiendo')
-
-            }
         }
         onregisterstatus(status)
 
-    } else {
-        //     console.log("no ha ingresado sesion")
-    }
+    } 
 
     const styleDoc = document.createElement("style")
 
@@ -150,9 +140,6 @@ const GameWheel = () => {
         }
 
         let numerovuleta = String(num);
-
-
-        // console.log('numero de vuelta: ' + numerovuleta)
         const keyInjection = `@keyframes rotation {
             from {
                 transform: rotate(0deg);

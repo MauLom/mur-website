@@ -8,7 +8,6 @@ function WindowWinnerWheel(props) {
   var color=props.props[0];
   var user=props.props[1]
 
-  //console.log(props)
   return (
     <Modal
       {...props}
