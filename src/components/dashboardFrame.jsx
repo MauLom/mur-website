@@ -15,6 +15,8 @@ import { Link } from 'react-router-dom';
 import LoginFrame from './loginFrame';
 import RegisterFrame from './registerFrame';
 import { onstatusofuser, onloginrunning, stateofuser } from './sockets.js';
+import Toast from 'react-bootstrap/Toast';
+
 const DashboardFrame = () => {
 
     const styles = {
@@ -47,14 +49,21 @@ const DashboardFrame = () => {
         },
         gamesandhall: {
             height: "100%"
+        },
+        positionToast: {
+            position:"absolute",
+            top:"0",
+            right:"0"
         }
     }
 
     const [showregister, setShowregister] = React.useState('0');
     const [statusUser, setStatusUser] = React.useState('idle');
     const [userName, setUserName] = React.useState('');
-    const statusglobal = sessionStorage.setItem('username', 'data')
+    const [showToast, setShowToast] = React.useState(true)
+    const [errorMessage, setErrorMessage] = React.useState("The error message could not be loaded")
     var auto = true
+
     stateofuser(auto)
     const statusofuser = (data) => {
         var usuario = data.username
@@ -75,6 +84,11 @@ const DashboardFrame = () => {
         }
         setStatusUser(data.status)
         setUserName(data.username)
+    }
+
+    const handleToast = (errorMessage) => {
+        setShowToast(true)
+        setErrorMessage(errorMessage)
     }
 
     onstatusofuser(statusofuser)
@@ -98,7 +112,7 @@ const DashboardFrame = () => {
                 {showregister === '0' ?
                     <Col Col lg={columns1[0]} md={columns1[1]} sm={columns1[2]}>
                         <br />
-                        <LoginFrame changeregister={setShowregister} />
+                        <LoginFrame changeregister={setShowregister} handleErrors={handleToast} />
                     </Col>
                     : showregister === "1" && (
                         <Col Col lg={columns1[0]} md={columns1[1]} sm={columns1[2]}>
@@ -150,11 +164,16 @@ const DashboardFrame = () => {
 
             </Row>
             <Row className='justify-content-center' >
-
                 <Halloffame />
-
             </Row>
+            <Toast style={styles.positionToast}  onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide bg="danger" >
+                <Toast.Header>
+                    <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
+                    <strong className="me-auto">Error</strong>
+                </Toast.Header>
+                <Toast.Body>{errorMessage}</Toast.Body>
+            </Toast>
         </Container>
     )
 }
-export default DashboardFrame
+export default DashboardFrame   

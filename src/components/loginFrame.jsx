@@ -8,19 +8,21 @@ import { Link } from "react-router-dom";
 import Logo from '../assets/LOGO.png';
 import { emitstateofuser } from "./sockets";
 
-const LoginFrame = ({ changeregister }) => {
-    
-    
+const LoginFrame = ({ changeregister, handleErrors }) => {
+
+
     const [username, setUsername] = React.useState('')
     const [pass, setPass] = React.useState('')
 
     const hadleLogin = (e) => {
-
-        setUsername(e.target.value)
-        setPass(e.target.value)
-        if (username === '' || pass === ''|| username==='data' || pass==='data') {
-
-        } else {
+        // setUsername(e.target.value)
+        // setPass(e.target.value)
+        if (username === '' || pass === '' || username === 'data' || pass === 'data') {
+            username === '' && handleErrors("El usuario no puede ir vacio")
+            pass === '' && handleErrors("La contraseña no puede ir vacia")
+            console.log("pass? ", pass)
+        }
+        else {
             const UrlLogin = "http://localhost:8010/getUsers/login"
             fetch(UrlLogin, {
                 method: 'POST',
@@ -37,15 +39,15 @@ const LoginFrame = ({ changeregister }) => {
                     return res.json();
                 })
                 .then((data) => {
-                    if (data.data === false || data.data==='data' || data.data===null) {
+                    if (data.data === false || data.data === 'data' || data.data === null) {
+                        handleErrors("El usuario no existe")
                     } else {
                         changeregister("2")
                         var data = { "user": data.data, "status": "active" }
-
                         setTimeout(function () {
                             emitstateofuser(data)
                         }, 1000)
-                        
+
                     }
                 })
         }
@@ -89,7 +91,7 @@ const LoginFrame = ({ changeregister }) => {
             boxShadow: "0px 4px 25px rgba(0, 0, 0, 0.25)",
             borderRadius: "25px",
             width: "100%",
-            
+
         },
         buttonLogin: {
             minWidth: "120px",
@@ -106,37 +108,39 @@ const LoginFrame = ({ changeregister }) => {
             textAlign: "center",
             letterSpacing: "0.03em",
             color: "#FFFFFF",
-            
+
         },
     }
 
     return (
-        
-            <Col>
-                
-                    <Container>
-                        <Row >
-                            <Container style={styles.frameLoginBg}>
-                            <Row><Col className="text-center mb-4"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
-                                <Row className="mt-2 mb-4"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
-                                <Row className="mt-3 mb-4"><Col><div style={styles.divider}></div></Col></Row>
-                                <Row className="mt-3 mb-4"><Col className="text-center"><div style={styles.labelInputs}> Username</div></Col></Row>
-                                <Row className="mt-2 mb-4"><Col className="text-center"><input id="inputID" type="text" style={styles.inputs} onChange={(e) => setUsername(e.target.value)} placeholder="Enter username" required /></Col></Row>
 
-                                <Row className="mt-3 mb-4"><Col className="text-center"><div style={styles.labelInputs}>Password</div></Col></Row>
-                                <Row className="mt-2 "><Col className="text-center"><input id="inputID" type="text" style={styles.inputs} onChange={(e) => setPass(e.target.value)} placeholder="Enter password" required /></Col></Row>
-                                <br />
-                                <br />
-                                <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin} onClick={(e) => hadleLogin(e)}>Login</button></Col></Row>
-                                <br />
+        <Col>
 
-                                <Row className="mt-2 "><Col className="text-center"><Link to="/"><Button variant="text"><h5>Forgot your password?</h5> </Button></Link></Col></Row>
-                                <Row className="mt-3"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister("1", "") }}><h5>Register Now</h5></Button></Link></Col></Row>
-                            </Container>
-                        </Row>
+            <Container>
+                <Row >
+                    <Container style={styles.frameLoginBg}>
+                        <Row><Col className="text-center mb-4"><img style={{ width: "100px", height: "100px" }} src={Logo} alt="Logo MUR" /></Col></Row>
+                        <Row className="mt-2 mb-4"><Col><div style={styles.loginTitle}>Login to Account</div></Col></Row>
+                        <Row className="mt-3 mb-4"><Col><div style={styles.divider}></div></Col></Row>
+                        <Row className="mt-3 mb-4"><Col className="text-center"><div style={styles.labelInputs}> Username</div></Col></Row>
+                        <Row className="mt-2 mb-4">
+                            <Col className="text-center">
+                                <input id="inputID" type="text" style={styles.inputs} onChange={(e) => setUsername(e.target.value)} placeholder="Enter username" required /></Col></Row>
+
+                        <Row className="mt-3 mb-4"><Col className="text-center"><div style={styles.labelInputs}>Password</div></Col></Row>
+                        <Row className="mt-2 "><Col className="text-center"><input id="inputID" type="text" style={styles.inputs} onChange={(e) => setPass(e.target.value)} placeholder="Enter password" required /></Col></Row>
+                        <br />
+                        <br />
+                        <Row className="mt-3"><Col className="text-center"><button style={styles.buttonLogin} onClick={(e) => hadleLogin(e)}>Login</button></Col></Row>
+                        <br />
+
+                        <Row className="mt-2 "><Col className="text-center"><Link to="/"><Button variant="text"><h5>Forgot your password?</h5> </Button></Link></Col></Row>
+                        <Row className="mt-3"><Col className="text-center"><Link to="/"><Button variant="text" onClick={() => { changeregister("1", "") }}><h5>Register Now</h5></Button></Link></Col></Row>
                     </Container>
-                
-            </Col>
+                </Row>
+            </Container>
+
+        </Col>
     )
 }
 

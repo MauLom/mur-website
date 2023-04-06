@@ -7,11 +7,12 @@ import DashboardFrame from "../components/dashboardFrame";
 
 ///Assets
 const Home = () => {
-    
+
     return (
 
         <Container fluid >
-                <DashboardFrame/>
+            <DashboardFrame />
+        
         </Container>
 
     )
