@@ -315,7 +315,10 @@ const GameMines = () => {
                     }, 1000)
                 }
             } else {
-                alert('juego terminado')
+                let gameover= window.confirm("juego terminado");
+                if (gameover===true){
+                    window.location.reload();
+                }
             }
         }else if(readytoplay===0){
             alert('coloque monto y numero de minas')
@@ -434,7 +437,7 @@ const GameMines = () => {
                                 <font color="white">Amount to bet</font>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Text style={styles.input} ><font color="white">$</font> </InputGroup.Text>
-                                    <input type="number" id='inputamount' value={userAmount} onChange={(e) => setUserAmount(e.target.value)} />
+                                    <input type="text" id='inputamount' value={userAmount} onChange={(e) => setUserAmount(e.target.value)} />
 
                                 </InputGroup>
                                 <br />

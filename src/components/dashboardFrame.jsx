@@ -16,7 +16,7 @@ import LoginFrame from './loginFrame';
 import RegisterFrame from './registerFrame';
 import { onstatusofuser, onloginrunning, stateofuser } from './sockets.js';
 import Toast from 'react-bootstrap/Toast';
-import HallOfFame from './ReusableModules/HallOfFame';
+import HallOfFame from './ReusableModules/hallOfFame';
 
 const DashboardFrame = () => {
 
