@@ -3,7 +3,6 @@ import './games.css'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
-//import bomba from '../../assets/BOMBAS.png'
 import ruleta from '../../assets/RULETA.png'
 import logo from '../../assets/LOGO.png'
 import bomba from '../../assets/BOMBAS.png'
@@ -11,6 +10,7 @@ import HeaderOptions from '../headerOptions';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import sonidominas from '../../assets/sonidoboton.ogg'
 
 const GameMines = () => {
     const User = sessionStorage.getItem("username")
@@ -20,6 +20,7 @@ const GameMines = () => {
     const [numposibility, setNumposibility] = React.useState(0);
     const [playerstate, setPlayerstate] = React.useState(true);
     const [readytoplay, setReadytoplay] = React.useState(0);
+    const [statebuttonbet, setStatebuttonbet]=React.useState('Jugar demo');
     const animationwin =[
         {
             transform: 'perspective(400px) rotateY(-90deg)',
@@ -111,11 +112,15 @@ const GameMines = () => {
     ])
 
     const handleIsClickedMines = (idx, jdx) => {
+        var sonido = new  Audio(sonidominas);
+        sonido.play();
         let monto = document.getElementById('inputamount').value;
         var val = 0;
         if (monto === "") {
-
+            
         } else {
+            setStatebuttonbet('Iniciar Juego')
+        }
 
             let newArr = JSON.parse(JSON.stringify(arrmina))
             let newObj = newArr[idx]
@@ -187,7 +192,7 @@ const GameMines = () => {
                 setNumposibility(10)
 
             }
-        }
+        
     }
 
     const [arrElements, setArrElements] = React.useState([
@@ -219,6 +224,8 @@ const GameMines = () => {
     ])
 
     const handleIsClickedElements = (idx, jdx) => {
+        var sonido = new  Audio(sonidominas);
+        sonido.play();
 
         if (readytoplay === 1) {
             if (playerstate === true) {
@@ -329,14 +336,12 @@ const GameMines = () => {
 
     const hadleClickBet = (event) => {
         
-        if (User !== "" || User !== "data" || User !== null) {
+        
             setReadytoplay(readytoplay+1)
             document.getElementById('bet').disabled = true;
             lista = lista.sort(function () { return Math.random() - 0.5 });
             setRandomnumber(lista)
-        } else {
-            console.error("no ha iniciado sesión")
-        }
+        
     }
     const styles = {
         col1: {
@@ -386,11 +391,12 @@ const GameMines = () => {
             height: "60px"
         },
         Buttonbet: {
-            background: "rgba(9, 221, 5, 0.8)",
+            background: "#ffeb3b",
             width: "100%",
             border: "1px solid #FFFFFF",
             borderRadius: "15px",
-            height: "60px"
+            height: "60px",
+            color:"black"
 
 
         },
@@ -428,7 +434,7 @@ const GameMines = () => {
             <br />
             <br />
             <Row >
-                <Col className='col-12 col-md-3 col-xs-12 list-unstyled' style={styles.col1}>
+                <Col className='col-12 col-md-3 col-xs-12 list-unstyled mt-4' style={styles.col1}>
                     <center><div style={styles.div1}>
                         <div style={styles.div}>
                             <br />
@@ -441,6 +447,7 @@ const GameMines = () => {
 
                                 </InputGroup>
                                 <br />
+                                
                             </div>
                             <br />
                             <font color="white">Mines</font>
@@ -455,7 +462,7 @@ const GameMines = () => {
                             ))}
                             <br />
                             <div>
-                                <Button id="bet" style={styles.Buttonbet} onClick={(e) => { hadleClickBet(e) }} >BET</Button>
+                                <Button id='bet'  style={styles.Buttonbet} onClick={(e) => { hadleClickBet(e) }} >{statebuttonbet}</Button>
                             </div>
                             <br />
 
@@ -463,7 +470,7 @@ const GameMines = () => {
                     </div></center>
                 </Col>
                 <br />
-                <Col className='col-12 col-md-6 col-xs-12 list-unstyled' style={styles.col2}>
+                <Col className='col-12 col-md-6 col-xs-12 list-unstyled mt-4' style={styles.col2}>
 
                     <br />
 
