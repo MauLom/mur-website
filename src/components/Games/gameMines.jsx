@@ -20,7 +20,8 @@ const GameMines = () => {
     const [numposibility, setNumposibility] = React.useState(0);
     const [playerstate, setPlayerstate] = React.useState(true);
     const [readytoplay, setReadytoplay] = React.useState(0);
-    const [statebuttonbet, setStatebuttonbet]=React.useState('Jugar demo');
+    const [statebuttonbet, setStatebuttonbet]=React.useState('Jugar Demo');
+    const [activbet, setactivbet]=React.useState(true);
     const animationwin =[
         {
             transform: 'perspective(400px) rotateY(-90deg)',
@@ -112,6 +113,7 @@ const GameMines = () => {
     ])
 
     const handleIsClickedMines = (idx, jdx) => {
+        setactivbet(false)
         var sonido = new  Audio(sonidominas);
         sonido.play();
         let monto = document.getElementById('inputamount').value;
@@ -338,10 +340,20 @@ const GameMines = () => {
         
         
             setReadytoplay(readytoplay+1)
-            document.getElementById('bet').disabled = true;
+            setactivbet(true)
+            //document.getElementById('bet').disabled = true;
             lista = lista.sort(function () { return Math.random() - 0.5 });
             setRandomnumber(lista)
         
+    }
+    const changebetword =(e)=>{
+        setUserAmount(e)
+        
+        if(e===""|| e===0){
+            setStatebuttonbet('Jugar Demo')
+        }else{
+            setStatebuttonbet('Iniciar Juego')
+        }
     }
     const styles = {
         col1: {
@@ -443,7 +455,7 @@ const GameMines = () => {
                                 <font color="white">Amount to bet</font>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Text style={styles.input} ><font color="white">$</font> </InputGroup.Text>
-                                    <input type="text" id='inputamount' value={userAmount} onChange={(e) => setUserAmount(e.target.value)} />
+                                    <input type="text" id='inputamount' value={userAmount} onChange={(e) => changebetword(e.target.value)} />
 
                                 </InputGroup>
                                 <br />
@@ -462,7 +474,7 @@ const GameMines = () => {
                             ))}
                             <br />
                             <div>
-                                <Button id='bet'  style={styles.Buttonbet} onClick={(e) => { hadleClickBet(e) }} >{statebuttonbet}</Button>
+                                <Button id='bet'  style={styles.Buttonbet} disabled={activbet} onClick={(e) => { hadleClickBet(e) }} >{statebuttonbet}</Button>
                             </div>
                             <br />
 
