@@ -121,14 +121,14 @@ code {
 }
 
 #inputamount {
-  text-align: center;
+  
   color: #ffffff;
-  size: auto;
+  size: 6;
   border: none;
   background-color: transparent;
   border: 0;
   outline: none;
-  width: 60%;
+  width: 20%;
 }
 #inputamount:focus {
   border: 0;

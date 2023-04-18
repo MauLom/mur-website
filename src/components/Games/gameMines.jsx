@@ -5,15 +5,15 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
 import ruleta from '../../assets/RULETA.png'
 import logo from '../../assets/LOGO.png'
+import estrella from '../../assets/estrella.png'
 import bomba from '../../assets/BOMBAS.png'
 import HeaderOptions from '../headerOptions';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import sonidominas from '../../assets/sonidoboton.ogg'
 
 const GameMines = () => {
-    const User = sessionStorage.getItem("username")
+    //const User = sessionStorage.getItem("username")
     const [deshabilitar, setDeshabilitar] = React.useState(true)
     const [userAmount, setUserAmount] = React.useState('')
     const [randomnumber, setRandomnumber] = React.useState([]);
@@ -25,26 +25,26 @@ const GameMines = () => {
     const animationwin =[
         {
             transform: 'perspective(400px) rotateY(-90deg)',
-            backgroundImage: `url(${logo})`,
+            backgroundImage: `url(${estrella})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat"
         },
         {
             transform: 'perspective(400px) rotateY(-10deg)',
-            backgroundImage: `url(${logo})`,
+            backgroundImage: `url(${estrella})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat"
         },
         {
             transform: 'perspective(400px) rotateY(10deg)',
-            backgroundImage: `url(${logo})`,
+            backgroundImage: `url(${estrella})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat"
         },
         {
             transform: 'perspective(400px) rotateY(0deg)',
             opacity: "1",
-            backgroundImage: `url(${logo})`,
+            backgroundImage: `url(${estrella})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat"
         }
@@ -83,24 +83,26 @@ const GameMines = () => {
         height: "80px",
         alignItems: "center",
         justifyContent: "center",
-        background: "#5F04A5",
+        backgroundColor: "#44004F",
+        backgroundImage: `url(${logo})`, 
         backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         border: "1px solid #FFFFFF",
-        borderRadius: "25px",
-        animation: ''
+        borderRadius: "11px",
+        
     }
 
     const styleselectormines = {
-        background: "rgba(231, 231, 231, 0.43)",
-        border: "1px solid #FFFFFF",
+        background: "linear-gradient(120.37deg, rgba(239, 239, 239, 0.048) 0%, rgba(255, 255, 255, 0.008) 100%)",
+        
         borderRadius: "20px",
         height: "50px",
         width: "50px"
     }
     const changestyleselectormines = {
-        background: "#9C9493",
-        border: "1px solid #FFFFFF",
+        background: "#2A0636",
+        border: "1px solid #000000",
         borderRadius: "20px",
         height: "50px",
         width: "50px"
@@ -117,7 +119,7 @@ const GameMines = () => {
         var sonido = new  Audio(sonidominas);
         sonido.play();
         let monto = document.getElementById('inputamount').value;
-        var val = 0;
+        
         if (monto === "") {
             
         } else {
@@ -134,7 +136,7 @@ const GameMines = () => {
             setArrmina(newArr)
             if (id === '101') {
                 let estilo = document.getElementById(id);
-                estilo.style.backgroundColor = "#565657";
+                estilo.style.backgroundColor = "#252555";
                 let estilo2 = document.getElementById('102');
                 estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
                 let estilo3 = document.getElementById('103');
@@ -149,7 +151,7 @@ const GameMines = () => {
                 setNumposibility(1)
             } else if (id === '102') {
                 let estilo = document.getElementById(id);
-                estilo.style.backgroundColor = "#565657";
+                estilo.style.backgroundColor = "#252555";
                 let estilo2 = document.getElementById('101');
                 estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
                 let estilo3 = document.getElementById('103');
@@ -164,7 +166,7 @@ const GameMines = () => {
                 setNumposibility(2)
             } else if (id === '103') {
                 let estilo = document.getElementById(id);
-                estilo.style.backgroundColor = "#565657";
+                estilo.style.backgroundColor = "#252555";
                 let estilo2 = document.getElementById('101');
                 estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
                 let estilo3 = document.getElementById('102');
@@ -179,7 +181,7 @@ const GameMines = () => {
                 setNumposibility(5)
             } else if (id === '104') {
                 let estilo = document.getElementById(id);
-                estilo.style.backgroundColor = "#565657";
+                estilo.style.backgroundColor = "#252555";
                 let estilo2 = document.getElementById('101');
                 estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
                 let estilo3 = document.getElementById('102');
@@ -310,7 +312,7 @@ const GameMines = () => {
                 if (i === 0) {
                     document.getElementById(id).animate(animationwin, duration);
                     setTimeout(function () {
-                        stylesclickmines.style.backgroundImage = `url(${logo})`;
+                        stylesclickmines.style.backgroundImage = `url(${estrella})`;
                         stylesclickmines.style.backgroundSize = "contain";
                         stylesclickmines.style.backgroundRepeat = "no-repeat";
                     }, 1000)
@@ -360,9 +362,8 @@ const GameMines = () => {
             paddingTop: "10%"
         },
         div2: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #FFFFFF",
-            borderRadius: "41px",
+            background: "linear-gradient(120.37deg, #7A3892 0.01%, #44004F 16.15%)",
+            borderRadius: "20px",
             width: "95%",
             backgroundPosition: "center center",
             justifyContent: "center",
@@ -370,18 +371,18 @@ const GameMines = () => {
             height: "95%"
         },
         div3: {
-            background: "rgba(231, 231, 231, 0.43)",
+            background: "linear-gradient(120.37deg, rgba(67, 0, 90, 0.92) 99.99%, rgba(255, 255, 255, 0.092) 100%)",
             border: "1px solid #FFFFFF",
-            borderRadius: "41px",
+            borderRadius: "20px",
             height: "100%",
             width: "90%",
         },
         div1: {
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #FFFFFF",
-            borderRadius: "41px",
+            background: "linear-gradient(120.37deg, rgba(67, 0, 90, 0.92) 99.99%, rgba(255, 255, 255, 0.092) 100%)",
+            border: "1px solid #000000",
+            borderRadius: "11px",
             height: "100%",
-            width: "80%",
+            width: "90%",
             backgroundPosition: "center center"
         },
         buttons: {
@@ -397,9 +398,7 @@ const GameMines = () => {
         },
         divaround: {
             width: "100%",
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #FFFFFF",
-            borderRadius: "15px",
+            background: "rgba(122, 56, 146, 0.79)",
             height: "60px"
         },
         Buttonbet: {
@@ -431,7 +430,7 @@ const GameMines = () => {
             apacity: "0",
             border: "none",
             color: "white",
-            textAlign: "center"
+            textAlign: "right"
 
         }, col2: {
             paddingTop: "2%"
@@ -452,17 +451,17 @@ const GameMines = () => {
                             <br />
 
                             <div style={styles.divaround}>
-                                <font color="white">Amount to bet</font>
-                                <InputGroup className="mb-3">
-                                    <InputGroup.Text style={styles.input} ><font color="white">$</font> </InputGroup.Text>
+                                <font color="white" size="4">Monto de apuesta</font>
+                                <InputGroup className="d-flex justify-content-center mb-3">
+                                    <InputGroup.Text style={styles.input} ><font color="white" size="4">$</font> </InputGroup.Text>
                                     <input type="text" id='inputamount' value={userAmount} onChange={(e) => changebetword(e.target.value)} />
 
                                 </InputGroup>
                                 <br />
                                 
                             </div>
-                            <br />
-                            <font color="white">Mines</font>
+                            
+                            <font color="white" size="5">Minas</font>
                             <br />
                             {arrmina.map((eachRow, idx) => (
                                 <Row className='d-flex justify-content-between'>
@@ -474,7 +473,7 @@ const GameMines = () => {
                             ))}
                             <br />
                             <div>
-                                <Button id='bet'  style={styles.Buttonbet} disabled={activbet} onClick={(e) => { hadleClickBet(e) }} >{statebuttonbet}</Button>
+                                <Button id='bet' style={styles.Buttonbet} disabled={activbet} onClick={(e) => { hadleClickBet(e) }} >{statebuttonbet}</Button>
                             </div>
                             <br />
 
