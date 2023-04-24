@@ -13,6 +13,7 @@ import ficha from '../../assets/ficha.png'
 import logo from '../../assets/LOGO.png'
 import { Button } from 'react-bootstrap';
 
+
 const GameTowers = () => {
     const User = sessionStorage.getItem("username")
     const [amount, setAmount] = React.useState(0);
@@ -23,6 +24,7 @@ const GameTowers = () => {
     const [readytoplay, setReadytoplay] = React.useState(0);
     const [withdraw, setWithdraw] = React.useState(true);
     const [playerstate, setPlayerstate] = React.useState(true);
+    
     const animationwin = [
         {
             transform: 'scale(1, 1)',
@@ -101,111 +103,111 @@ const GameTowers = () => {
     const handleIsClickedElements = (idx, jdx) => {
         if (readytoplay === 1) {
             if (playerstate === true) {
-        let newArr = JSON.parse(JSON.stringify(arrElements))
-        let newObj = newArr[idx]
+                let newArr = JSON.parse(JSON.stringify(arrElements))
+                let newObj = newArr[idx]
 
-        newObj[jdx].clickeado = !newObj[jdx].clickeado
-        newArr.splice(idx, newObj)
-        let datarow1 = newObj[0];
-        let datarow2 = newObj[1];
-        let datarow3 = newObj[2];
-        let revenue = newObj[jdx].monto;
-        let numfila = newObj[jdx].fila;
-        let numdiv = newObj[jdx].iddiv;
-        document.getElementById(datarow1.id).disabled = true;
-        document.getElementById(datarow2.id).disabled = true;
-        document.getElementById(datarow3.id).disabled = true;
-        let fila = parseInt(numfila) - 1
-        let filamain = parseInt(numfila)
-        setArrElements(newArr)
-        let id = newObj[jdx].id;
-        let estilo = document.getElementById(id);
-        let estilodiv = document.getElementById(numdiv);
-        if (filamain >= 104) {
-            if (m1 === newObj[jdx].position) {
-                setPlayerstate(false)
-                estilodiv.style.opacity = '0';
-                document.getElementById(id).animate(animationlose, duration)
-                setTimeout(function () {
-                    estilo.style.backgroundImage = `url(${bomba})`;
-                    estilo.style.backgroundSize = "contain";
-                    estilo.style.backgroundRepeat = "no-repeat";
-                    estilo.style.backgroundPosition = "center";
-                    document.getElementById(datarow1.id).style.opacity = '0.5';
-                    document.getElementById(datarow2.id).style.opacity = '0.5';
-                    document.getElementById(datarow3.id).style.opacity = '0.5';
+                newObj[jdx].clickeado = !newObj[jdx].clickeado
+                newArr.splice(idx, newObj)
+                let datarow1 = newObj[0];
+                let datarow2 = newObj[1];
+                let datarow3 = newObj[2];
+                let revenue = newObj[jdx].monto;
+                let numfila = newObj[jdx].fila;
+                let numdiv = newObj[jdx].iddiv;
+                document.getElementById(datarow1.id).disabled = true;
+                document.getElementById(datarow2.id).disabled = true;
+                document.getElementById(datarow3.id).disabled = true;
+                let fila = parseInt(numfila) - 1
+                let filamain = parseInt(numfila)
+                setArrElements(newArr)
+                let id = newObj[jdx].id;
+                let estilo = document.getElementById(id);
+                let estilodiv = document.getElementById(numdiv);
+                if (filamain >= 104) {
+                    if (m1 === newObj[jdx].position) {
+                        setPlayerstate(false)
+                        estilodiv.style.opacity = '0';
+                        document.getElementById(id).animate(animationlose, duration)
+                        setTimeout(function () {
+                            estilo.style.backgroundImage = `url(${bomba})`;
+                            estilo.style.backgroundSize = "contain";
+                            estilo.style.backgroundRepeat = "no-repeat";
+                            estilo.style.backgroundPosition = "center";
+                            document.getElementById(datarow1.id).style.opacity = '0.5';
+                            document.getElementById(datarow2.id).style.opacity = '0.5';
+                            document.getElementById(datarow3.id).style.opacity = '0.5';
 
-                }, 1000)
-                setWithdraw(true)
+                        }, 1000)
+                        setWithdraw(true)
+                    } else {
+                        estilodiv.style.opacity = '0';
+                        document.getElementById(id).animate(animationwin, duration)
+                        setTimeout(function () {
+                            estilo.style.backgroundImage = `url(${logo})`;
+                            estilo.style.backgroundSize = "contain";
+                            estilo.style.backgroundRepeat = "no-repeat";
+                            estilo.style.backgroundPosition = "center";
+                            document.getElementById(datarow1.id).style.opacity = '0.5';
+                            document.getElementById(datarow2.id).style.opacity = '0.5';
+                            document.getElementById(datarow3.id).style.opacity = '0.5';
+                        }, 1000)
+                        setProfitobtained(revenue);
+                        setScaledfloor(fila.toString());
+                        setWithdraw(false)
+
+                    }
+                } else if (filamain < 104) {
+                    if (m1 === newObj[jdx].position || m2 === newObj[jdx].position) {
+                        setPlayerstate(false)
+                        estilodiv.style.opacity = '0';
+                        document.getElementById(id).animate(animationlose, duration)
+                        setTimeout(function () {
+                            estilo.style.backgroundImage = `url(${bomba})`;
+                            estilo.style.backgroundSize = "contain";
+                            estilo.style.backgroundRepeat = "no-repeat";
+                            estilo.style.backgroundPosition = "center";
+                            document.getElementById(datarow1.id).style.opacity = '0.5';
+                            document.getElementById(datarow2.id).style.opacity = '0.5';
+                            document.getElementById(datarow3.id).style.opacity = '0.5';
+                        }, 1000)
+                        setWithdraw(true)
+                    } else {
+                        estilodiv.style.opacity = '0';
+                        document.getElementById(id).animate(animationwin, duration)
+                        setTimeout(function () {
+                            estilo.style.backgroundImage = `url(${logo})`;
+                            estilo.style.backgroundSize = "contain";
+                            estilo.style.backgroundRepeat = "no-repeat";
+                            estilo.style.backgroundPosition = "center";
+                            document.getElementById(datarow1.id).style.opacity = '0.5';
+                            document.getElementById(datarow2.id).style.opacity = '0.5';
+                            document.getElementById(datarow3.id).style.opacity = '0.5';
+                        }, 1000)
+                        setProfitobtained(revenue)
+                        setScaledfloor(fila.toString());
+                        setWithdraw(false)
+                    }
+
+                }
             } else {
-                estilodiv.style.opacity = '0';
-                document.getElementById(id).animate(animationwin, duration)
-                setTimeout(function () {
-                    estilo.style.backgroundImage = `url(${logo})`;
-                    estilo.style.backgroundSize = "contain";
-                    estilo.style.backgroundRepeat = "no-repeat";
-                    estilo.style.backgroundPosition = "center";
-                    document.getElementById(datarow1.id).style.opacity = '0.5';
-                    document.getElementById(datarow2.id).style.opacity = '0.5';
-                    document.getElementById(datarow3.id).style.opacity = '0.5';
-                }, 1000)
-                setProfitobtained(revenue);
-                setScaledfloor(fila.toString());
-                setWithdraw(false)
-
+                alert('juego terminado')
             }
-        } else if (filamain < 104) {
-            if (m1 === newObj[jdx].position || m2 === newObj[jdx].position) {
-                setPlayerstate(false)
-                estilodiv.style.opacity = '0';
-                document.getElementById(id).animate(animationlose, duration)
-                setTimeout(function () {
-                    estilo.style.backgroundImage = `url(${bomba})`;
-                    estilo.style.backgroundSize = "contain";
-                    estilo.style.backgroundRepeat = "no-repeat";
-                    estilo.style.backgroundPosition = "center";
-                    document.getElementById(datarow1.id).style.opacity = '0.5';
-                    document.getElementById(datarow2.id).style.opacity = '0.5';
-                    document.getElementById(datarow3.id).style.opacity = '0.5';
-                }, 1000)
-                setWithdraw(true)
-            } else {
-                estilodiv.style.opacity = '0';
-                document.getElementById(id).animate(animationwin, duration)
-                setTimeout(function () {
-                    estilo.style.backgroundImage = `url(${logo})`;
-                    estilo.style.backgroundSize = "contain";
-                    estilo.style.backgroundRepeat = "no-repeat";
-                    estilo.style.backgroundPosition = "center";
-                    document.getElementById(datarow1.id).style.opacity = '0.5';
-                    document.getElementById(datarow2.id).style.opacity = '0.5';
-                    document.getElementById(datarow3.id).style.opacity = '0.5';
-                }, 1000)
-                setProfitobtained(revenue)
-                setScaledfloor(fila.toString());
-                setWithdraw(false)
-            }
-
+        } else if (readytoplay === 0) {
+            alert('click en iniciar Apostar')
         }
-    }else{
-        alert('juego terminado') 
-    }
-    }else if(readytoplay===0){
-        alert('click en iniciar Apostar')
-    }
     }
     const withdrawals = (e) => {
         if (User !== '' || User !== null || User !== 'data' || amount !== 0) {
             let data = [User, 'GameTowers', profitobtained, amount]
             emitwithdrawals(data)
-        } 
+        }
     }
     const hadleClickBet = (event) => {
         if (User !== "" || User !== "data" || User !== null) {
-            if(amount>0){
-                setReadytoplay(readytoplay+1)
-            document.getElementById('bet').disabled = true;
-            }else{
+            if (amount > 0) {
+                setReadytoplay(readytoplay + 1)
+                document.getElementById('bet').disabled = true;
+            } else {
                 alert('coloque un monto de apuesta')
             }
         } else {
@@ -262,13 +264,14 @@ const GameTowers = () => {
             borderRadius: "15px",
             height: "60px"
         },
-        divficha:{
+        divficha: {
             width: "100%",
             height: "100%"
         }
 
 
     }
+    
     return (
         <Container fluid >
             <br />
@@ -286,7 +289,7 @@ const GameTowers = () => {
                         <br />
                         <br />
                         <div>
-                       <center> <Button id="bet" style={styles.Buttonbet}  onClick={(e) => { hadleClickBet(e) }} >BET</Button></center>
+                            <center> <Button id="bet" style={styles.Buttonbet} onClick={(e) => { hadleClickBet(e) }} >BET</Button></center>
                         </div>
                         <br />
                     </div>
@@ -319,7 +322,8 @@ const GameTowers = () => {
                     <button disabled={withdraw} style={styles.button2} onClick={(e) => { withdrawals(e) }}><h2><font color="white">Retirar Ganancia</font></h2></button>
                 </Col>
             </Row>
-
+                                    
+            
 
         </Container>
 

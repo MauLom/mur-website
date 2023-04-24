@@ -12,6 +12,7 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import sonidominas from '../../assets/sonidoboton.ogg'
 import sonidoexplosion from '../../assets/sonidoexplosion.ogg'
+import Modal from 'react-bootstrap/Modal';
 
 const GameMines = () => {
     //const User = sessionStorage.getItem("username")
@@ -22,6 +23,9 @@ const GameMines = () => {
     const [readytoplay, setReadytoplay] = React.useState(0);
     const [statebuttonbet, setStatebuttonbet] = React.useState('Jugar Demo');
     const [activbet, setactivbet] = React.useState(true);
+    const [gamereset, setGamereset] = React.useState(false);
+    const [modalShow, setModalShow] = React.useState(false);
+    var lista = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
     const animationwin = [
         {
             transform: 'perspective(400px) rotateY(-90deg)',
@@ -77,6 +81,34 @@ const GameMines = () => {
             backgroundRepeat: "no-repeat"
         }
     ]
+    const animationreset = [
+        {
+            transform: 'perspective(400px) rotateY(-90deg)',
+            backgroundImage: `url(${logo})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        },
+        {
+            transform: 'perspective(400px) rotateY(-10deg)',
+            backgroundImage: `url(${logo})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+
+        },
+        {
+            transform: 'perspective(400px) rotateY(10deg)',
+            backgroundImage: `url(${logo})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        },
+        {
+            transform: 'perspective(400px) rotateY(0deg)',
+            opacity: "1",
+            backgroundImage: `url(${logo})`,
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat"
+        }
+    ]
     const duration = { duration: 1000 }
     const duration2 = { duration: 500 }
     const styleMinaOriigin = {
@@ -116,6 +148,7 @@ const GameMines = () => {
     ])
 
     const handleIsClickedMines = (idx, jdx) => {
+        setGamereset(false)
         setactivbet(false)
         var sonido = new Audio(sonidominas);
         sonido.play();
@@ -129,7 +162,6 @@ const GameMines = () => {
 
         let newArr = JSON.parse(JSON.stringify(arrmina))
         let newObj = newArr[idx]
-        let aprovacion = false
         newObj[jdx].click = !newObj[jdx].click
         newArr.splice(idx, newObj)
 
@@ -137,7 +169,7 @@ const GameMines = () => {
         setArrmina(newArr)
         if (id === '101') {
             let estilo = document.getElementById(id);
-            estilo.style.backgroundColor = "#252555";
+            estilo.style.backgroundColor = "#2A0636";
             let estilo2 = document.getElementById('102');
             estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
             let estilo3 = document.getElementById('103');
@@ -151,7 +183,7 @@ const GameMines = () => {
             setNumposibility(1)
         } else if (id === '102') {
             let estilo = document.getElementById(id);
-            estilo.style.backgroundColor = "#252555";
+            estilo.style.backgroundColor = "#2A0636";
             let estilo2 = document.getElementById('101');
             estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
             let estilo3 = document.getElementById('103');
@@ -165,7 +197,7 @@ const GameMines = () => {
             setNumposibility(2)
         } else if (id === '103') {
             let estilo = document.getElementById(id);
-            estilo.style.backgroundColor = "#252555";
+            estilo.style.backgroundColor = "#2A0636";
             let estilo2 = document.getElementById('101');
             estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
             let estilo3 = document.getElementById('102');
@@ -179,7 +211,7 @@ const GameMines = () => {
             setNumposibility(5)
         } else if (id === '104') {
             let estilo = document.getElementById(id);
-            estilo.style.backgroundColor = "#252555";
+            estilo.style.backgroundColor = "#2A0636";
             let estilo2 = document.getElementById('101');
             estilo2.style.backgroundColor = "#rgba(231, 231, 231, 0.43)";
             let estilo3 = document.getElementById('102');
@@ -230,11 +262,10 @@ const GameMines = () => {
             sonido.play();
             let newArr = JSON.parse(JSON.stringify(arrElements))
             let newObj = newArr[idx]
-            var sendtofinish = newArr
-            if (playerstate === true) {
 
+            if (playerstate === true) {
                 let id = newObj[jdx].id;
-                document.getElementById(id).disabled = true;
+                //document.getElementById(id).disabled = true;
                 let stylesclickmines = document.getElementById(id);
 
                 newArr.splice(idx, newObj)
@@ -309,6 +340,7 @@ const GameMines = () => {
                 }
                 if (i === 0) {
                     document.getElementById(id).animate(animationwin, duration);
+                    console.log('estrella')
                     setTimeout(function () {
                         stylesclickmines.style.backgroundImage = `url(${estrella})`;
                         stylesclickmines.style.backgroundSize = "contain";
@@ -317,6 +349,7 @@ const GameMines = () => {
                 } else if (i === 1) {
                     setPlayerstate(false)
                     document.getElementById(id).animate(animationlose, duration);
+                    console.log('bomba')
                     setTimeout(function () {
                         stylesclickmines.style.backgroundImage = `url(${bomba})`;
                         stylesclickmines.style.backgroundSize = "contain";
@@ -355,7 +388,6 @@ const GameMines = () => {
                     stylesclickmines.style.backgroundImage = `url(${estrella})`;
                     stylesclickmines.style.backgroundSize = "contain";
                     stylesclickmines.style.backgroundRepeat = "no-repeat";
-                    stylesclickmines.disabled = true;
                     stylesclickmines.style.opacity = "0.5";
                 }, 500)
             }
@@ -363,18 +395,35 @@ const GameMines = () => {
         }
 
         setTimeout(function () {
-            let gameover = window.confirm("juego terminado");
-            if (gameover === true) {
-                window.location.reload();
-            }
+            resetGame()
         }, 1500)
-
-
-
     }
 
-    var lista = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24'];
+    const resetGame = () => {
+        setModalShow(true)
+        setNumposibility(0)
+        setUserAmount('')
+        setRandomnumber([])
+        setReadytoplay(0)
+        setStatebuttonbet('Jugar Demo')
+        setactivbet(true)
+        setGamereset(true)
+        var i = 0;
+        for (i; i <= 23; i++) {
+            let stylesclickmines = document.getElementById(lista[i]);
 
+            document.getElementById(lista[i]).animate(animationreset, duration2);
+            setTimeout(function () {
+
+                stylesclickmines.style.backgroundImage = `url(${logo})`;
+                stylesclickmines.style.backgroundSize = "contain";
+                stylesclickmines.style.backgroundRepeat = "no-repeat";
+                stylesclickmines.style.opacity = "1";
+
+
+            }, 500)
+        }
+    }
     const hadleClickBet = (event) => {
 
 
@@ -383,6 +432,8 @@ const GameMines = () => {
         //document.getElementById('bet').disabled = true;
         lista = lista.sort(function () { return Math.random() - 0.5 });
         setRandomnumber(lista)
+        setPlayerstate(true)
+        setGamereset(false)
 
     }
     const changebetword = (e) => {
@@ -471,9 +522,48 @@ const GameMines = () => {
 
         }, col2: {
             paddingTop: "2%"
+        }, 
+        modal: {
+            background: "linear-gradient(120.37deg, rgba(67, 0, 90, 0.92) 99.99%, rgba(255, 255, 255, 0.092) 100%)",
+            height: "100%",
+            width: "100%",
+            backgroundPosition: "center center"
+        },
+        buttonmodal:{
+            background: "#ffeb3b",
+            width: "100%",
+            border: "1px solid #FFFFFF",
+            borderRadius: "15px",
+            height: "100%",
+            color: "black"
         }
 
 
+    }
+    function MyVerticallyCenteredModal(props) {
+        return (
+            <Modal  
+                {...props}
+                size="lg"
+                aria-labelledby="contained-modal-title-vcenter"
+                centered
+            >
+                <Modal.Header style={styles.modal} closeButton>
+                    <Modal.Title id="contained-modal-title-vcenter">
+                    <font color="white"> MUR-CASINO</font>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body style={styles.modal}>
+                    <h4><font color="white">Juego Terminado</font></h4>
+                    <p>
+                    <font color="white">¡¡¡Has pisado una mina!!!</font>
+                    </p>
+                </Modal.Body>
+                <Modal.Footer style={styles.modal}>
+                    <Button style={styles.buttonmodal} onClick={props.onHide}>Close</Button>
+                </Modal.Footer>
+            </Modal>
+        );
     }
     return (
         <Container fluid >
@@ -503,7 +593,7 @@ const GameMines = () => {
                             {arrmina.map((eachRow, idx) => (
                                 <Row className='d-flex justify-content-between'>
                                     {eachRow.map((eachCol, jdx) => (
-                                        <button id={eachCol.id} name={eachCol.id} style={eachCol.click === false ? styleselectormines : changestyleselectormines} onClick={() => { handleIsClickedMines(idx, jdx) }} value={eachCol.valor}><font color="white">{eachCol.valor}</font></button>
+                                        <button id={eachCol.id} name={eachCol.id} style={eachCol.click === false || gamereset === true ? styleselectormines : changestyleselectormines} onClick={() => { handleIsClickedMines(idx, jdx) }} value={eachCol.valor}><font color="white">{eachCol.valor}</font></button>
                                     ))}
 
                                 </Row>
@@ -549,6 +639,12 @@ const GameMines = () => {
                 </Col>
             </Row>
             <br />
+
+
+            <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+            />
             <br />
 
         </Container>
