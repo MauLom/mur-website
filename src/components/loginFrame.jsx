@@ -43,9 +43,9 @@ const LoginFrame = ({ changeregister, handleErrors }) => {
                         handleErrors("El usuario no existe")
                     } else {
                         changeregister("2")
-                        var data = { "user": data.data, "status": "active" }
+                        var datas = { "user": data.data, "status": "active" }
                         setTimeout(function () {
-                            emitstateofuser(data)
+                            emitstateofuser(datas)
                         }, 1000)
 
                     }
