@@ -1,4 +1,3 @@
-import { data } from 'autoprefixer';
 import io from 'socket.io-client';
 const socket = io('http://localhost:8010')
 // section for use in metamask get an send cryptos and data users

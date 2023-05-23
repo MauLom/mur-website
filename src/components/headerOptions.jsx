@@ -16,32 +16,19 @@ import { emitwalletforbdd, ondatawallet } from './sockets.js';
 
 
 const HeaderOptions = ({ changeregister }) => {
-   
-
     const datauser = sessionStorage.getItem("username");
     const [modalHistorial, setModalHistorial] = React.useState(false);
     const [modalRetiro, setModalRetiro] = React.useState(false);
     const [modalDeposito, setModalDeposito] = React.useState(false);
+    const [sendamounttoCoinbase, setSendamounttoCoinbase]= React.useState(0)
     
-    const sdk = new MetaMaskSDK({
-        shouldShimWeb3: false,
-        showQRCode: true,
-      });
-      const ethereum = sdk.getProvider();
-      //const EthereumTx = require("ethereumjs-tx").Transaction;
     let user = "Usuario"
 
     if (datauser !== null || datauser !== '' || datauser !== 'data') {
         user = datauser
     }
-    const datawallet=(data)=>{
-        if(data===true){
-
-        }else if(data===false){
-           emitirFirma(true) 
-        }
-    } 
-    ondatawallet(datawallet)
+     
+    
     const HadleLogOut = (e) => {
         if (user !== "" || user !== null || user !== 'data') {
             var data = { "user": user, "status": "idle" }
@@ -51,62 +38,62 @@ const HeaderOptions = ({ changeregister }) => {
             }, 1000)
         }
     }
-    const emitirFirma = async(data)=>{
-        const accounts = await ethereum.request({
-            method: 'eth_requestAccounts',
-            params: [0],
-          });
+    // const emitirFirma = async(data)=>{
+    //     const accounts = await ethereum.request({
+    //         method: 'eth_requestAccounts',
+    //         params: [0],
+    //       });
         
-          console.log('request accounts', accounts[0]);
+    //       console.log('request accounts', accounts[0]);
         
-          const msgParams = {
-            types: {
-              EIP712Domain: [
-                { name: 'name', type: 'string' },
-                { name: 'version', type: 'string' },
-                { name: 'chainId', type: 'uint256' },
-                { name: 'verifyingContract', type: 'address' },
-              ],
-              Person: [
-                { name: 'name', type: 'string' },
-                { name: 'wallet', type: 'address' },
-              ],
-              Mail: [
-                { name: 'from', type: 'Person' },
-                { name: 'to', type: 'Person' },
-                { name: 'contents', type: 'string' },
-              ],
-            },
-            primaryType: 'Mail',
-            domain: {
-              name: 'Ether Mail',
-              version: '1',
-              chainId: '0x1',
-              verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
-            },
-            message: {
-              from: {
-                name: 'Mur Casino',
-                wallet: '0xa94c4fb867C76419Ca754A5F71eF7bf1049f79E7',
-              },
-              to: {
-                name: datauser,
-                wallet: accounts[0],
-              },
-              contents: 'Hello, '+datauser+'!',
-            },
-          };
+    //       const msgParams = {
+    //         types: {
+    //           EIP712Domain: [
+    //             { name: 'name', type: 'string' },
+    //             { name: 'version', type: 'string' },
+    //             { name: 'chainId', type: 'uint256' },
+    //             { name: 'verifyingContract', type: 'address' },
+    //           ],
+    //           Person: [
+    //             { name: 'name', type: 'string' },
+    //             { name: 'wallet', type: 'address' },
+    //           ],
+    //           Mail: [
+    //             { name: 'from', type: 'Person' },
+    //             { name: 'to', type: 'Person' },
+    //             { name: 'contents', type: 'string' },
+    //           ],
+    //         },
+    //         primaryType: 'Mail',
+    //         domain: {
+    //           name: 'Ether Mail',
+    //           version: '1',
+    //           chainId: '0x1',
+    //           verifyingContract: '0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC',
+    //         },
+    //         message: {
+    //           from: {
+    //             name: 'Mur Casino',
+    //             wallet: '0xa94c4fb867C76419Ca754A5F71eF7bf1049f79E7',
+    //           },
+    //           to: {
+    //             name: datauser,
+    //             wallet: accounts[0],
+    //           },
+    //           contents: 'Hello, '+datauser+'!',
+    //         },
+    //       };
         
-          const from = accounts[0];
+    //       const from = accounts[0];
         
-          const signResponse = await ethereum.request({
-            method: 'eth_signTypedData_v3',
-            params: [from, JSON.stringify(msgParams)],
-          });
+    //       const signResponse = await ethereum.request({
+    //         method: 'eth_signTypedData_v3',
+    //         params: [from, JSON.stringify(msgParams)],
+    //       });
         
-          console.log('sign response', signResponse);  
+    //       console.log('sign response', signResponse);  
           
-    }
+    // }
     const styles = {
         row1: {
             width: "100%",
@@ -161,6 +148,33 @@ const HeaderOptions = ({ changeregister }) => {
            })
        })
     }
+    const getdatauserfrombd=()=>{
+        emitwalletforbdd(datauser)
+    }
+    const depositoCoinbase= (data)=>{
+        let username= data.username
+        let id = data.id
+        const urlDeposito = "http://localhost:8010"
+            fetch(urlDeposito, {
+                method: 'POST',
+                headers: {
+                    'Access-Control-Allow-Origin': 'true',
+                    'Content-type': 'application/json; charset=UTF-8',
+                },
+                body: JSON.stringify({
+                    "username": username,
+                    "amount": sendamounttoCoinbase,
+                    "userid":id
+                })
+            })
+                .then(res => {
+                    return res.json();
+                })
+                .then((data) => {
+                    console.log('datos',data)
+                })
+    }
+    ondatawallet(depositoCoinbase)
     function ModalHistorial(props) {
         return (
             <Modal
@@ -283,7 +297,11 @@ const HeaderOptions = ({ changeregister }) => {
                             <p><h6><font color="white"> 0xa94c4fb867C76419Ca754A5F71eF7bf1049f79E7</font></h6></p>
                         </Col>
                     </Row>
+                    <Row>
+                        <center><input id='inputcoinsgate' placeholder='Monto' value={sendamounttoCoinbase} type="text"onChange={(e) => setSendamounttoCoinbase(e.target.value)} /></center>
+                    </Row>
                     <hr style={{color:"white"}} />
+                    <Button id='buttonscoinsgate' className='mt-4' onClick={()=>{getdatauserfrombd()}}>Enviar</Button>
                     
 
                 </Modal.Body>
