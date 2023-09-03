@@ -20,15 +20,15 @@ const HeaderOptions = ({ changeregister }) => {
     const [modalHistorial, setModalHistorial] = React.useState(false);
     const [modalRetiro, setModalRetiro] = React.useState(false);
     const [modalDeposito, setModalDeposito] = React.useState(false);
-    const [sendamounttoCoinbase, setSendamounttoCoinbase]= React.useState(0)
-    
+    const [sendamounttoCoinbase, setSendamounttoCoinbase] = React.useState(0)
+
     let user = "Usuario"
 
     if (datauser !== null || datauser !== '' || datauser !== 'data') {
         user = datauser
     }
-     
-    
+
+
     const HadleLogOut = (e) => {
         if (user !== "" || user !== null || user !== 'data') {
             var data = { "user": user, "status": "idle" }
@@ -43,9 +43,9 @@ const HeaderOptions = ({ changeregister }) => {
     //         method: 'eth_requestAccounts',
     //         params: [0],
     //       });
-        
+
     //       console.log('request accounts', accounts[0]);
-        
+
     //       const msgParams = {
     //         types: {
     //           EIP712Domain: [
@@ -83,16 +83,16 @@ const HeaderOptions = ({ changeregister }) => {
     //           contents: 'Hello, '+datauser+'!',
     //         },
     //       };
-        
+
     //       const from = accounts[0];
-        
+
     //       const signResponse = await ethereum.request({
     //         method: 'eth_signTypedData_v3',
     //         params: [from, JSON.stringify(msgParams)],
     //       });
-        
+
     //       console.log('sign response', signResponse);  
-          
+
     // }
     const styles = {
         row1: {
@@ -103,11 +103,7 @@ const HeaderOptions = ({ changeregister }) => {
         },
         content1: {
             width: "80%",
-            backgroundPosition: "center center",
             height: "60px",
-            background: "rgba(231, 231, 231, 0.43)",
-            border: "1px solid #ffffff",
-            borderRadius: "41px",
             alignItems: "center",
             justifyContent: "center"
         },
@@ -122,57 +118,32 @@ const HeaderOptions = ({ changeregister }) => {
 
 
     }
-    const connecttometamask = () =>{
-
-        const options = {
-            injectProvider: false,
-            communicationLayerPreference: 'webrtc',
-        };
-        const MMSDK = new MetaMaskSDK(options);
-        const ethereum = MMSDK.getProvider();
-  
-       let account;
-       ethereum.request({ method: 'eth_requestAccounts'}).then(accounts =>{
-           account = accounts[0]; 
-           //console.log('cuneta',account, 'etherium', EthereumTx);
-
-           ethereum.request({method: 'eth_getBalance', params: [account, 'latest']}).then(result =>{
-               console.log(result);
-               let wei= parseInt(result,16)
-               let balance= wei / (10**18);
-               console.log(balance+'ETH');
-               alert('conectando con '+account);
-               let datos={'user':datauser,'wallet':account}
-               emitwalletforbdd(datos);
-               
-           })
-       })
-    }
-    const getdatauserfrombd=()=>{
+    const getdatauserfrombd = () => {
         emitwalletforbdd(datauser)
     }
-    const depositoCoinbase= (data)=>{
-        let username= data.username
+    const depositoCoinbase = (data) => {
+        let amount = document.getElementsByName('Monto').value;
+        let username = data.username
         let id = data.id
         const urlDeposito = "http://localhost:8010"
-            fetch(urlDeposito, {
-                method: 'POST',
-                headers: {
-                    'Access-Control-Allow-Origin': 'true',
-                    'Content-type': 'application/json; charset=UTF-8',
-                },
-                body: JSON.stringify({
-                    "username": username,
-                    "amount": sendamounttoCoinbase,
-                    "userid":id
-                })
+        fetch(urlDeposito, {
+            method: 'POST',
+            headers: {
+                'Access-Control-Allow-Origin': 'true',
+                'Content-type': 'application/json; charset=UTF-8',
+            },
+            body: JSON.stringify({
+                "username": username,
+                "amount": amount,
+                "userid": id
             })
-                .then(res => {
-                    return res.json();
-                })
-                .then((data) => {
-                    console.log('datos',data)
-                })
+        })
+            .then(res => {
+                return res.json();
+            })
+            .then((data) => {
+                console.log('datos', data)
+            })
     }
     ondatawallet(depositoCoinbase)
     function ModalHistorial(props) {
@@ -283,26 +254,16 @@ const HeaderOptions = ({ changeregister }) => {
                 </Modal.Header>
                 <Modal.Body id='modalcoinsgate'>
                     <h4><font color="white">Deposito</font></h4>
-                    <hr style={{color:"white"}} />
+                    <hr style={{ color: "white" }} />
 
-                    <Row>
-                        <Col><QRCode
-                            
-                            style={{ height: "auto", maxWidth: "60%", width: "60%" }}
-                            value={'0xa94c4fb867C76419Ca754A5F71eF7bf1049f79E7'}
-                            viewBox={`0 0 256 256`}
-                        /></Col>
-                        <Col>
-                            <p><h5><font color="white"> Direccion de Wallet en Metamask:</font> </h5></p><br />
-                            <p><h6><font color="white"> 0xa94c4fb867C76419Ca754A5F71eF7bf1049f79E7</font></h6></p>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <center><input id='inputcoinsgate' placeholder='Monto' value={sendamounttoCoinbase} type="text"onChange={(e) => setSendamounttoCoinbase(e.target.value)} /></center>
-                    </Row>
-                    <hr style={{color:"white"}} />
-                    <Button id='buttonscoinsgate' className='mt-4' onClick={()=>{getdatauserfrombd()}}>Enviar</Button>
                     
+                        
+                    <Row>
+                        <center><input id='inputcoinsgate' name='monto' placeholder='Monto' type="text" /></center>
+                    </Row>
+                    <hr style={{ color: "white" }} />
+                    <Button id='buttonscoinsgate' className='mt-4' onClick={() => { getdatauserfrombd() }}>Enviar</Button>
+
 
                 </Modal.Body>
 
@@ -313,19 +274,24 @@ const HeaderOptions = ({ changeregister }) => {
         <>
             <Row style={styles.row1}>
                 <div class='container d-none d-md-block d-lg-block' style={styles.imglogo}><Link to='/'><img height="80px" width="80px" src={Logo} alt="" /></Link></div>
-                <div className='d-flex justify-content-around' style={styles.content1}>
+                <div className='d-flex justify-content-evenly' style={styles.content1}>
                     <Col>
-                        <DropdownButton variant="text" id="dropdown-basic-button" title={user}>
-                            <Dropdown.Item href="#/action-1">Account</Dropdown.Item>
-                            <Dropdown.Item href="#/action-2">Settings</Dropdown.Item>
-                            <Dropdown.Item onClick={(e) => { setModalHistorial(true) }}>Historial</Dropdown.Item>
-                            <Dropdown.Item onClick={()=>{ connecttometamask()}}>Conectar Metamask</Dropdown.Item>
-                            <Dropdown.Item onClick={(e) => { HadleLogOut(e) }}>Log out</Dropdown.Item>
-                            
-                        </DropdownButton>
+                        <ul class="hList">
+                            <li>
+                                <a href="#click" class="menu">
+                                    <h2 class="menu-title">{user}</h2>
+                                    <ul class="menu-dropdown">
+                                        <li><button id='btopcionesheader'><font color="white">Cuenta</font></button></li>
+                                        <li><button id='btopcionesheader'><font color="white">Configuración</font></button></li>
+                                        <li><button id='btopcionesheader' onClick={(e) => { setModalHistorial(true) }}><font color="white">Historial</font></button></li>
+                                        <li><button id='btopcionesheader' onClick={(e) => { HadleLogOut(e) }}><font color="white">Log out</font></button></li>
+                                    </ul>
+                                </a>
+                            </li>
+                        </ul>
                     </Col >
-                    <Col><center><Button variant="success" onClick={() => setModalDeposito(true)}>Depositar</Button>{' '}</center></Col>
-                    <Col><center><Button variant="info" onClick={() => setModalRetiro(true)} className="">Retirar</Button>{' '}</center></Col>
+                    <Col><center><Button id='buttondeposito' onClick={() => setModalDeposito(true)}>Depositar</Button>{' '}</center></Col>
+                    <Col className='d-flex justify-content-end'><center><Button id="buttonretiro" onClick={() => setModalRetiro(true)} className="">Retirar</Button>{' '}</center></Col>
 
                 </div>
                 <div></div>

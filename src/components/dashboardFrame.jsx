@@ -110,7 +110,7 @@ const DashboardFrame = () => {
         <Container fluid className='mt-4 mb-4'>
             <Row>
                 {showregister === '0' ?
-                    <Col Col lg={columns1[0]} md={columns1[1]} sm={columns1[2]}>
+                    <Col lg={columns1[0]} md={columns1[1]} sm={columns1[2]}>
                         <br />
                         <LoginFrame changeregister={setShowregister} handleErrors={handleToast} />
                     </Col>
