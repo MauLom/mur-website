@@ -7,7 +7,7 @@ import Col from 'react-bootstrap/Col';
 import ruleta from '../../assets/RULETA.png'
 import logo from '../../assets/LOGO.png'
 import bomba from '../../assets/BOMBAS.png'
-import HeaderOptions from '../headerOptions';
+import HeaderOptions from '../HeaderOptions';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';

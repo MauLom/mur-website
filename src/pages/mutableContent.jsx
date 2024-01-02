@@ -14,9 +14,9 @@ import Games from "./games";
 import GameWheel from "../components/Games/gameWheel";
 import GameMines from "../components/Games/gameMines";
 import GameTowers from "../components/Games/gameTowers";
-import RegisterFrame from "../components/registerFrame";
+import RegisterFrame from "../components/RegisterFrame";
 import UserFrame from "../components/userFrame";
-import DashboardFrame from "../components/dashboardFrame";
+import DashboardFrame from "../components/DashboardFrame";
 const MutableContent = () => {
 
     return (
@@ -33,9 +33,9 @@ const MutableContent = () => {
                     <Route path="/gameWheel" element={<GameWheel />} />
                     <Route path="/gameMines" element={<GameMines />}/>
                     <Route path="/gameTowers" element={<GameTowers />}></Route>
-                    <Route path="/registerFrame" element={<RegisterFrame />}></Route>
+                    <Route path="/RegisterFrame" element={<RegisterFrame />}></Route>
                     <Route path="/userFrame" element={<UserFrame />}></Route>
-                    <Route path="/dashboardFrame" element={<DashboardFrame />}></Route>
+                    <Route path="/DashboardFrame" element={<DashboardFrame />}></Route>
                 </Routes >
             </Router>
 

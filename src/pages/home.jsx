@@ -2,7 +2,7 @@ import * as React from "react"
 
 /// Bootstrap components
 import Container from 'react-bootstrap/Container';
-import DashboardFrame from "../components/dashboardFrame";
+import DashboardFrame from "../components/DashboardFrame";
 ///Other components
 
 ///Assets

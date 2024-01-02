@@ -10,7 +10,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col';
 /// Components
-import HeaderOptions from '../headerOptions';
+import HeaderOptions from '../HeaderOptions';
 import WindowWinnerWheel from './windowwinnerwheel';
 import { initgamewheel, onnewroom, onnumberofusers, readytoplayGW } from '../sockets.js'
 import { ondataroom, onnumerofturns, onregisterstatus, regwinner, clearplayers } from '../sockets.js';

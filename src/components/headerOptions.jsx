@@ -49,11 +49,8 @@ const HeaderOptions = ({changeregister}) => {
             with: '30px',
             top:'1%',
             position:'fixed',
-            left: '1%'
-            
+            left: '1%'            
         }
-
-
     }
 
     return (

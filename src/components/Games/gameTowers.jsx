@@ -4,7 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Fondo from '../../assets/FONDO.jpg';
-import HeaderOptions from '../headerOptions';
+import HeaderOptions from '../HeaderOptions';
 import Form from 'react-bootstrap/Form';
 import ruleta from '../../assets/RULETA.png'
 import bomba from '../../assets/BOMBAS.png'

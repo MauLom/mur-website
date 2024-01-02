@@ -4,13 +4,13 @@ const socket = io('http://localhost:8010')
 export const emitstateofuser=(data)=>{
     socket.emit("client:statusofuser",data)
 }
-export const onstatusofuser=(callback)=>{
+export const onStatusOfUser=(callback)=>{
     socket.on("server:statusofuser",callback)
 }
-export const onloginrunning=(callback)=>{
+export const onLoginRunning=(callback)=>{
     socket.on('server:infouser',callback);
 }
-export const stateofuser=(data)=>{
+export const stateOfUser=(data)=>{
     socket.emit('client:mystate',data)
 }
 //end section
