@@ -122,11 +122,11 @@ const RegisterFrame = ({ changeregister }) => {
                         <Row className="mt-2"><Col className="text-center"><div style={styles.registerTitle}>Create an account</div></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><div style={styles.divider}></div></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}> Username</div></Col></Row>
-                        <Row className="mt-2"><Col className="text-center"><input id="inputID" style={styles.inputs} value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Enter username" /></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input id="inputID"  value={userName} onChange={(e) => setUserName(e.target.value)} placeholder="Enter username" /></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}>Password</div></Col></Row>
-                        <Row className="mt-2"><Col className="text-center"><input id="inputID" style={styles.inputs} value={userPassword} onChange={(e) => setUserPassword(e.target.value)} placeholder="Enter password" /></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input id="inputID" value={userPassword} onChange={(e) => setUserPassword(e.target.value)} placeholder="Enter password" /></Col></Row>
                         <Row className="mt-3"><Col className="text-center"><div style={styles.labelInputs}>Email</div></Col></Row>
-                        <Row className="mt-2"><Col className="text-center"><input id="inputID" style={styles.inputs} value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Enter email" /></Col></Row>
+                        <Row className="mt-2"><Col className="text-center"><input id="inputID"  value={userEmail} onChange={(e) => setUserEmail(e.target.value)} placeholder="Enter email" /></Col></Row>
                         <p alignItems="center"><Form.Check type="switch" fontColor="white" label="I have read and accept the terms and services" /> </p>
                         <p><Form.Check type="switch" label="Im older than 18 years old" /></p>
                         <Row className="mt-3"><Col className="text-center"><button style={styles.buttonRegister} onClick={(e) => { handlRegisterUser(e) }}>Register</button></Col></Row>

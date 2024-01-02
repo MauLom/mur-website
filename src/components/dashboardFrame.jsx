@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+
 import { Container, Row, Col, Toast } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import GameBombs from '../assets/BOMBAS.png';
@@ -9,29 +10,12 @@ import LoginFrame from './LoginFrame';
 import RegisterFrame from './RegisterFrame';
 import HallOfFame from './ReusableModules/HallOfFame'; // Assuming this is the correct import
 import { onStatusOfUser, onLoginRunning, stateOfUser } from './sockets';
-
-const styles = {
-    glassSquares: {
-        background: "linear-gradient(120.37deg, rgba(239, 239, 239, 0.6) 0%, rgba(255, 255, 255, 0.1) 100%)",
-        borderRadius: "41px",
-        height: "90%",
-        width: "100%"
-    },
-    imgGames: {
-        width: "100%",
-        height: "100%"
-    },
-    positionToast: {
-        position: "absolute",
-        top: "0",
-        right: "0"
-    }
-};
+// import './stylesDashboard.css';
 
 const GameLink = ({ to, image, altText }) => (
     <Col lg={3} md={4} sm={4}>
-        <div style={styles.glassSquares}>
-            <Link to={to}><img style={styles.imgGames} src={image} alt={altText} /></Link><br />
+        <div className="glassSquares">
+            <Link to={to}><img className="imgGames" src={image} alt={altText} /></Link><br />
         </div>
     </Col>
 );
@@ -94,7 +78,7 @@ const DashboardFrame = () => {
                     </Row>
                 </Col>
             </Row>
-            <Toast style={styles.positionToast} onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide bg="danger">
+            <Toast onClose={() => setShowToast(false)} show={showToast} delay={3000} autohide bg="danger">
                 <Toast.Header>
                     <img src="holder.js/20x20?text=%20" className="rounded me-2" alt="" />
                     <strong className="me-auto">Error</strong>

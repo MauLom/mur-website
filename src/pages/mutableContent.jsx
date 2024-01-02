@@ -9,18 +9,21 @@ import {
 } from "react-router-dom";
 
 import Home from "./home";
-import TransactionsFrame  from "../components/transactionsWindow";
+import TransactionsFrame from "../components/transactionsWindow";
 import Games from "./games";
 import GameWheel from "../components/Games/gameWheel";
 import GameMines from "../components/Games/gameMines";
 import GameTowers from "../components/Games/gameTowers";
 import RegisterFrame from "../components/RegisterFrame";
 import UserFrame from "../components/userFrame";
-import DashboardFrame from "../components/DashboardFrame";
+import DashboardFrame from "../components/dashboardFrame";
+import ConfirmPayment from "../components/confirmPayment";
+import CancelPayment from "../components/cancelPayment";
+
 const MutableContent = () => {
 
     return (
-        <div > 
+        <div >
             <Router>
                 <Routes >
                     <Route
@@ -31,11 +34,13 @@ const MutableContent = () => {
                     <Route path="/transactions" element={<TransactionsFrame />} />
                     <Route path="/games" element={<Games />} />
                     <Route path="/gameWheel" element={<GameWheel />} />
-                    <Route path="/gameMines" element={<GameMines />}/>
+                    <Route path="/gameMines" element={<GameMines />} />
                     <Route path="/gameTowers" element={<GameTowers />}></Route>
                     <Route path="/RegisterFrame" element={<RegisterFrame />}></Route>
                     <Route path="/userFrame" element={<UserFrame />}></Route>
-                    <Route path="/DashboardFrame" element={<DashboardFrame />}></Route>
+                    <Route path="/dashboardFrame" element={<DashboardFrame />}></Route>
+                    <Route path="/confirm-Payment" element={<ConfirmPayment />}></Route>
+                    <Route path="/cancel-Payment" element={<CancelPayment />}></Route>
                 </Routes >
             </Router>
 

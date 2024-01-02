@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +6,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url(./assets/FONDO.jpg);
+  background-image: url(./assets/FONDO2.jpg);
   background-size: auto;
   background-repeat: no-repeat;
+  font-weight: bold;
 
 }
 
@@ -100,20 +102,6 @@ code {
 
 }
 
-#inputID {
-  text-align: center;
-  color: #ffffff;
-  size: auto;
-}
-
-#inputID::placeholder {
-  color: #ffffff;
-  opacity: 1;
-  text-align: center;
-  align-content: center;
-  align-items: center;
-}
-
 #inputTowers::placeholder {
   color: #000000;
   opacity: 1;
@@ -121,15 +109,16 @@ code {
 }
 
 #inputamount {
-  text-align: center;
+
   color: #ffffff;
-  size: auto;
+  size: 6;
   border: none;
   background-color: transparent;
   border: 0;
   outline: none;
-  width: 60%;
+  width: 20%;
 }
+
 #inputamount:focus {
   border: 0;
   outline: none;
@@ -147,7 +136,8 @@ code {
   align-content: center;
   align-items: center;
 }
-#btroomwheel{
+
+#btroomwheel {
   width: 100%;
   background-image: url(./assets/token.png);
   background-position: right 0% bottom 45%;
@@ -159,4 +149,479 @@ code {
   border-radius: 20px;
   align-items: center;
   justify-content: start;
+}
+
+/* css de apartado de coinsgate */
+#inputcoinsgate {
+  size: 6;
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  width: 70%;
+  color: #FFFFFF;
+}
+
+#inputcoinsgatedir {
+  size: 6;
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  width: 86%;
+  color: #FFFFFF;
+}
+
+#inputcoinsgate::placeholder {
+  color: #FFFFFF;
+}
+
+#inputcoinsgatedir::placeholder {
+  color: #FFFFFF;
+}
+
+
+#buttonscoinsgate {
+  background: #ffeb3b;
+  width: 100%;
+  border: 1px solid #FFFFFF;
+  border-radius: 15px;
+  height: 100%;
+  color: black;
+}
+
+#modalcoinsgate {
+  background: linear-gradient(120.37deg, rgba(67, 0, 90, 0.92) 99.99%, rgba(255, 255, 255, 0.092) 100%);
+  height: 100%;
+  width: 100%;
+  background-position: center center;
+}
+
+#inputcoinsgateselect {
+  size: 6;
+  border: none;
+  border-bottom: 1px solid black;
+  background-color: transparent;
+  width: 70%;
+  color: #000000;
+}
+
+#tabs {
+  position: relative;
+  justify-content: space-around;
+  justify-items: center;
+  align-items: center;
+}
+
+
+span.diana {
+  position: relative;
+}
+
+.diana+a {
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  background-color: transparent;
+  margin-bottom: -1px;
+  border-radius: 8px 8px 0 0;
+  margin-right: 40px;
+  text-decoration: none;
+  color: #ffffff;
+  border-bottom: 2px solid rgb(255, 255, 255);
+}
+
+.diana:target+a {
+  background-color: transparent;
+  border-bottom: 2px solid black;
+  color: #ffffff;
+}
+
+#pnl_1,
+#pnl_2,
+#pnl_3 {
+  position: absolute;
+  top: 31px;
+  left: 0;
+
+  clear: both;
+  overflow: hidden;
+}
+
+#pnl_1>div,
+#pnl_2>div,
+#pnl_3>div {
+  opacity: 0;
+  transition: all 0.1s ease;
+  padding: 30px;
+}
+
+#uno:target~#pnl_1,
+#dos:target~#pnl_2,
+#tres:target~#pnl_3 {
+  position: static;
+
+}
+
+#uno:target~#pnl_1>div,
+#dos:target~#pnl_2>div,
+#tres:target~#pnl_3>div {
+  opacity: 1;
+  transition: all 1s ease;
+}
+
+#generalcontents {
+  background: linear-gradient(120.37deg, rgba(67, 0, 90, 0.92) 99.99%, rgba(255, 255, 255, 0.092) 100%);
+  height: 200%;
+  width: 400px;
+  background-position: center center;
+  border: 1px solid #FFFFFF;
+  border-radius: 21px;
+}
+
+#linkto {
+  background: #ffeb3b;
+  width: 50px;
+  border: 1px solid #FFFFFF;
+  border-radius: 5px;
+  height: 100px;
+  color: black;
+}
+
+/* seccion de estilosde login y register */
+#inputID {
+  text-align: center;
+  color: #ffffff;
+  size: auto;
+  min-height: 60px;
+  background: linear-gradient(120.37deg, rgba(239, 239, 239, 0.048) 0%, rgba(255, 255, 255, 0.008) 100%);
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  width: 100%;
+  border: 0;
+}
+
+#inputID:focus {
+  border: 1px solid #E8C461;
+  outline: none;
+}
+
+#inputID::placeholder {
+  color: #ffffff;
+  opacity: 1;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
+
+#inputID::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 0.25;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+#inputID:hover::-webkit-input-placeholder {
+  opacity: 1;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+#inputID:hover {
+  border-bottom: 1px solid #E8C461;
+}
+
+
+
+
+
+
+
+#inputIDpass {
+  text-align: center;
+  color: #ffffff;
+  size: auto;
+  min-height: 60px;
+  background: linear-gradient(120.37deg, rgba(239, 239, 239, 0.048) 0%, rgba(255, 255, 255, 0.008) 100%);
+  box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  width: 100%;
+  border: 0;
+}
+
+#inputIDpass:focus {
+  border: 1px solid #E8C461;
+  outline: none;
+}
+
+#inputIDpass::placeholder {
+  color: #ffffff;
+  opacity: 1;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+}
+
+#inputIDpass::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 0.25;
+  text-align: center;
+  align-content: center;
+  align-items: center;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+#inputIDpass:hover::-webkit-input-placeholder {
+  opacity: 1;
+  -webkit-transition: opacity 0.35s ease-in-out;
+  transition: opacity 0.35s ease-in-out;
+}
+
+#inputIDpass:hover {
+  border-bottom: 1px solid #E8C461;
+}
+
+#btLogin {
+  min-width: 120px;
+  max-height: 90px;
+  background: #E8C461;
+  border: 2px solid #EFEFEF;
+  border-radius: 15px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  color: #000000;
+
+}
+
+#btLogin:hover {
+  box-shadow: 0px 4px 25px #E8C461;
+  border: 2px solid #E8C461;
+}
+
+/* animación de boton Depositos*/
+
+#buttondeposito {
+  
+  width: 150px;
+  height: 40px;
+  border-radius: 15px;
+  background: #E8C461;
+  text-align: center;
+  color: #000000;
+  cursor: pointer;
+  box-shadow: 0 0 0 #E8C461;
+  animation: pulse 2s infinite;
+  border: 0;
+  font-weight: bold;
+  
+}
+#buttondeposito:hover {
+  animation: none;
+  box-shadow: 0px 4px 25px #E8C461;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 #E8C461;
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 10px #E8C461;
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 #E8C461;
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 1px #E8C461;
+    box-shadow: 0 0 0 1px #E8C461;
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 10px #E8C461;
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+#buttonretiro{
+  
+  width: 150px;
+  height: 40px;
+  border-radius: 15px;
+  background: rgba(67, 0, 90, 0.92);
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  box-shadow: 0 0 0 #E8C461;
+  border: 1px solid #FFFFFF;
+  font-weight: bold;
+
+
+}
+#buttonretiro:hover {
+  box-shadow: 0px 4px 25px #E8C461;
+  border: 1px solid #E8C461;
+}
+/* drop box de header */
+a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
+}
+.menu {
+  display:block;
+  position:fixed;
+  cursor: pointer;
+  text-decoration: none;
+}
+.menu-title {
+  display: block;
+  width: 150px;
+  height: 40px;
+  background: rgba(67, 0, 90, 0.92);
+  text-align: center;
+  color: #ffffff;
+  font-weight: bold;
+  transition: 0.3s background-color;
+  text-align: center;
+  align-items: center;
+  border-radius: 15px;
+  border: 1px solid #FFFFFF;
+}
+.menu-title:before {
+  content: "";
+  display: block;
+  height: 0;
+  border-top: 5px solid rgba(67, 0, 90, 0.92);
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-bottom: 0 solid #dddddd;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 101;
+  transition: 0.2s 0.2s border-top ease-out, 0.3s border-top-color;
+}
+
+.menu-title:hover {
+  background: #E8C461;
+  color: #000000;
+  border: 1px solid #E8C461;
+  box-shadow: 0px 4px 25px #E8C461;
+  
+}
+
+.menu-title:hover:before {
+  border-top-color: #E8C461;
+}
+.menu:hover > .menu-title:before {
+  border-top-width: 0;
+  transition: 0.2s border-top-width ease-in, 0.3s border-top-color;
+}
+
+.menu-title:after {
+  content: "";
+  display: block;
+  height: 0;
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  border-bottom: 0 solid rgba(67, 0, 90, 0.92);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 101;
+  transition: 0.2s border-bottom ease-in;
+}
+
+.menu:hover > .menu-title:after {
+  border-bottom-width: 5px;
+  transition: 0.2s 0.2s border-bottom-width ease-out;
+}
+.menu-dropdown {
+  min-width: 100%;
+  padding: 15px 0;
+  position: absolute;
+  background: rgba(67, 0, 90, 0.92);
+  z-index: 100;
+  transition: 0.5s padding, 0.5s background;
+  font-weight: bold;
+
+}
+
+.menu-dropdown:after {
+  content: "";
+  display: block;
+  height: 0;
+  border-top: 5px solid rgba(67, 0, 90, 0.92);
+  border-left: 75px solid transparent;
+  border-right: 75px solid transparent;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 101;
+  transition: 0.5s border-top;
+}
+
+.menu:not(:hover) > .menu-dropdown {
+  padding: 2px 0;
+  background: #FFFFFF;
+  z-index: 99;
+}
+
+.menu:not(:hover) > .menu-dropdown:after {
+  border-top-color: #FFFFFF;
+}
+
+.menu:not(:hover) > .menu-title:after {
+  border-bottom-color: #FFFFFF;
+}
+
+.menu-dropdown > * {
+  overflow: hidden;
+  height: 30px;
+  padding: 5px 10px;
+  background: rgba(0, 0, 0, 0);
+  white-space: nowrap;
+  transition: 0.5s height cubic-bezier(0.73, 0.32, 0.34, 1.5), 0.5s padding cubic-bezier(0.73, 0.32, 0.34, 1.5), 0.5s margin cubic-bezier(0.73, 0.32, 0.34, 1.5), 0.5s 0.2s color, 0.2s background-color;
+}
+
+.menu-dropdown > *:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.menu:not(:hover) > .menu-dropdown > * {
+  visibility: hidden;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin: 0;
+  color: rgba(25, 25, 25, 0);
+  transition: 0.5s 0.1s height, 0.5s 0.1s padding, 0.5s 0.1s margin, 0.3s color, 0.6s visibility;
+  z-index: 99;
+}
+
+.hList > * {
+  float: left;
+}
+
+.hList > * + * {
+  margin-left: 0;
+}
+#btopcionesheader{
+  background: transparent;
+  border: 0;
+  outline: none;
+  height: 100%;
+  width: 100%;
+  font-weight: bold;
+
 }

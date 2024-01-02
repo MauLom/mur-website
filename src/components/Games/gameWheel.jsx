@@ -16,8 +16,6 @@ import { initgamewheel, onnewroom, onnumberofusers, readytoplayGW } from '../soc
 import { ondataroom, onnumerofturns, onregisterstatus, regwinner, clearplayers } from '../sockets.js';
 const GameWheel = () => {
 
-    const [deshabilitar, setDeshabilitar] = React.useState(false)
-    const [num1, setNum1] = React.useState(0)
     const [players, setPlayers] = React.useState(0)
     const [room, setRoom] = React.useState('Game Wheel')
     const [numberofroom, setNumberofroom] = React.useState(1);
@@ -28,16 +26,14 @@ const GameWheel = () => {
     const User = sessionStorage.getItem("username")
     const colorsmain = ["orange", "purple", "yellow", "red", "white", "green", "pink", "blue"]
     let arr = []
-    const [arrElementsTable, setArrElementsTable]=React.useState([
-        [{}]
-    ])
+    
 
     if (User !== '' || User !== null || User !== 'data') {
         var dataofroom = []
         dataofroom = [User, numberofroom]
         arr = [true, numberofroom]
 
-        initgamewheel(dataofroom)
+        
         const newroom = (room) => {
             setNumberofroom(room + 1)
         }
@@ -158,17 +154,11 @@ const GameWheel = () => {
     }
 
     const reggamewheel = () => {
-
-        let tabla = document.getElementById('tabla').insertRow(1);
-        let col1 = tabla.insertCell(0);
-        let col2 = tabla.insertCell(1);
-        const colors = ["", "orange", "purple", "yellow", "red", "white", "green", "pink", "blue"]
-        const users = ["", listusers[0], listusers[1], listusers[2], listusers[3], listusers[4], listusers[5], listusers[6], listusers[7]]
-
-
-        col1.innerHTML = colors[num1];
-        col2.innerHTML = users[num1];
-        setNum1(num1 + 1)
+        if (User !== '' || User !== null || User !== 'data') {
+        initgamewheel(dataofroom)
+        }else{
+            alert('incia sesión para continuar')
+        }
     }
     const getWinner = (color) => {
         if (color === "") {
@@ -446,7 +436,7 @@ const GameWheel = () => {
             <br />
             <Row style={styles.row1}>
                 
-                    <center><button disabled={deshabilitar} style={styles.mesas} onClick={() => { reggamewheel() }}><h1>5</h1></button></center>
+                    <center><button  style={styles.mesas} onClick={() => { reggamewheel() }}><h1>5</h1></button></center>
                 
             </Row>
 

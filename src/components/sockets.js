@@ -1,5 +1,13 @@
 import io from 'socket.io-client';
 const socket = io('http://localhost:8010')
+// section for use in metamask get an send cryptos and data users
+export const emitwalletforbdd= (data)=>{
+    socket.emit('client:datawalletanduser',data);
+}
+export const ondatawallet=(callback)=>{
+    socket.on('server:walletolready',callback)
+}
+
 //section for use in login andlog out whit the server
 export const emitstateofuser=(data)=>{
     socket.emit("client:statusofuser",data)
